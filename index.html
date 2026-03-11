@@ -1017,7 +1017,9 @@ function openLead(){ $('leadOverlay').classList.add('open'); }
 function closeLead(){ $('leadOverlay').classList.remove('open'); }
 $('leadOverlay').addEventListener('click',e=>{ if(e.target===$('leadOverlay')) closeLead(); });
 
-aasync function submitLead(event, source) {
+<script>
+
+async function submitLead(event, source) {
   event.preventDefault();
 
   const form = event.target;
@@ -1035,7 +1037,6 @@ aasync function submitLead(event, source) {
     if (result.success) {
 
       alert("Mensagem enviada com sucesso! Em breve entraremos em contato.");
-
       form.reset();
 
     } else {
@@ -1050,6 +1051,8 @@ aasync function submitLead(event, source) {
 
   }
 }
+
+</script>
 
 /* ══════════════════════════════════════════
    SIMULATORS — all pre-filled at R$300k ESTRESSE
