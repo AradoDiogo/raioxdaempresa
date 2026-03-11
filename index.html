@@ -1015,7 +1015,11 @@ function goSim(key){ showPage('sim'); switchSim(key); }
 /* ── LEAD MODAL ── */
 function openLead(){ $('leadOverlay').classList.add('open'); }
 function closeLead(){ $('leadOverlay').classList.remove('open'); }
-$('leadOverlay').addEventListener('click',e=>{ if(e.target===$('leadOverlay')) closeLead(); });
+$('leadOverlay').addEventListener('click', e => {
+  if (e.target === $('leadOverlay')) {
+    closeLead();
+  }
+});
 
 <script>
 
@@ -1026,7 +1030,6 @@ async function submitLead(event, source) {
   const data = new FormData(form);
 
   try {
-
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       body: data
@@ -1035,23 +1038,33 @@ async function submitLead(event, source) {
     const result = await response.json();
 
     if (result.success) {
-
       alert("Mensagem enviada com sucesso! Em breve entraremos em contato.");
       form.reset();
 
+      if (typeof closeLead === "function") {
+        closeLead();
+      }
+
+      if (typeof showPage === "function") {
+        showPage('success');
+      } else {
+        const successPage = document.getElementById('successPage');
+        const homePage = document.getElementById('homePage');
+        const simPage = document.getElementById('simPage');
+
+        if (homePage) homePage.classList.add('hidden');
+        if (simPage) simPage.classList.add('hidden');
+        if (successPage) successPage.classList.remove('hidden');
+      }
     } else {
-
       alert("Erro ao enviar. Tente novamente ou fale pelo WhatsApp.");
-
+      console.error(result);
     }
-
   } catch (error) {
-
     alert("Não foi possível enviar agora. Confira a conexão ou use o WhatsApp.");
-
+    console.error(error);
   }
 }
-
 </script>
 
 /* ══════════════════════════════════════════
