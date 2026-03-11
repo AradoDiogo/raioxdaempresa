@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raio-X da Empresa | Simulador Financeiro Gratuito para PMEs</title>
+  <meta name="description" content="Descubra em minutos o que está travando o resultado da sua empresa. Simuladores financeiros gratuitos para locadoras, distribuidoras, varejistas e empresas de serviços. Diagnóstico real, sem enrolação.">
+  <meta name="keywords" content="simulador financeiro empresarial, diagnóstico financeiro PME, consultoria financeira, capital de giro, EBITDA, fluxo de caixa, margem de contribuição, gestão financeira">
+  <meta name="author" content="Raio-X da Empresa">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.raioxdaempresa.com.br/">
+
+  <!-- Open Graph / WhatsApp / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.raioxdaempresa.com.br/">
+  <meta property="og:title" content="Raio-X da Empresa | Simulador Financeiro Gratuito">
+  <meta property="og:description" content="Simule o impacto de cada decisão no resultado e no caixa da sua empresa. Gratuito, em tempo real, sem precisar de contador ou planilha.">
+  <meta property="og:image" content="https://www.raioxdaempresa.com.br/og-image.png">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Raio-X da Empresa">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Raio-X da Empresa | Simulador Financeiro Gratuito">
+  <meta name="twitter:description" content="Simule o impacto de cada decisão no resultado e no caixa da sua empresa. Gratuito e em tempo real.">
+  <meta name="twitter:image" content="https://www.raioxdaempresa.com.br/og-image.png">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Raio-X da Empresa",
+    "url": "https://www.raioxdaempresa.com.br",
+    "description": "Simuladores financeiros gratuitos para PMEs brasileiras: locadoras de equipamentos, distribuidoras, varejistas e empresas de serviços. Diagnóstico de EBITDA, capital de giro, ciclo financeiro e caixa em tempo real.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "Raio-X da Empresa",
+      "url": "https://www.raioxdaempresa.com.br"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é o Raio-X da Empresa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "É uma ferramenta gratuita de simulação financeira para PMEs. Você insere os dados da sua empresa e vê em tempo real o impacto no EBITDA, caixa e capital de giro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Para quais tipos de empresa o simulador funciona?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Temos simuladores específicos para locadoras de equipamentos, distribuidoras, varejistas e empresas de serviços com faturamento acima de R$ 300 mil por mês."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O simulador financeiro é realmente gratuito?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, totalmente gratuito e sem cadastro obrigatório. Você acessa, simula e vê o diagnóstico imediatamente."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#071416;--panel:#0d2326;--text:#eef8f7;--muted:#7ca8a6;
+      --accent:#2fb7ae;--accent2:#6de0d7;--accent3:#a8f0eb;
+      --danger:#ff7b7b;--warn:#ffd166;--ok:#72e3a1;
+      --line:#1a3e44;--line2:#214e54;
+      --shadow:0 24px 60px rgba(0,0,0,.4);
+      --r:18px;--r-sm:12px;--max:1320px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+      background-image:radial-gradient(ellipse 90% 40% at 50% 0%,rgba(47,183,174,.1) 0%,transparent 55%)}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit;cursor:pointer}
+    .hidden{display:none!important}
+    .container{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+
+    /* ── HEADER ── */
+    .site-header{position:sticky;top:0;z-index:90;backdrop-filter:blur(18px);
+      background:rgba(7,20,22,.9);border-bottom:1px solid rgba(47,183,174,.1)}
+    .header-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border-radius:10px;display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:14px;color:#041b1d;letter-spacing:-.02em}
+    .brand-text strong{display:block;font-size:15px;font-weight:800;letter-spacing:-.01em}
+    .brand-text span{font-size:11px;color:var(--muted)}
+    .nav{display:flex;align-items:center;gap:4px;position:relative}
+    .nav-link{font-size:13px;color:var(--muted);font-weight:500;padding:8px 14px;
+      border-radius:99px;transition:all .2s;border:1px solid transparent;
+      background:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px}
+    .nav-link:hover,.nav-link.active{color:var(--text);background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.07)}
+    .nav-link svg{opacity:.6;transition:transform .2s}
+    .nav-link:hover svg{opacity:1}
+    .dropdown-wrap{position:relative}
+    .dropdown-wrap:hover .dropdown,.dropdown-wrap:focus-within .dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+    .dropdown{position:absolute;top:calc(100% + 8px);left:0;background:rgba(13,35,38,.98);
+      border:1px solid rgba(47,183,174,.15);border-radius:14px;padding:8px;
+      min-width:220px;opacity:0;pointer-events:none;transform:translateY(-6px);
+      transition:all .2s;backdrop-filter:blur(16px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+    .dropdown a{display:flex;align-items:center;gap:10px;padding:10px 12px;
+      border-radius:10px;font-size:13px;color:var(--muted);transition:all .15s;
+      font-weight:500}
+    .dropdown a:hover{background:rgba(47,183,174,.08);color:var(--text)}
+    .dropdown-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+    .header-cta{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
+      font-weight:800;font-size:13px;padding:10px 20px;border-radius:11px;border:0;
+      transition:all .2s;flex-shrink:0}
+    .header-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(47,183,174,.35)}
+
+    /* ── PAGES ── */
+    .page{min-height:calc(100vh - 70px)}
+
+    /* ══ HOME ══ */
+    .hero{padding:72px 0 56px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);
+      text-transform:uppercase;letter-spacing:.13em;font-weight:800;font-size:11px;margin-bottom:18px}
+    .eyebrow-line{width:22px;height:2px;background:var(--accent2);border-radius:2px}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:54px;line-height:1.05;
+      letter-spacing:-.025em;margin-bottom:22px}
+    .hero h1 em{font-style:italic;color:var(--accent2)}
+    .hero-sub{font-size:17px;color:var(--muted);line-height:1.65;max-width:580px;margin-bottom:32px}
+
+    /* SERVICES ROW — clean badges */
+    .services-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+    .svc-badge{display:flex;align-items:center;gap:8px;padding:9px 16px;
+      background:rgba(47,183,174,.06);border:1px solid rgba(47,183,174,.2);
+      border-radius:10px;font-size:12px;font-weight:600;color:var(--accent2);
+      letter-spacing:.01em;transition:all .2s}
+    .svc-badge:hover{background:rgba(47,183,174,.12);border-color:rgba(109,224,215,.35)}
+    .svc-badge-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .svc-badge-icon svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
+      stroke-linecap:round;stroke-linejoin:round}
+
+    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .btn-main{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
+      font-weight:800;font-size:14px;padding:14px 28px;border-radius:13px;border:0;
+      transition:all .2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+    .btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(47,183,174,.38)}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--line2);
+      font-weight:600;font-size:13px;padding:13px 22px;border-radius:13px;
+      transition:all .2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent2)}
+
+    /* LEAD CARD */
+    .lead-hero-card{background:linear-gradient(170deg,rgba(18,52,58,.97),rgba(10,28,31,.99));
+      border:1px solid rgba(47,183,174,.18);border-radius:22px;padding:28px;
+      box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .lead-hero-card::before{content:'';position:absolute;top:0;left:0;right:0;
+      height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .lead-hero-card h2{font-family:'DM Serif Display',Georgia,serif;font-size:20px;
+      line-height:1.2;margin-bottom:6px}
+    .lead-hero-card .sub{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:20px}
+    .form-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+    .form-field label{font-size:11px;font-weight:700;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.06em}
+    .form-field input,.form-field select{background:rgba(7,20,22,.8);border:1px solid var(--line2);
+      border-radius:10px;color:var(--text);padding:11px 14px;font-size:13px;
+      font-family:inherit;outline:none;width:100%;transition:border-color .2s}
+    .form-field input:focus,.form-field select:focus{border-color:var(--accent)}
+    .form-field select option{background:#0d2326}
+    .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .btn-submit{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
+      font-weight:800;font-size:14px;padding:14px;border-radius:12px;border:0;
+      width:100%;transition:all .2s;margin-top:4px;cursor:pointer}
+    .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(47,183,174,.35)}
+    .form-privacy{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5}
+
+    /* SECTION */
+    .section{padding:48px 0}
+    .section-head{text-align:center;margin-bottom:40px}
+    .section-head h2{font-family:'DM Serif Display',Georgia,serif;font-size:38px;
+      margin-bottom:10px;letter-spacing:-.02em}
+    .section-head p{color:var(--muted);font-size:15px;max-width:560px;margin:0 auto;line-height:1.6}
+
+    /* STEPS */
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step-card{background:linear-gradient(180deg,rgba(18,52,58,.8),rgba(10,28,31,.85));
+      border:1px solid rgba(255,255,255,.06);border-radius:var(--r);padding:26px;position:relative;overflow:hidden}
+    .step-num{font-family:'DM Serif Display',serif;font-size:52px;color:rgba(47,183,174,.1);
+      line-height:1;position:absolute;top:10px;right:16px}
+    .step-icon-wrap{width:42px;height:42px;border-radius:12px;
+      background:rgba(47,183,174,.1);border:1px solid rgba(47,183,174,.2);
+      display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .step-icon-wrap svg{width:20px;height:20px;stroke:var(--accent2);fill:none;
+      stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .step-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+    .step-card p{font-size:13px;color:var(--muted);line-height:1.55}
+
+    /* SIM CARDS */
+    .sim-cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .sim-card{background:linear-gradient(180deg,rgba(18,52,58,.85),rgba(10,28,31,.9));
+      border:1px solid rgba(255,255,255,.06);border-radius:var(--r);padding:26px;
+      cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+    .sim-card:hover{border-color:rgba(47,183,174,.3);transform:translateY(-3px);
+      box-shadow:0 16px 40px rgba(0,0,0,.4)}
+    .sim-card-icon-wrap{width:46px;height:46px;border-radius:13px;
+      background:rgba(47,183,174,.08);border:1px solid rgba(47,183,174,.18);
+      display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+      transition:all .25s}
+    .sim-card:hover .sim-card-icon-wrap{background:rgba(47,183,174,.15);border-color:rgba(47,183,174,.35)}
+    .sim-card-icon-wrap svg{width:22px;height:22px;stroke:var(--accent2);fill:none;
+      stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .sim-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+    .sim-card p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:16px}
+    .sim-card-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .tag{background:rgba(47,183,174,.07);border:1px solid rgba(47,183,174,.14);
+      color:var(--accent2);font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px}
+    .sim-card-arrow{position:absolute;top:20px;right:20px;color:var(--accent2);
+      font-size:14px;opacity:0;transition:all .25s;transform:translateX(-4px)}
+    .sim-card:hover .sim-card-arrow{opacity:1;transform:translateX(0)}
+
+    /* VALUE GRID */
+    .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .value-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.055);
+      border-radius:var(--r);padding:26px;transition:border-color .2s}
+    .value-card:hover{border-color:rgba(47,183,174,.2)}
+    .v-icon-wrap{width:42px;height:42px;border-radius:12px;
+      background:rgba(47,183,174,.08);border:1px solid rgba(47,183,174,.18);
+      display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .v-icon-wrap svg{width:20px;height:20px;stroke:var(--accent2);fill:none;
+      stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .value-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+    .value-card p{font-size:13px;color:var(--muted);line-height:1.55}
+
+    /* STATS BAR */
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);
+      background:linear-gradient(90deg,rgba(18,52,58,.9),rgba(10,28,31,.95));
+      border:1px solid rgba(47,183,174,.1);border-radius:var(--r);overflow:hidden}
+    .stat-item{padding:28px 24px;border-right:1px solid rgba(255,255,255,.05)}
+    .stat-item:last-child{border-right:0}
+    .stat-big{font-family:'DM Serif Display',serif;font-size:40px;color:var(--accent2);
+      line-height:1;margin-bottom:6px}
+    .stat-item p{font-size:13px;color:var(--muted);line-height:1.45}
+
+    /* ══ SIMULATOR PAGE ══ */
+    .sim-page{padding:32px 0 60px}
+    .sim-page-header{margin-bottom:28px}
+    .sim-page-header h1{font-family:'DM Serif Display',Georgia,serif;font-size:36px;
+      margin-bottom:8px;letter-spacing:-.02em}
+    .sim-page-header p{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px}
+
+    .sim-tabs{display:flex;gap:6px;margin-bottom:24px;background:rgba(0,0,0,.25);
+      padding:6px;border-radius:16px;border:1px solid var(--line);width:fit-content}
+    .sim-tab{padding:10px 22px;border-radius:12px;border:0;background:transparent;
+      color:var(--muted);font-size:13px;font-weight:600;font-family:inherit;
+      cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px}
+    .sim-tab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
+      stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+    .sim-tab.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;font-weight:800}
+    .sim-tab.active svg{opacity:1}
+    .sim-tab:not(.active):hover{color:var(--text);background:rgba(255,255,255,.05)}
+
+    .sim-layout{display:grid;grid-template-columns:300px 1fr 280px;gap:16px;align-items:start}
+
+    /* Inputs */
+    .inputs-panel{background:linear-gradient(180deg,rgba(18,52,58,.95),rgba(10,28,31,.98));
+      border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden}
+    .inputs-panel-header{padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;align-items:center;gap:10px}
+    .p-icon{width:32px;height:32px;border-radius:9px;background:rgba(47,183,174,.1);
+      border:1px solid rgba(47,183,174,.18);display:flex;align-items:center;
+      justify-content:center;flex-shrink:0}
+    .p-icon svg{width:16px;height:16px;stroke:var(--accent2);fill:none;stroke-width:2;
+      stroke-linecap:round;stroke-linejoin:round}
+    .inputs-panel-header h3{font-size:14px;font-weight:700;margin-bottom:1px}
+    .inputs-panel-header p{font-size:11px;color:var(--muted)}
+    .input-group{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04)}
+    .input-group:last-child{border-bottom:0}
+    .group-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+      color:var(--accent2);margin-bottom:12px}
+    .sim-field{margin-bottom:12px;position:relative}
+    .sim-field:last-child{margin-bottom:0}
+
+    /* Tooltip system */
+    .field-label-row{display:flex;align-items:center;gap:5px;margin-bottom:5px}
+    .sim-field label{font-size:11px;font-weight:600;color:var(--muted);line-height:1.3}
+    .tooltip-trigger{width:14px;height:14px;border-radius:50%;
+      background:rgba(47,183,174,.15);border:1px solid rgba(47,183,174,.25);
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:9px;font-weight:800;color:var(--accent2);cursor:help;
+      flex-shrink:0;transition:all .15s}
+    .tooltip-trigger:hover{background:rgba(47,183,174,.3)}
+    .tooltip-box{position:absolute;left:0;bottom:calc(100% + 8px);
+      background:rgba(8,28,32,.98);border:1px solid rgba(47,183,174,.25);
+      border-radius:10px;padding:10px 12px;font-size:11px;color:var(--muted);
+      line-height:1.55;width:220px;z-index:50;pointer-events:none;
+      opacity:0;transform:translateY(4px);transition:all .18s;
+      box-shadow:0 12px 32px rgba(0,0,0,.5)}
+    .sim-field:hover .tooltip-box,.tooltip-trigger:hover + .tooltip-box,
+    .tooltip-trigger:focus + .tooltip-box{opacity:1;transform:translateY(0)}
+    .field-row{display:flex;align-items:center;gap:8px}
+    .sim-field input[type="number"]{background:rgba(7,20,22,.8);border:1px solid var(--line2);
+      border-radius:9px;color:var(--text);padding:9px 11px;font-size:12px;font-family:inherit;
+      outline:none;transition:border-color .2s;width:100%}
+    .sim-field input[type="number"]:focus{border-color:var(--accent)}
+    .sim-field input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;
+      height:4px;border-radius:4px;background:var(--line);outline:none;cursor:pointer;margin-top:6px}
+    .sim-field input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;
+      height:15px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      cursor:pointer;box-shadow:0 2px 8px rgba(47,183,174,.4)}
+    .field-unit{font-size:11px;color:var(--muted);white-space:nowrap;min-width:28px}
+
+    /* Results */
+    .results-panel{display:flex;flex-direction:column;gap:14px}
+    .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .kpi-card{background:linear-gradient(180deg,rgba(18,52,58,.9),rgba(10,28,31,.95));
+      border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px}
+    .kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+      color:var(--muted);margin-bottom:8px}
+    .kpi-val{font-size:22px;font-weight:900;line-height:1;margin-bottom:5px;
+      font-family:'DM Serif Display',serif}
+    .kpi-hint{font-size:11px;color:var(--muted);line-height:1.35}
+    .ok{color:var(--ok)}.warn{color:var(--warn)}.danger{color:var(--danger)}.accent{color:var(--accent2)}
+
+    .dre-chart-row{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+    .panel-box{background:linear-gradient(180deg,rgba(18,52,58,.95),rgba(10,28,31,.98));
+      border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden}
+    .box-header{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:13px;font-weight:700}
+    .box-body{padding:16px 18px}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    td{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+    td:last-child{text-align:right;font-weight:700}
+    tr.dre-main td{color:var(--accent2);font-weight:800;font-size:13px;
+      border-top:1px solid rgba(47,183,174,.15);border-bottom:1px solid rgba(47,183,174,.15)}
+    .td-muted{color:var(--muted)!important;font-weight:400!important}
+    canvas.chart{width:100%;height:220px;display:block;border-radius:12px;
+      background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.05)}
+
+    .insights-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .insight-box{border-radius:14px;padding:18px;position:relative;overflow:hidden}
+    .insight-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .insight-box.diag{background:rgba(109,224,215,.07);border:1px solid rgba(109,224,215,.2)}
+    .insight-box.diag::before{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .insight-box.risk{background:rgba(255,209,102,.07);border:1px solid rgba(255,209,102,.22)}
+    .insight-box.risk::before{background:linear-gradient(90deg,#f5a623,var(--warn))}
+    .insight-box.exec{background:rgba(114,227,161,.07);border:1px solid rgba(114,227,161,.22)}
+    .insight-box.exec::before{background:linear-gradient(90deg,#3ecf8e,var(--ok))}
+    .insight-label{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;
+      text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px}
+    .insight-label-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .insight-box.diag .insight-label{color:var(--accent2)}
+    .insight-box.diag .insight-label-dot{background:var(--accent2)}
+    .insight-box.risk .insight-label{color:var(--warn)}
+    .insight-box.risk .insight-label-dot{background:var(--warn)}
+    .insight-box.exec .insight-label{color:var(--ok)}
+    .insight-box.exec .insight-label-dot{background:var(--ok)}
+    .insight-box p{font-size:12px;line-height:1.6}
+    .insight-box.diag p{color:#b8e8e5}
+    .insight-box.risk p{color:#e8d8a0}
+    .insight-box.exec p{color:#a8e0bc}
+
+    /* CTA Sidebar */
+    .cta-sidebar{position:sticky;top:86px}
+    .cta-box{background:linear-gradient(170deg,rgba(18,52,58,.97),rgba(10,28,31,.99));
+      border:1px solid rgba(47,183,174,.2);border-radius:var(--r);padding:22px;
+      position:relative;overflow:hidden;margin-bottom:14px}
+    .cta-box::before{content:'';position:absolute;top:0;left:0;right:0;
+      height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .cta-box h3{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.25;margin-bottom:8px}
+    .cta-box p{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:16px}
+    .cta-features{margin-bottom:16px}
+    .cta-feature{display:flex;align-items:flex-start;gap:8px;font-size:12px;
+      color:var(--muted);margin-bottom:8px;line-height:1.4}
+    .cta-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2);
+      margin-top:5px;flex-shrink:0}
+    .btn-lead{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
+      font-weight:800;font-size:13px;padding:13px 16px;border-radius:12px;border:0;
+      width:100%;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
+    .btn-lead:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(47,183,174,.35)}
+    .cta-note{font-size:11px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.4}
+
+    /* Float CTA */
+    .floating-cta{display:none;position:fixed;bottom:20px;right:20px;z-index:80;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
+      font-weight:800;font-size:13px;padding:13px 22px;border-radius:50px;border:0;
+      box-shadow:0 8px 24px rgba(47,183,174,.45);cursor:pointer;font-family:inherit}
+
+    /* ── MODAL ── */
+    .overlay{position:fixed;inset:0;background:rgba(4,14,16,.88);backdrop-filter:blur(10px);
+      z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+      opacity:0;pointer-events:none;transition:opacity .3s}
+    .overlay.open{opacity:1;pointer-events:all}
+    .modal{background:linear-gradient(180deg,rgba(18,52,58,.99),rgba(10,28,31,.99));
+      border:1px solid rgba(47,183,174,.2);border-radius:24px;padding:36px;
+      max-width:500px;width:100%;transform:translateY(18px);transition:transform .3s;
+      box-shadow:0 40px 100px rgba(0,0,0,.65);position:relative;overflow:hidden}
+    .modal::before{content:'';position:absolute;top:0;left:0;right:0;
+      height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .overlay.open .modal{transform:translateY(0)}
+    .modal-badge{display:inline-flex;align-items:center;gap:6px;
+      background:rgba(114,227,161,.1);border:1px solid rgba(114,227,161,.2);
+      border-radius:999px;padding:5px 13px;font-size:11px;font-weight:700;
+      color:var(--ok);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px}
+    .modal h3{font-family:'DM Serif Display',serif;font-size:26px;line-height:1.15;margin-bottom:8px}
+    .modal .modal-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:22px}
+    .modal-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+    .modal-field{display:flex;flex-direction:column;gap:5px}
+    .modal-field.full{grid-column:1/-1}
+    .modal-field label{font-size:11px;font-weight:700;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.06em}
+    .modal-field input,.modal-field select{background:rgba(7,20,22,.8);
+      border:1px solid var(--line2);border-radius:11px;color:var(--text);
+      padding:12px 14px;font-size:13px;font-family:inherit;outline:none;
+      transition:border-color .2s;width:100%}
+    .modal-field input:focus,.modal-field select:focus{border-color:var(--accent)}
+    .modal-field select option{background:#0d2326}
+    .modal-close{position:absolute;top:16px;right:18px;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--muted);
+      font-size:16px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:all .2s}
+    .modal-close:hover{color:var(--text);background:rgba(255,255,255,.1)}
+
+    /* FOOTER */
+    .footer{padding:32px 0 40px;text-align:center;font-size:12px;color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.04);line-height:1.7}
+    .footer strong{color:var(--text)}
+
+    /* RESPONSIVE */
+    @media(max-width:1200px){
+      .sim-layout{grid-template-columns:280px 1fr}
+      .cta-sidebar{display:none}.floating-cta{display:block}
+      .kpi-row{grid-template-columns:repeat(2,1fr)}
+      .dre-chart-row{grid-template-columns:1fr}
+    }
+    @media(max-width:900px){
+      .hero-grid,.steps-grid,.sim-cards-grid,.value-grid{grid-template-columns:1fr}
+      .stats-bar{grid-template-columns:1fr 1fr}
+      .stat-item:nth-child(2){border-right:0}
+      .sim-layout{grid-template-columns:1fr}
+      .sim-tabs{flex-wrap:wrap;width:100%}
+      .hero h1{font-size:38px}
+      .modal-form-grid{grid-template-columns:1fr}
+      .insights-row{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .container{width:calc(100% - 32px)}
+      .hero h1{font-size:30px}
+      .kpi-row{grid-template-columns:1fr 1fr}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .services-row{gap:8px}
+      .svc-badge{font-size:11px;padding:7px 12px}
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    .fade-in{animation:fadeUp .45s ease forwards}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo">RX</div>
+      <div class="brand-text">
+        <strong>Raio-X da Empresa</strong>
+        <span>Simulador Financeiro para PMEs</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="nav-link active" onclick="showPage('home')">Início</button>
+      <button class="nav-link" onclick="showPage('sim')">Simuladores</button>
+      <div class="dropdown-wrap">
+        <button class="nav-link">
+          Como Funciona
+          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5"/></svg>
+        </button>
+        <div class="dropdown">
+          <a href="#" onclick="scrollToSection('nossa-abordagem')">
+            <span class="dropdown-dot"></span>Nossa Abordagem
+          </a>
+          <a href="#" onclick="scrollToSection('o-que-entregamos')">
+            <span class="dropdown-dot"></span>O que Entregamos
+          </a>
+        </div>
+      </div>
+    </nav>
+    <button class="header-cta" onclick="openLead('header')">Falar com um consultor →</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ══ HOME PAGE ══ -->
+<div id="homePage" class="page">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span>Raio-X da Empresa · Simulador Financeiro</div>
+          <h1>Decisões melhores começam com <em>dados confiáveis</em>.</h1>
+          <p class="hero-sub">A maioria das empresas não perde dinheiro por falta de esforço — perde por falta de clareza financeira. Nós estruturamos a gestão, revelamos os números reais e criamos a cultura de decisão que transforma resultado.</p>
+
+          <!-- SERVICES BADGES — clean, sem emoji -->
+          <div class="services-row">
+            <span class="svc-badge">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+              Diagnóstico Financeiro
+            </span>
+            <span class="svc-badge">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
+              Planejamento Estratégico
+            </span>
+            <span class="svc-badge">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+              Orçamento e Caixa
+            </span>
+            <span class="svc-badge">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+              Valuation
+            </span>
+            <span class="svc-badge">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 6.477 16.477 2 22 2"/><path d="M12 12C12 6.477 7.523 2 2 2"/><path d="M2 22c0-5.523 4.477-10 10-10s10 4.477 10 10"/></svg></span>
+              Capital de Giro
+            </span>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-main" onclick="showPage('sim')">Acessar os Simuladores →</button>
+            <button class="btn-outline" onclick="openLead('hero')">Quero um diagnóstico gratuito</button>
+          </div>
+        </div>
+
+        <!-- LEAD FORM -->
+        <div class="lead-hero-card">
+          <div class="eyebrow" style="margin-bottom:12px"><span class="eyebrow-line"></span>Fale com um especialista</div>
+          <h2>Vamos conversar sobre o seu negócio.</h2>
+          <p class="sub">Preencha abaixo e entraremos em contato para agendar uma conversa sem compromisso.</p>
+          <form id="homeLeadForm" onsubmit="submitLead(event,'home')">
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label>Nome completo</label>
+                <input type="text" name="name" placeholder="Seu nome" required>
+              </div>
+              <div class="form-field">
+                <label>Empresa</label>
+                <input type="text" name="company" placeholder="Nome da empresa" required>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="voce@empresa.com" required>
+              </div>
+              <div class="form-field">
+                <label>WhatsApp</label>
+                <input type="text" name="phone" placeholder="(00) 00000-0000" required>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label>Cargo / Função</label>
+                <input type="text" name="role" placeholder="Ex: CEO, CFO, Sócio">
+              </div>
+              <div class="form-field">
+                <label>Segmento</label>
+                <select name="segment">
+                  <option value="">Selecione</option>
+                  <option>Locadora de Equipamentos</option>
+                  <option>Distribuidora</option>
+                  <option>Varejo / Comércio</option>
+                  <option>Serviços</option>
+                  <option>Indústria</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Faturamento mensal aproximado</label>
+              <select name="revenue">
+                <option value="">Selecione</option>
+                <option>Até R$ 100 mil</option>
+                <option>R$ 100 mil a R$ 500 mil</option>
+                <option>R$ 500 mil a R$ 2 milhões</option>
+                <option>R$ 2 milhões a R$ 10 milhões</option>
+                <option>Acima de R$ 10 milhões</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">Solicitar contato →</button>
+            <p class="form-privacy">🔒 Seus dados são protegidos. Sem spam.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="stats-bar">
+        <div class="stat-item"><div class="stat-big">4</div><p>simuladores estratégicos por modelo de negócio</p></div>
+        <div class="stat-item"><div class="stat-big">12+</div><p>soluções de gestão financeira e estratégia</p></div>
+        <div class="stat-item"><div class="stat-big">3%</div><p>de ajuste no preço pode dobrar o EBITDA do seu negócio</p></div>
+        <div class="stat-item"><div class="stat-big">0</div><p>planilhas complexas para começar a enxergar o negócio com clareza</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULATORS PREVIEW -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" style="justify-content:center"><span class="eyebrow-line"></span>Simuladores Estratégicos<span class="eyebrow-line"></span></div>
+        <h2>Simule antes de decidir.</h2>
+        <p>Veja o impacto real de cada decisão no resultado, no caixa e no capital de giro — com os dados da sua empresa.</p>
+      </div>
+      <div class="sim-cards-grid">
+        <div class="sim-card" onclick="goSim('locadora')">
+          <div class="sim-card-arrow">→</div>
+          <div class="sim-card-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </div>
+          <h3>Locador de Equipamentos</h3>
+          <p>Entenda o impacto de ocupação, CAPEX, manutenção e dívida no caixa e no retorno da frota.</p>
+          <div class="sim-card-tags"><span class="tag">Ocupação</span><span class="tag">CAPEX</span><span class="tag">DSCR</span><span class="tag">NCG</span></div>
+        </div>
+        <div class="sim-card" onclick="goSim('distribuidor')">
+          <div class="sim-card-arrow">→</div>
+          <div class="sim-card-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Distribuidor</h3>
+          <p>Simule margem, giro de estoque, ciclo financeiro e como o crescimento pode pressionar o caixa.</p>
+          <div class="sim-card-tags"><span class="tag">Margem</span><span class="tag">PMR/PMP</span><span class="tag">NCG</span><span class="tag">Giro</span></div>
+        </div>
+        <div class="sim-card" onclick="goSim('varejista')">
+          <div class="sim-card-arrow">→</div>
+          <div class="sim-card-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <h3>Varejista</h3>
+          <p>Descubra como markup, desconto, giro de estoque e despesas moldam o resultado e o caixa.</p>
+          <div class="sim-card-tags"><span class="tag">Markup</span><span class="tag">Giro</span><span class="tag">Break-even</span><span class="tag">Margem</span></div>
+        </div>
+        <div class="sim-card" onclick="goSim('servicos')">
+          <div class="sim-card-arrow">→</div>
+          <div class="sim-card-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Serviços</h3>
+          <p>Veja como ocupação da equipe, ticket médio, churn e inadimplência impactam o resultado.</p>
+          <div class="sim-card-tags"><span class="tag">Ocupação</span><span class="tag">Ticket</span><span class="tag">Churn</span><span class="tag">Caixa</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSSA ABORDAGEM -->
+  <section class="section" id="nossa-abordagem">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" style="justify-content:center"><span class="eyebrow-line"></span>Nossa Abordagem<span class="eyebrow-line"></span></div>
+        <h2>Criamos a cultura de decisão baseada em dados.</h2>
+        <p>A maioria das empresas mal tem os dados para tomar boas decisões. Nós estruturamos isso — e aí o jogo muda.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-icon-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <h3>Diagnóstico financeiro</h3>
+          <p>Revelamos a realidade econômico-financeira: DRE, caixa, ciclo financeiro, NCG e causas-raiz dos problemas.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-icon-wrap">
+            <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          </div>
+          <h3>Planejamento estratégico</h3>
+          <p>Definimos a meta crucial, os quick wins de alto impacto e as ações estruturantes de médio e longo prazo.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-icon-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          </div>
+          <h3>Implantação e execução</h3>
+          <p>Organizamos processos financeiros, orçamento e rotinas de gestão para que os dados sejam confiáveis.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <h3>Acompanhamento contínuo</h3>
+          <p>Reuniões de resultado, análise de desvios e plano de ação — decisões tomadas com dados reais todo mês.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE ENTREGAMOS -->
+  <section class="section" id="o-que-entregamos" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" style="justify-content:center"><span class="eyebrow-line"></span>O que Entregamos<span class="eyebrow-line"></span></div>
+        <h2>Mais do que consultoria. Uma virada de gestão.</h2>
+        <p>Nosso trabalho começa onde a maioria dos consultores para: na implementação real.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="v-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Organização da Gestão Financeira</h3>
+          <p>Plano de contas, processos financeiros, DRE e DFC gerenciais — dados confiáveis para tomar decisões com segurança.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon-wrap">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m7 10 3 3 4-5"/></svg>
+          </div>
+          <h3>Análise e Planejamento Orçamentário</h3>
+          <p>Diagnóstico econômico-financeiro completo, orçamento com cenários e governança de acompanhamento mensal.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon-wrap">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Precificação e Performance Comercial</h3>
+          <p>Política de preços baseada em margem de contribuição e gestão da performance do time comercial com metas claras.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon-wrap">
+            <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <h3>Gestão do Capital de Giro</h3>
+          <p>Otimização de PMR, PMP e estoques para liberar caixa e reduzir a necessidade de financiamento operacional.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon-wrap">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Valuation e Estrutura de Crédito</h3>
+          <p>Avaliação econômica do negócio e estruturação de dívida sustentável compatível com a geração de caixa.</p>
+        </div>
+        <div class="value-card">
+          <div class="v-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Acompanhamento Estratégico Contínuo</h3>
+          <p>Orçado vs. realizado todo mês, com análise de desvios, plano de ação e rituais de gestão que criam disciplina.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /homePage -->
+
+<!-- ══ SIMULATOR PAGE ══ -->
+<div id="simPage" class="page hidden">
+  <div class="container sim-page">
+    <div class="sim-page-header">
+      <div class="eyebrow"><span class="eyebrow-line"></span>Simuladores Estratégicos</div>
+      <h1>Veja o impacto das decisões no seu negócio.</h1>
+      <p>Insira os dados reais da sua empresa, ajuste as variáveis e observe em tempo real como cada decisão afeta resultado, caixa e capital de giro. Passe o mouse sobre os campos para entender o que cada dado significa.</p>
+    </div>
+
+    <div class="sim-tabs">
+      <button class="sim-tab active" data-sim="locadora" onclick="switchSim('locadora')">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Locador de Equipamentos
+      </button>
+      <button class="sim-tab" data-sim="distribuidor" onclick="switchSim('distribuidor')">
+        <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Distribuidor
+      </button>
+      <button class="sim-tab" data-sim="varejista" onclick="switchSim('varejista')">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Varejista
+      </button>
+      <button class="sim-tab" data-sim="servicos" onclick="switchSim('servicos')">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Serviços
+      </button>
+    </div>
+
+    <div class="sim-layout">
+      <div id="inputsPanel" class="inputs-panel"></div>
+      <div class="results-panel">
+        <div class="kpi-row" id="kpiRow"></div>
+        <div class="dre-chart-row">
+          <div class="panel-box">
+            <div class="box-header" id="dreTitle">DRE Gerencial</div>
+            <div class="box-body"><table id="dreTable"></table></div>
+          </div>
+          <div class="panel-box">
+            <div class="box-header" id="indTitle">Indicadores</div>
+            <div class="box-body"><table id="indTable"></table></div>
+          </div>
+        </div>
+        <div class="panel-box">
+          <div class="box-header">Análise Visual</div>
+          <div class="box-body" style="padding:12px 16px">
+            <canvas id="simChart" class="chart"></canvas>
+          </div>
+        </div>
+        <div class="insights-row">
+          <div class="insight-box diag">
+            <div class="insight-label"><span class="insight-label-dot"></span>Diagnóstico</div>
+            <p id="ins1">—</p>
+          </div>
+          <div class="insight-box risk">
+            <div class="insight-label"><span class="insight-label-dot"></span>Risco oculto</div>
+            <p id="ins2">—</p>
+          </div>
+          <div class="insight-box exec">
+            <div class="insight-label"><span class="insight-label-dot"></span>Leitura executiva</div>
+            <p id="ins3">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="cta-sidebar">
+        <div class="cta-box">
+          <h3>Esses números revelam o potencial real.</h3>
+          <p>A consultoria W1 implementa o plano e garante que os resultados aconteçam — com dados confiáveis e acompanhamento mensal.</p>
+          <div class="cta-features">
+            <div class="cta-feature"><div class="cta-dot"></div><span>Diagnóstico financeiro completo da sua empresa</span></div>
+            <div class="cta-feature"><div class="cta-dot"></div><span>Plano de ação com metas e prioridades claras</span></div>
+            <div class="cta-feature"><div class="cta-dot"></div><span>Acompanhamento mensal com análise de desvios</span></div>
+            <div class="cta-feature"><div class="cta-dot"></div><span>Estruturação da gestão financeira do início ao fim</span></div>
+          </div>
+          <button class="btn-lead" onclick="openLead('sim')">Quero falar com um consultor</button>
+          <p class="cta-note">Sem compromisso · Resposta em até 24h</p>
+        </div>
+        <div class="cta-box" style="background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.06)">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px">Sobre o simulador</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6">Os campos vêm preenchidos com um cenário de estresse típico para uma empresa de R$ 300k/mês. Ajuste com seus dados reais para ver o diagnóstico do seu negócio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS PAGE -->
+<div id="successPage" class="page hidden" style="display:flex;align-items:center;justify-content:center;padding:80px 0">
+  <div style="text-align:center;max-width:480px;padding:0 24px">
+    <div style="width:64px;height:64px;border-radius:50%;background:rgba(114,227,161,.1);border:2px solid rgba(114,227,161,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px">✓</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:32px;margin-bottom:12px">Recebemos seu contato!</h2>
+    <p style="color:var(--muted);font-size:16px;line-height:1.6;margin-bottom:28px" id="successMsg">Entraremos em contato em breve.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-main" onclick="showPage('sim')">Explorar os simuladores →</button>
+      <button class="btn-outline" onclick="showPage('home')">Voltar ao início</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<button class="floating-cta" onclick="openLead('float')">Falar com consultor</button>
+
+<!-- MODAL -->
+<div class="overlay" id="leadOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeLead()">✕</button>
+    <div class="modal-badge">Diagnóstico gratuito</div>
+    <h3>Vamos conversar sobre o seu negócio.</h3>
+    <p class="modal-sub">Preencha abaixo e um especialista do Raio-X da Empresa entrará em contato para uma conversa sem compromisso.</p>
+    <form id="modalLeadForm" onsubmit="submitLead(event,'modal')">
+      <div class="modal-form-grid">
+        <div class="modal-field"><label>Nome completo</label><input type="text" name="name" placeholder="Seu nome" required></div>
+        <div class="modal-field"><label>Empresa</label><input type="text" name="company" placeholder="Nome da empresa" required></div>
+        <div class="modal-field"><label>E-mail</label><input type="email" name="email" placeholder="voce@empresa.com" required></div>
+        <div class="modal-field"><label>WhatsApp</label><input type="text" name="phone" placeholder="(00) 00000-0000" required></div>
+        <div class="modal-field"><label>Cargo / Função</label><input type="text" name="role" placeholder="Ex: CEO, CFO, Sócio"></div>
+        <div class="modal-field">
+          <label>Segmento</label>
+          <select name="segment">
+            <option value="">Selecione</option>
+            <option>Locadora de Equipamentos</option>
+            <option>Distribuidora</option>
+            <option>Varejo / Comércio</option>
+            <option>Serviços</option>
+            <option>Indústria</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="modal-field full">
+          <label>Faturamento mensal aproximado</label>
+          <select name="revenue">
+            <option value="">Selecione</option>
+            <option>Até R$ 100 mil</option>
+            <option>R$ 100 mil a R$ 500 mil</option>
+            <option>R$ 500 mil a R$ 2 milhões</option>
+            <option>R$ 2 milhões a R$ 10 milhões</option>
+            <option>Acima de R$ 10 milhões</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Solicitar contato →</button>
+      <p class="form-privacy" style="margin-top:10px">🔒 Seus dados são protegidos. Sem spam. Resposta em até 24h.</p>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <strong>Raio-X da Empresa</strong> · Simulador Financeiro para PMEs<br>
+    <span>Os valores dos simuladores são ilustrativos e dependem das premissas inseridas. Resultados reais variam conforme o contexto de cada empresa.</span>
+  </div>
+</footer>
+
+<script>
+/* ── UTILS ── */
+const BRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const fmt=v=>BRL.format(v);
+const pct=(v,d=1)=>Number(v).toFixed(d).replace('.',',')+' %';
+const num=(v,d=1)=>Number(v).toFixed(d).replace('.',',');
+const $=id=>document.getElementById(id);
+
+/* ── NAVIGATION ── */
+function showPage(p){
+  ['homePage','simPage','successPage'].forEach(id=>$(id).classList.add('hidden'));
+  $(p+'Page').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.nav-link').forEach(el=>{
+    const txt=el.textContent.trim();
+    el.classList.toggle('active',(p==='home'&&txt==='Início')||(p==='sim'&&txt==='Simuladores'));
+  });
+}
+
+function scrollToSection(id){
+  showPage('home');
+  setTimeout(()=>{
+    const el=$(id);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
+  return false;
+}
+
+function goSim(key){ showPage('sim'); switchSim(key); }
+
+/* ── LEAD MODAL ── */
+function openLead(){ $('leadOverlay').classList.add('open'); }
+function closeLead(){ $('leadOverlay').classList.remove('open'); }
+$('leadOverlay').addEventListener('click',e=>{ if(e.target===$('leadOverlay')) closeLead(); });
+
+function submitLead(e){
+  e.preventDefault();
+  const data=Object.fromEntries(new FormData(e.target).entries());
+  console.log('Lead captured:',data);
+  closeLead();
+  $('successMsg').textContent=`${data.name?data.name.split(' ')[0]+', recebemos':'Recebemos'} seu contato! Nossa equipe entrará em contato em breve pelo WhatsApp ou e-mail informado.`;
+  showPage('success');
+}
+
+/* ══════════════════════════════════════════
+   SIMULATORS — all pre-filled at R$300k ESTRESSE
+══════════════════════════════════════════ */
+const sims={
+
+  /* ── LOCADORA: R$300k → fleet=100, util=60%, price=5000
+     Break-even occ ≈ 96% → 60% < 96% = ESTRESSE ── */
+  locadora:{
+    title:'Locador de Equipamentos',
+    dreTitle:'DRE Gerencial — Locação',indTitle:'Indicadores Operacionais',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',
+    groups:[
+      {label:'Frota & Receita',fields:[
+        {id:'fleet',label:'Total de equipamentos',val:80,unit:'un',step:1,
+          tip:'Número total de equipamentos que compõem a frota — incluindo os ativos em manutenção ou ociosos.'},
+        {id:'util',label:'Taxa de ocupação (%)',val:72,unit:'%',step:1,range:true,min:0,max:100,
+          tip:'Percentual da frota que está efetivamente locada. Uma locadora saudável opera acima de 80%. Abaixo disso, o custo fixo por ativo locado sobe rapidamente.'},
+        {id:'price',label:'Preço médio por ativo / mês',val:5200,unit:'R$',step:100,prefix:true,
+          tip:'Valor cobrado mensalmente por cada ativo locado. É a principal alavanca de receita: um aumento de 5% aqui pode dobrar o EBITDA se a ocupação se mantiver.'},
+        {id:'newFleet',label:'Novos equipamentos',val:10,unit:'un',step:1,
+          tip:'Quantidade de equipamentos sendo adicionados à frota neste ciclo. Gera dívida e CAPEX, impactando o caixa antes mesmo de começar a gerar receita.'},
+        {id:'ramp',label:'Ramp-up dos novos ativos (meses)',val:4,unit:'m',step:1,
+          tip:'Tempo médio até um equipamento novo atingir ocupação plena. Durante o ramp-up, ele gera custo sem receita proporcional.'},
+      ]},
+      {label:'Estrutura de Custo',fields:[
+        {id:'capex',label:'CAPEX por equipamento',val:82000,unit:'R$',step:1000,prefix:true,
+          tip:'Custo de aquisição de cada equipamento. Junto com a vida útil, define a depreciação mensal — um custo oculto que consome resultado mesmo sem desembolso de caixa imediato.'},
+        {id:'life',label:'Vida útil econômica (meses)',val:60,unit:'m',step:1,
+          tip:'Prazo em que o equipamento é depreciado contabilmente e precisa ser substituído para manter a competitividade. Divide o CAPEX em parcelas mensais de depreciação.'},
+        {id:'maint',label:'Manutenção por ativo locado',val:300,unit:'R$',step:50,prefix:true,
+          tip:'Custo médio de manutenção preventiva e corretiva por equipamento em uso. Equipamentos mal mantidos aumentam ociosidade e reduzem a vida útil.'},
+        {id:'idle',label:'Custo do ativo ocioso / mês',val:100,unit:'R$',step:10,prefix:true,
+          tip:'Custo mínimo de um equipamento parado: armazenagem, seguro, manutenção básica. Ativo ocioso é custo puro — não gera receita.'},
+        {id:'opex',label:'Logística / operação mensal',val:30000,unit:'R$',step:1000,prefix:true,
+          tip:'Custos operacionais variáveis: frete, movimentação, combustível, técnicos de campo. Tendem a crescer junto com a frota.'},
+        {id:'fixed',label:'Despesas fixas mensais',val:130000,unit:'R$',step:1000,prefix:true,
+          tip:'Custos que não variam com a ocupação: folha administrativa, aluguel, sistemas, financeiro. Em locadoras, despesas fixas altas exigem alta ocupação para sustentar o resultado.'},
+      ]},
+      {label:'Prazos & Dívida',fields:[
+        {id:'pmr',label:'PMR — prazo de recebimento (dias)',val:45,unit:'d',step:1,
+          tip:'Prazo Médio de Recebimento: quantos dias em média seus clientes demoram para pagar. Quanto maior, mais capital de giro você precisa para financiar a operação.'},
+        {id:'pmp',label:'PMP — prazo de pagamento (dias)',val:25,unit:'d',step:1,
+          tip:'Prazo Médio de Pagamento aos fornecedores. Quanto mais longo, menos caixa você precisa imobilizar. Negociar prazo com fornecedores é uma alavanca direta de caixa.'},
+        {id:'pme',label:'PME peças (dias)',val:22,unit:'d',step:1,
+          tip:'Prazo Médio de Estoque de peças de reposição. Estoque alto imobiliza caixa. Estoque baixo demais gera parada de equipamentos e perda de receita.'},
+        {id:'term',label:'Prazo da dívida para expansão (meses)',val:36,unit:'m',step:1,
+          tip:'Prazo de financiamento dos novos equipamentos. Prazos curtos geram parcelas mais altas, pressionando o caixa. Prazos longos reduzem a parcela, mas aumentam o custo total.'},
+        {id:'rate',label:'Taxa anual da dívida (%)',val:19,unit:'%',step:0.1,
+          tip:'Custo anual do financiamento da frota. No Brasil, taxas acima de 20% ao ano pesam muito sobre o resultado. Cada ponto percentual impacta diretamente o caixa mensal.'},
+      ]},
+    ],
+    compute(v){
+      const u=v.util/100,active=v.fleet*u,idleU=v.fleet-active;
+      const revenue=active*v.price,direct=active*v.maint,idleCost=idleU*v.idle;
+      const ebitda=revenue-direct-idleCost-v.opex;
+      const dep=(v.fleet*v.capex)/v.life;
+      const mr=Math.pow(1+v.rate/100,1/12)-1;
+      const exp=v.newFleet*v.capex;
+      const debt=exp>0?(mr===0?exp/v.term:(exp*mr)/(1-Math.pow(1+mr,-v.term))):0;
+      const result=ebitda-dep-v.fixed-debt;
+      const recv=revenue*(v.pmr/30),pay=(direct+idleCost+v.opex+v.fixed)*(v.pmp/30),inv=(direct+idleCost)*(v.pme/30);
+      const ncg=recv+inv-pay;
+      const dscr=debt?Math.max(0,(ebitda-v.fixed)/debt):99;
+      const uc=Math.max(1,v.price-v.maint-v.idle);
+      const beOcc=((v.opex+v.fixed+dep+debt+v.fleet*v.idle)/(v.fleet*uc))*100;
+      const roa=((v.price*u-v.maint)/v.capex)*100;
+      const payback=(v.price*u-v.maint)>0?v.capex/(v.price*u-v.maint):Infinity;
+      const cash=ebitda-v.fixed-debt-(ncg*0.03)-exp;
+      const status=dscr>=1.3&&v.util>beOcc?'Saudável':dscr>=1&&v.util>beOcc?'Atenção':'Estresse';
+      return{
+        kpis:[
+          {l:'Receita mensal',v:fmt(revenue),h:'Frota × ocupação × preço',c:'accent'},
+          {l:'EBITDA mensal',v:fmt(ebitda),h:'Geração antes da depreciação',c:ebitda>=0?'ok':'danger'},
+          {l:'Caixa líquido',v:fmt(cash),h:'Operação − NCG − dívida − CAPEX',c:cash>=0?'ok':'danger'},
+          {l:'Status estrutural',v:status,h:`Break-even: ${pct(beOcc,1)} de ocupação`,c:status==='Saudável'?'ok':status==='Atenção'?'warn':'danger'},
+        ],
+        dre:[
+          ['Receita bruta de locação',fmt(revenue),false],
+          ['(-) Custos dos ativos locados',fmt(-direct),false],
+          ['(-) Custo dos ativos ociosos',fmt(-idleCost),false],
+          ['(-) Logística / operação',fmt(-v.opex),false],
+          ['= EBITDA',fmt(ebitda),true],
+          ['(-) Depreciação',fmt(-dep),false],
+          ['(-) Despesas fixas',fmt(-v.fixed),false],
+          ['(-) Serviço da dívida',fmt(-debt),false],
+          ['= Resultado mensal',fmt(result),true],
+        ],
+        ind:[
+          ['Ocupação atual',pct(v.util,0)],['Break-even de ocupação',pct(beOcc,1)],
+          ['DSCR',num(dscr,2)+'x'],['NCG estimada',fmt(ncg)],
+          ['ROA mensal do ativo',pct(roa,2)],['Payback',Number.isFinite(payback)?num(payback,1)+' meses':'Não paga'],
+          ['Rec./ativo total',fmt(revenue/Math.max(v.fleet,1))],['Rec./ativo locado',fmt(revenue/Math.max(active,1))],
+        ],
+        chart:{mode:'bridge',items:[
+          ['Receita',revenue,'#6de0d7'],['Manutenção',-direct,'#ff7b7b'],
+          ['Ociosidade',-idleCost,'#ff9b7b'],['Operação',-v.opex,'#ffd166'],
+          ['Desp. fixas',-v.fixed,'#c9a3ff'],['Dívida',-debt,'#f3b46c'],
+          ['Caixa',cash,cash>=0?'#72e3a1':'#ff7b7b']
+        ],title:'Waterfall do caixa mensal'},
+        insights:[
+          v.util>beOcc?`Frota acima do break-even de ${pct(beOcc,1)}. Foque agora em evitar ativos ociosos e CAPEX desnecessário.`:`Ocupação em ${pct(v.util,0)} — abaixo do break-even de ${pct(beOcc,1)}. Parte da frota consome estrutura mais rápido do que gera retorno. Cada ativo ocioso é custo puro.`,
+          debt>0?`Serviço da dívida de ${fmt(debt)}/mês. DSCR de ${num(dscr,2)}x — ${dscr>=1.3?'saudável':'insuficiente para cobrir o custo do dinheiro sem comprimir o caixa operacional'}.`:`Sem dívida nova identificada. Avalie se o CAPEX de expansão está sendo financiado adequadamente.`,
+          `Locadoras lucrativas equilibram ocupação, CAPEX, manutenção e dívida de forma integrada. Qualquer um fora do eixo compromete os demais — e o caixa paga a conta silenciosamente.`,
+        ],
+      };
+    },
+  },
+
+  /* ── DISTRIBUIDOR: R$300k → margem 10%, ciclo alto, EBITDA negativo = ESTRESSE ── */
+  distribuidor:{
+    title:'Distribuidor',
+    dreTitle:'DRE & Caixa Operacional',indTitle:'Giro & Capital de Giro',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+    groups:[
+      {label:'Receita & Margem',fields:[
+        {id:'revenue',label:'Receita mensal',val:300000,unit:'R$',step:10000,prefix:true,
+          tip:'Faturamento bruto mensal. Em distribuidoras, receita alta com margem baixa é comum — o problema surge quando o crescimento de vendas consome mais caixa do que gera.'},
+        {id:'margin',label:'Margem bruta (%)',val:22,unit:'%',step:0.5,range:true,min:0,max:60,
+          tip:'Percentual da receita que sobra após o custo da mercadoria vendida (CMV). Em distribuidoras, margens abaixo de 15% exigem altíssimo volume e controle rígido de despesas para serem sustentáveis.'},
+        {id:'opexPct',label:'Despesas operacionais variáveis (%)',val:8,unit:'%',step:0.5,
+          tip:'Percentual da receita consumido por despesas que variam com o volume: comissões, frete variável, embalagem. Somadas à margem bruta, definem quanto sobra para cobrir os fixos.'},
+        {id:'growth',label:'Crescimento de vendas (%)',val:12,unit:'%',step:0.5,
+          tip:'Taxa de crescimento mensal das vendas. Crescer rápido em distribuição aumenta a necessidade de capital de giro — mais estoque, mais a receber — podendo asfixiar o caixa mesmo com boa margem.'},
+        {id:'deflt',label:'Perdas / inadimplência (%)',val:1.5,unit:'%',step:0.1,
+          tip:'Percentual da receita perdida por clientes que não pagam. Em distribuidoras com muitos clientes pulverizados, controlar a inadimplência é uma alavanca direta de resultado.'},
+      ]},
+      {label:'Capital de Giro',fields:[
+        {id:'pmr',label:'PMR — prazo de recebimento (dias)',val:45,unit:'d',step:1,
+          tip:'Prazo Médio de Recebimento: quantos dias em média os clientes demoram para pagar. Quanto maior, mais capital de giro precisa ser financiado. Reduzir o PMR é uma das maiores alavancas de caixa.'},
+        {id:'pmp',label:'PMP — prazo de pagamento (dias)',val:20,unit:'d',step:1,
+          tip:'Prazo Médio de Pagamento aos fornecedores. Prazos curtos pressionam o caixa. Negociar mais prazo com fornecedores sem perder desconto é uma alavanca de capital de giro.'},
+        {id:'pme',label:'PME — cobertura de estoque (dias)',val:55,unit:'d',step:1,
+          tip:'Prazo Médio de Estoque: quantos dias de venda o estoque atual cobre. Estoque alto imobiliza caixa. Estoque baixo demais gera falta de produto e perda de vendas. O equilíbrio é o ganho.'},
+        {id:'logistics',label:'Custo logístico mensal',val:20000,unit:'R$',step:1000,prefix:true,
+          tip:'Custos fixos e variáveis de transporte, armazenagem e movimentação. Em distribuidoras, logística é frequentemente o segundo maior custo depois do CMV.'},
+      ]},
+      {label:'Estrutura',fields:[
+        {id:'fixed',label:'Despesas fixas mensais',val:38000,unit:'R$',step:1000,prefix:true,
+          tip:'Custos que não variam com o volume: folha administrativa, aluguel, sistemas. São o piso de custo que a empresa precisa cobrir antes de gerar qualquer lucro.'},
+        {id:'debt',label:'Serviço mensal da dívida',val:15000,unit:'R$',step:1000,prefix:true,
+          tip:'Parcela mensal de empréstimos e financiamentos. Dívida acima da geração de caixa operacional (DSCR < 1) é sinal de desequilíbrio financeiro.'},
+        {id:'cashBase',label:'Caixa atual',val:22000,unit:'R$',step:5000,prefix:true,
+          tip:'Posição de caixa disponível. Comparado à NCG, indica se a empresa tem fôlego para sustentar o ciclo financeiro sem buscar crédito.'},
+      ]},
+    ],
+    compute(v){
+      const gross=v.revenue*(v.margin/100),opexVar=v.revenue*(v.opexPct/100);
+      const badDebt=v.revenue*(v.deflt/100);
+      const ebitda=gross-opexVar-badDebt-v.logistics-v.fixed;
+      const nextRev=v.revenue*(1+v.growth/100),cogs=v.revenue-gross;
+      const recv=nextRev*(v.pmr/30),stock=cogs*(v.pme/30),payables=cogs*(v.pmp/30);
+      const ncg=recv+stock-payables,cashNeed=ncg-v.cashBase;
+      const dscr=v.debt?Math.max(0,ebitda/v.debt):99;
+      const cycle=v.pmr+v.pme-v.pmp,cash=ebitda-v.debt-Math.max(0,cashNeed*0.15);
+      const status=cycle<=45&&dscr>=1.3?'Saudável':cycle<=60&&dscr>=1?'Atenção':'Estresse';
+      return{
+        kpis:[
+          {l:'Receita mensal',v:fmt(v.revenue),h:'Base da operação comercial',c:'accent'},
+          {l:'EBITDA mensal',v:fmt(ebitda),h:'Margem bruta − despesas − perdas',c:ebitda>=0?'ok':'danger'},
+          {l:'NCG estimada',v:fmt(ncg),h:'Capital de giro necessário para operar',c:cashNeed>0?'warn':'ok'},
+          {l:'Status estrutural',v:status,h:`Ciclo financeiro: ${num(cycle,0)} dias`,c:status==='Saudável'?'ok':status==='Atenção'?'warn':'danger'},
+        ],
+        dre:[
+          ['Receita bruta',fmt(v.revenue),false],
+          ['(-) Custo da mercadoria',fmt(-(v.revenue-gross)),false],
+          ['= Margem bruta',fmt(gross),true],
+          ['(-) Despesa variável',fmt(-opexVar),false],
+          ['(-) Inadimplência / perdas',fmt(-badDebt),false],
+          ['(-) Logística',fmt(-v.logistics),false],
+          ['(-) Despesas fixas',fmt(-v.fixed),false],
+          ['= EBITDA',fmt(ebitda),true],
+          ['(-) Serviço da dívida',fmt(-v.debt),false],
+          ['= Caixa operacional',fmt(ebitda-v.debt),true],
+        ],
+        ind:[
+          ['Ciclo financeiro',num(cycle,0)+' dias'],['PMR',num(v.pmr,0)+' dias'],
+          ['PME',num(v.pme,0)+' dias'],['PMP',num(v.pmp,0)+' dias'],
+          ['NCG estimada',fmt(ncg)],['DSCR',num(dscr,2)+'x'],
+          ['Margem EBITDA',pct((ebitda/Math.max(v.revenue,1))*100,1)],
+          ['Receita c/ crescimento',fmt(nextRev)],
+        ],
+        chart:{mode:'cycle',pmr:v.pmr,pme:v.pme,pmp:v.pmp,ncg,revenue:v.revenue,gross,title:'Ciclo financeiro e NCG'},
+        insights:[
+          cycle<=45?`Ciclo financeiro de ${num(cycle,0)} dias — controlado. O crescimento de ${pct(v.growth,1)} pode pressionar o capital de giro se os prazos não forem gerenciados.`:`Ciclo de ${num(cycle,0)} dias. Nesse ritmo, cada real de crescimento em vendas consome mais caixa do que gera. Crescer aqui é uma armadilha.`,
+          cashNeed>0?`Necessidade de capital adicional: ${fmt(cashNeed)}. A empresa pode ser lucrativa no papel e completamente sufocada no caixa real.`:`O caixa cobre a necessidade de giro. Posição rara e valiosa — preserve os prazos que criaram isso.`,
+          `Em distribuição, a tensão entre margem curta e capital de giro alto é permanente. PMR, PMP, estoque e crescimento precisam ser gerenciados juntos — ou o lucro contábil nunca vira caixa.`,
+        ],
+      };
+    },
+  },
+
+  /* ── VAREJISTA: R$300k → markup 30%, descontos altos, EBITDA negativo = ESTRESSE ── */
+  varejista:{
+    title:'Varejista',
+    dreTitle:'DRE de Varejo',indTitle:'Margem, Giro & Break-even',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+    groups:[
+      {label:'Vendas',fields:[
+        {id:'revenue',label:'Receita mensal',val:300000,unit:'R$',step:5000,prefix:true,
+          tip:'Faturamento bruto total do período. No varejo, receita alta não garante lucratividade — markup e giro de estoque determinam se o esforço de venda gera caixa ou apenas movimentação.'},
+        {id:'markup',label:'Markup médio (%)',val:65,unit:'%',step:1,range:true,min:0,max:200,
+          tip:'Percentual acrescentado ao custo para formar o preço de venda. Markup de 65% sobre o custo significa que o produto custa R$ 100 e é vendido por R$ 165. Não confundir com margem bruta, que é calculada sobre o preço de venda.'},
+        {id:'discount',label:'Desconto médio praticado (%)',val:6,unit:'%',step:0.5,
+          tip:'Desconto médio concedido nas vendas. Cada ponto percentual de desconto reduz diretamente a margem. Um desconto de 5% em um produto com markup de 65% pode reduzir a margem em quase 15%.'},
+        {id:'returns',label:'Trocas / devoluções (%)',val:1.5,unit:'%',step:0.1,
+          tip:'Percentual da receita devolvido por trocas ou devoluções. Além de reduzir a receita líquida, devoluções geram custo operacional de reprocessamento e podem imobilizar estoque.'},
+      ]},
+      {label:'Operação',fields:[
+        {id:'stockTurn',label:'Giro de estoque (vezes/ano)',val:5,unit:'x',step:0.5,
+          tip:'Quantas vezes por ano o estoque é vendido completamente. Giro baixo significa estoque parado — capital imobilizado sem gerar retorno. Giro alto é sinal de eficiência operacional.'},
+        {id:'fixed',label:'Despesas fixas mensais',val:72000,unit:'R$',step:1000,prefix:true,
+          tip:'Custos mensais que não variam com o volume de vendas: aluguel, folha, sistemas, energia. São o piso que a empresa precisa superar antes de ter qualquer lucro.'},
+        {id:'salesExp',label:'Despesa comercial (%)',val:7,unit:'%',step:0.5,
+          tip:'Percentual da receita gasto em esforço comercial: comissões de vendedores, marketing, fretes de entrega. Reduzir sem perder vendas é uma alavanca direta de margem.'},
+        {id:'otherExp',label:'Outras despesas variáveis (%)',val:5,unit:'%',step:0.5,
+          tip:'Outros custos proporcionais à receita: impostos sobre vendas, taxas de cartão, embalagem. São custos inevitáveis que reduzem a margem de contribuição efetiva.'},
+      ]},
+      {label:'Prazos & Caixa',fields:[
+        {id:'pmr',label:'PMR — prazo de recebimento (dias)',val:28,unit:'d',step:1,
+          tip:'Prazo Médio de Recebimento. No varejo, vendas a prazo (carnê, boleto, crediário) aumentam o PMR. Vendas no cartão costumam ter prazo de 28-30 dias. Controlar o mix é essencial.'},
+        {id:'pmp',label:'PMP — prazo de pagamento (dias)',val:28,unit:'d',step:1,
+          tip:'Prazo Médio de Pagamento aos fornecedores. Prazo curto com fornecedor enquanto o cliente paga a prazo cria um buraco de caixa que precisa ser financiado.'},
+        {id:'cashBase',label:'Caixa atual',val:40000,unit:'R$',step:5000,prefix:true,
+          tip:'Posição de caixa disponível para fazer frente às obrigações imediatas. Compare com a NCG para entender se o caixa é suficiente para sustentar a operação.'},
+      ]},
+    ],
+    compute(v){
+      const nm=v.markup-v.discount,gPct=nm/(100+v.markup)*100;
+      const gross=v.revenue*(gPct/100),cogs=v.revenue-gross;
+      const returns=v.revenue*(v.returns/100),salesExp=v.revenue*(v.salesExp/100),otherExp=v.revenue*(v.otherExp/100);
+      const ebitda=gross-returns-salesExp-otherExp-v.fixed;
+      const avgStock=cogs/Math.max(v.stockTurn,0.1),pme=360/Math.max(v.stockTurn,0.1);
+      const recv=v.revenue*(v.pmr/30),payables=cogs*(v.pmp/30);
+      const ncg=recv+avgStock-payables;
+      const be=v.fixed/Math.max((gPct-v.salesExp-v.otherExp-v.returns)/100,0.0001);
+      const cash=ebitda-Math.max(0,(ncg-v.cashBase)*0.1);
+      const status=ebitda>0&&pme<70?'Saudável':ebitda>0?'Atenção':'Estresse';
+      return{
+        kpis:[
+          {l:'Receita mensal',v:fmt(v.revenue),h:'Volume de vendas do período',c:'accent'},
+          {l:'EBITDA mensal',v:fmt(ebitda),h:'Margem líquida da operação',c:ebitda>=0?'ok':'danger'},
+          {l:'Ponto de equilíbrio',v:fmt(be),h:'Faturamento mínimo para empatar',c:v.revenue>be?'ok':'danger'},
+          {l:'Status estrutural',v:status,h:status==='Saudável'?'Markup e giro conversam bem':'Margem ou giro precisam de atenção',c:status==='Saudável'?'ok':status==='Atenção'?'warn':'danger'},
+        ],
+        dre:[
+          ['Receita bruta',fmt(v.revenue),false],
+          ['(-) Custo da mercadoria',fmt(-cogs),false],
+          ['= Margem bruta',fmt(gross),true],
+          ['(-) Trocas / devoluções',fmt(-returns),false],
+          ['(-) Despesa comercial',fmt(-salesExp),false],
+          ['(-) Outras despesas variáveis',fmt(-otherExp),false],
+          ['(-) Despesas fixas',fmt(-v.fixed),false],
+          ['= EBITDA',fmt(ebitda),true],
+          ['= Caixa operacional ajustado',fmt(cash),true],
+        ],
+        ind:[
+          ['Markup nominal',pct(v.markup,1)],['Margem bruta efetiva',pct(gPct,1)],
+          ['Giro de estoque',num(v.stockTurn,1)+'x/ano'],['PME estimado',num(pme,0)+' dias'],
+          ['NCG estimada',fmt(ncg)],['Ponto de equilíbrio',fmt(be)],
+          ['Margem EBITDA',pct((ebitda/Math.max(v.revenue,1))*100,1)],['Caixa disponível',fmt(v.cashBase)],
+        ],
+        chart:{mode:'bridge',items:[
+          ['Receita',v.revenue,'#6de0d7'],['Marg. bruta',gross,'#72e3a1'],
+          ['Desp. comerciais',-salesExp,'#ffd166'],['Outras desp.',-otherExp,'#c9a3ff'],
+          ['Devoluções',-returns,'#ff9b7b'],['Fixas',-v.fixed,'#ff7b7b'],
+          ['Caixa',cash,cash>=0?'#72e3a1':'#ff7b7b']
+        ],title:'Formação do resultado'},
+        insights:[
+          ebitda>0&&v.revenue>be?`EBITDA positivo e acima do break-even. O risco está no giro de ${num(v.stockTurn,1)}x/ano — estoque parado financia o cliente, não o dono.`:`${ebitda<=0?'EBITDA negativo':'Abaixo do break-even de '+fmt(be)}. Markup de ${pct(v.markup,1)} com desconto de ${pct(v.discount,1)} deixa a margem efetiva em ${pct(gPct,1)} — insuficiente para cobrir a estrutura de custos.`,
+          ncg>v.cashBase?`NCG de ${fmt(ncg)} excede o caixa disponível. O negócio pode estar vendendo bem e sufocando financeiramente ao mesmo tempo.`:`O caixa cobre a necessidade de capital de giro. Preserve os prazos que geraram essa posição.`,
+          `No varejo, markup, desconto praticado e giro de estoque determinam se o esforço de venda gera caixa ou apenas movimento. Pequenos ajustes em cada um mudam radicalmente o resultado.`,
+        ],
+      };
+    },
+  },
+
+  /* ── SERVIÇOS: R$300k → alta inadimplência, churn alto, equipe cara = ESTRESSE ── */
+  servicos:{
+    title:'Serviços',
+    dreTitle:'DRE de Serviços',indTitle:'Performance Operacional',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    groups:[
+      {label:'Equipe & Capacidade',fields:[
+        {id:'headcount',label:'Número de profissionais / consultores',val:18,unit:'un',step:1,
+          tip:'Total de profissionais que geram receita diretamente. Esse número, combinado com a ocupação, define a capacidade máxima de entrega da empresa.'},
+        {id:'utilization',label:'Taxa de ocupação da equipe (%)',val:65,unit:'%',step:1,range:true,min:0,max:100,
+          tip:'Percentual do tempo da equipe dedicado a projetos que geram receita. Abaixo de 70%, a estrutura de pessoal consome resultado. Acima de 85%, o risco é burnout e queda na qualidade.'},
+        {id:'hourlyRate',label:'Preço médio por hora ou projeto (R$)',val:180,unit:'R$',step:10,prefix:true,
+          tip:'Valor cobrado por hora ou unidade de serviço prestado. É uma das principais alavancas de receita — aumentar 10% no preço, mantendo a mesma ocupação, gera 10% a mais de receita com custo zero.'},
+        {id:'hoursMonth',label:'Horas vendáveis por profissional / mês',val:160,unit:'h',step:8,
+          tip:'Capacidade máxima de horas faturáveis por profissional. Inclui apenas horas produtivas — descontados treinamento, administrativo e reuniões internas.'},
+      ]},
+      {label:'Base de Clientes',fields:[
+        {id:'clients',label:'Clientes ativos',val:30,unit:'un',step:1,
+          tip:'Número de clientes gerando receita recorrente. Base maior dilui o risco: perder um cliente é menos crítico quando há muitos. Base pequena cria dependência e fragilidade.'},
+        {id:'ticket',label:'Ticket médio por cliente / mês',val:10000,unit:'R$',step:500,prefix:true,
+          tip:'Receita média gerada por cada cliente mensalmente. Aumentar o ticket dos clientes atuais (upsell, cross-sell) é mais barato do que conquistar novos clientes.'},
+        {id:'churn',label:'Churn mensal — perda de clientes (%)',val:6,unit:'%',step:0.5,range:true,min:0,max:20,
+          tip:'Percentual de clientes que cancelam por mês. Churn de 6%/mês significa que em 12 meses a empresa perde mais da metade da base. Reter clientes é a alavanca com maior retorno em empresas de serviço.'},
+        {id:'deflt',label:'Inadimplência (%)',val:2.5,unit:'%',step:0.5,
+          tip:'Percentual da receita não recebida por inadimplência. Em serviços, ao contrário de produtos, você não recupera o "estoque" — o serviço já foi prestado e o custo já foi incorrido.'},
+      ]},
+      {label:'Custos & Estrutura',fields:[
+        {id:'teamCost',label:'Custo fixo da equipe (salários + encargos)',val:195000,unit:'R$',step:5000,prefix:true,
+          tip:'Custo total da equipe incluindo salários, encargos (INSS, FGTS), benefícios e pró-labore. É o maior custo fixo de empresas de serviço e o mais difícil de reduzir rapidamente.'},
+        {id:'fixed',label:'Outras despesas fixas (aluguel, infra etc.)',val:42000,unit:'R$',step:1000,prefix:true,
+          tip:'Demais custos fixos mensais: aluguel, sistemas, internet, escritório, seguros. Junto com o custo da equipe, formam o piso de custos que a receita precisa superar.'},
+        {id:'salesPct',label:'Custo de aquisição de clientes (%)',val:8,unit:'%',step:0.5,
+          tip:'Percentual da receita investido em atrair novos clientes: marketing, eventos, comissões de vendas. Com churn alto, o custo de aquisição precisa ser baixo para compensar a perda constante de clientes.'},
+        {id:'pmr',label:'PMR — prazo médio de recebimento (dias)',val:30,unit:'d',step:1,
+          tip:'Prazo Médio de Recebimento. Em serviços, PMR alto cria descasamento: você paga a equipe todo mês mas recebe com atraso. Reduzir o PMR é uma alavanca direta de caixa.'},
+      ]},
+    ],
+    compute(v){
+      const revenue=v.clients*v.ticket;
+      const badDebt=revenue*(v.deflt/100);
+      const salesCost=revenue*(v.salesPct/100);
+      const churnLoss=revenue*(v.churn/100);
+      const grossProfit=revenue-badDebt-churnLoss-salesCost;
+      const ebitda=grossProfit-v.teamCost-v.fixed;
+      const ncg=revenue*(v.pmr/30);
+      const cash=ebitda-ncg*0.05;
+      const ltv=v.churn>0?v.ticket/(v.churn/100):v.ticket*36;
+      const capRevenue=v.headcount*(v.utilization/100)*v.hoursMonth*v.hourlyRate;
+      const status=ebitda>0&&v.churn<5?'Saudável':ebitda>0?'Atenção':'Estresse';
+      const teamMargin=revenue>0?(grossProfit/revenue)*100:0;
+      const beClients=(v.teamCost+v.fixed)/Math.max(v.ticket*(1-v.deflt/100-v.churn/100-v.salesPct/100),1);
+      return{
+        kpis:[
+          {l:'Receita mensal',v:fmt(revenue),h:`${v.clients} clientes × ${fmt(v.ticket)} ticket`,c:'accent'},
+          {l:'EBITDA mensal',v:fmt(ebitda),h:'Receita líquida − equipe − fixos',c:ebitda>=0?'ok':'danger'},
+          {l:'Break-even clientes',v:num(beClients,0)+' clientes',h:`Atual: ${v.clients} — ${v.clients>=beClients?'acima':'abaixo'} do ponto de equilíbrio`,c:v.clients>=beClients?'ok':'danger'},
+          {l:'Status operacional',v:status,h:`Churn: ${pct(v.churn,1)}/mês`,c:status==='Saudável'?'ok':status==='Atenção'?'warn':'danger'},
+        ],
+        dre:[
+          ['Receita bruta de serviços',fmt(revenue),false],
+          ['(-) Inadimplência',fmt(-badDebt),false],
+          ['(-) Perda por churn',fmt(-churnLoss),false],
+          ['(-) Custo de aquisição',fmt(-salesCost),false],
+          ['= Receita líquida ajustada',fmt(grossProfit),true],
+          ['(-) Custo da equipe',fmt(-v.teamCost),false],
+          ['(-) Despesas fixas',fmt(-v.fixed),false],
+          ['= EBITDA',fmt(ebitda),true],
+          ['Caixa operacional estimado',fmt(cash),true],
+        ],
+        ind:[
+          ['Clientes ativos',v.clients+' clientes'],['Break-even',num(beClients,0)+' clientes'],
+          ['Ocupação da equipe',pct(v.utilization,0)],['Cap. de entrega',fmt(capRevenue)+'/mês'],
+          ['Margem líquida ajustada',pct(teamMargin,1)],['Churn mensal',pct(v.churn,1)],
+          ['LTV por cliente',fmt(ltv)],['NCG (recebíveis)',fmt(ncg)],
+        ],
+        chart:{mode:'bridge',items:[
+          ['Receita',revenue,'#6de0d7'],['Inadimplência',-badDebt,'#ff7b7b'],
+          ['Churn',-churnLoss,'#ff9b7b'],['Custo comercial',-salesCost,'#ffd166'],
+          ['Equipe',-v.teamCost,'#c9a3ff'],['Fixos',-v.fixed,'#f3b46c'],
+          ['EBITDA',ebitda,ebitda>=0?'#72e3a1':'#ff7b7b']
+        ],title:'Formação do resultado em serviços'},
+        insights:[
+          v.utilization<70?`Ocupação em ${pct(v.utilization,0)}. Abaixo de 70%, a estrutura de pessoal (${fmt(v.teamCost)}/mês) consome o resultado. Ou se vende mais, ou se redimensiona o time.`:`Ocupação em ${pct(v.utilization,0)}. Acima de 85%, o risco é burnout e queda na qualidade de entrega.`,
+          v.churn>=5?`Churn de ${pct(v.churn,1)}/mês significa perder ${pct(v.churn*12,1)} da base em um ano. Com churn alto, toda a energia comercial vai para repor perdas, não para crescer.`:`Churn de ${pct(v.churn,1)} — controlável. O LTV médio de ${fmt(ltv)} por cliente justifica investimento em retenção.`,
+          `Em serviços, lucro não está em vender mais — está em vender certo: ticket adequado, equipe bem dimensionada, churn baixo e recebimento em dia. Quando esses quatro se alinham, o caixa é previsível e escalável.`,
+        ],
+      };
+    },
+  },
+};
+
+/* ── RENDER ENGINE ── */
+let activeSim='locadora';
+let simValues={};
+
+function buildInputs(key){
+  const sim=sims[key];
+  simValues={};
+  sim.groups.forEach(g=>g.fields.forEach(f=>simValues[f.id]=f.val));
+  $('inputsPanel').innerHTML=`
+    <div class="inputs-panel-header">
+      <div class="p-icon">${sim.icon}</div>
+      <div><h3>${sim.title}</h3><p>Passe o mouse sobre os campos para ver as explicações</p></div>
+    </div>
+    ${sim.groups.map(g=>`
+      <div class="input-group">
+        <div class="group-label">${g.label}</div>
+        ${g.fields.map(f=>`
+          <div class="sim-field">
+            <div class="field-label-row">
+              <label for="f_${f.id}">${f.label}</label>
+              <span class="tooltip-trigger" tabindex="0">?</span>
+            </div>
+            <div class="tooltip-box">${f.tip}</div>
+            <div class="field-row">
+              <input type="number" id="f_${f.id}" value="${f.val}" step="${f.step||1}"
+                ${f.min!==undefined?`min="${f.min}"`:''}
+                ${f.max!==undefined?`max="${f.max}"`:''}
+                oninput="onFieldChange('${f.id}',this.value)">
+              <span class="field-unit">${f.prefix?'R$':f.unit}</span>
+            </div>
+            ${f.range?`<input type="range" id="fr_${f.id}" min="${f.min}" max="${f.max}" step="${f.step||1}" value="${f.val}" oninput="onRangeChange('${f.id}',this.value)">`:''}
+          </div>`).join('')}
+      </div>`).join('')}`;
+}
+
+function onFieldChange(id,val){
+  simValues[id]=Number(val)||0;
+  const r=$('fr_'+id);
+  if(r) r.value=simValues[id];
+  render();
+}
+
+function onRangeChange(id,val){
+  simValues[id]=Number(val)||0;
+  $('f_'+id).value=simValues[id];
+  render();
+}
+
+function render(){
+  const sim=sims[activeSim];
+  const out=sim.compute(simValues);
+  $('kpiRow').innerHTML=out.kpis.map(k=>`
+    <div class="kpi-card">
+      <div class="kpi-label">${k.l}</div>
+      <div class="kpi-val ${k.c}">${k.v}</div>
+      <div class="kpi-hint">${k.h}</div>
+    </div>`).join('');
+  $('dreTitle').textContent=sim.dreTitle;
+  $('dreTable').innerHTML=out.dre.map(([l,v,m])=>
+    `<tr class="${m?'dre-main':''}">`+
+    `<td class="${m?'':'td-muted'}">${l}</td><td>${v}</td></tr>`).join('');
+  $('indTitle').textContent=sim.indTitle;
+  $('indTable').innerHTML=out.ind.map(([l,v])=>
+    `<tr><td class="td-muted">${l}</td><td>${v}</td></tr>`).join('');
+  $('ins1').textContent=out.insights[0];
+  $('ins2').textContent=out.insights[1];
+  $('ins3').textContent=out.insights[2];
+  drawChart(out.chart);
+}
+
+function drawChart(cfg){
+  const canvas=$('simChart');
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.clientWidth,H=canvas.clientHeight;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  const ctx=canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+  cfg.mode==='cycle'?drawCycle(ctx,W,H,cfg):drawWaterfall(ctx,W,H,cfg);
+}
+
+function drawWaterfall(ctx,W,H,cfg){
+  const items=cfg.items.filter(i=>Math.abs(i[1])>0);
+  ctx.fillStyle='#eef8f7';ctx.font='12px Inter,sans-serif';
+  ctx.fillText(cfg.title,10,16);
+  const max=Math.max(...items.map(i=>Math.abs(i[1])),1);
+  const left=130,right=80,top=28,rowH=Math.min(28,(H-top-8)/items.length);
+  const scale=(W-left-right)/max;
+  items.forEach((item,i)=>{
+    const y=top+i*rowH;
+    ctx.fillStyle='#7ca8a6';ctx.font='11px Inter,sans-serif';
+    ctx.fillText(item[0],8,y+rowH/2+4);
+    ctx.fillStyle='rgba(255,255,255,.04)';
+    ctx.fillRect(left,y+3,W-left-right,rowH-6);
+    ctx.fillStyle=item[2];
+    const bw=Math.abs(item[1])*scale;
+    ctx.fillRect(left,y+3,bw,rowH-6);
+    ctx.fillStyle='#eef8f7';ctx.font='11px Inter,sans-serif';
+    ctx.fillText(BRL.format(item[1]),left+Math.min(bw+6,W-left-right-80),y+rowH/2+4);
+  });
+}
+
+function drawCycle(ctx,W,H,cfg){
+  ctx.fillStyle='#eef8f7';ctx.font='12px Inter,sans-serif';
+  ctx.fillText(cfg.title,10,16);
+  const cx=W*0.35,cy=H/2+10,r=Math.min(W*0.28,H*0.38);
+  const parts=[{l:'PMR',v:cfg.pmr,c:'#6de0d7'},{l:'PME',v:cfg.pme,c:'#ffd166'},{l:'PMP',v:cfg.pmp,c:'#72e3a1'}];
+  const total=cfg.pmr+cfg.pme+cfg.pmp;let start=-Math.PI/2;
+  parts.forEach(p=>{
+    const angle=(p.v/total)*Math.PI*2;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,start+angle);
+    ctx.closePath();ctx.fillStyle=p.c;ctx.fill();start+=angle;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,r*.55,0,Math.PI*2);ctx.fillStyle='#0d2326';ctx.fill();
+  ctx.fillStyle='#eef8f7';ctx.font='bold 11px Inter,sans-serif';
+  ctx.textAlign='center';ctx.fillText('NCG',cx,cy-4);
+  ctx.font='12px Inter,sans-serif';ctx.fillText(BRL.format(cfg.ncg),cx,cy+14);ctx.textAlign='left';
+  const lx=W*0.68,ly=H/2-30;
+  parts.forEach((p,i)=>{
+    ctx.fillStyle=p.c;ctx.fillRect(lx,ly+i*26,12,12);
+    ctx.fillStyle='#9fc0bf';ctx.font='12px Inter,sans-serif';
+    ctx.fillText(`${p.l}: ${num(p.v,0)} dias`,lx+18,ly+10+i*26);
+  });
+  ctx.fillStyle='#eef8f7';
+  ctx.fillText(`Receita: ${BRL.format(cfg.revenue)}`,lx,ly+90);
+  ctx.fillText(`Margem bruta: ${BRL.format(cfg.gross)}`,lx,ly+108);
+}
+
+function switchSim(key){
+  activeSim=key;
+  document.querySelectorAll('.sim-tab').forEach(t=>t.classList.toggle('active',t.dataset.sim===key));
+  buildInputs(key);
+  render();
+}
+
+window.addEventListener('resize',()=>{ if(activeSim) render(); });
+
+switchSim('locadora');
+showPage('home');
+</script>
+</body>
+</html>
