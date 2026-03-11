@@ -1036,7 +1036,7 @@ async function submitLead(event, source) {
     const result = await response.json();
 
     if (result.success) {
-      alert("Mensagem enviada com sucesso! Em breve entraremos em contato.");
+    
       form.reset();
 
       if (typeof closeLead === "function") {
