@@ -1025,10 +1025,12 @@ function scrollToSection(id){
 }
 
 const params = new URLSearchParams(window.location.search);
-const sim = params.get("sim");
+const simParam = params.get("sim");
 
-if (sim) {
-  goSim(sim);
+if (simParam) {
+  setTimeout(() => {
+    goSim(simParam);
+  }, 100);
 }
 
 function goSim(key){ showPage('sim'); switchSim(key); }
