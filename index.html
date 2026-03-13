@@ -3,6 +3,7 @@
 <head>
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-274GF5NGKM"></script>
@@ -117,6 +118,7 @@
       background:rgba(7,20,22,.9);border-bottom:1px solid rgba(47,183,174,.1)}
     .header-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .brand-link{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
     .logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));
       border-radius:10px;display:flex;align-items:center;justify-content:center;
       font-weight:900;font-size:14px;color:#041b1d;letter-spacing:-.02em}
@@ -528,11 +530,13 @@
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
-      <div class="logo">RX</div>
-      <div class="brand-text">
-        <strong>Raio-X da Empresa</strong>
-        <span>Simulador Financeiro para PMEs</span>
-      </div>
+      <a href="index.html" class="brand-link" aria-label="Ir para a página inicial do Raio-X da Empresa">
+        <div class="logo">RX</div>
+        <div class="brand-text">
+          <strong>Raio-X da Empresa</strong>
+          <span>Simulador Financeiro para PMEs</span>
+        </div>
+      </a>
     </div>
 
     <nav class="nav">
@@ -563,7 +567,7 @@
 <!-- ══ HOME PAGE ══ -->
 <div id="homePage" class="page">
 
-  <section class="hero">
+  <section class="hero" id="diagnostico">
     <div class="container">
       <div class="hero-grid">
         <div>
@@ -835,7 +839,7 @@
 </div><!-- /homePage -->
 
 <!-- ══ SIMULATOR PAGE ══ -->
-<div id="simPage" class="page hidden">
+<div id="simPage" class="page hidden" data-page="simuladores">
   <div class="container sim-page">
     <div class="sim-page-header">
       <div class="eyebrow"><span class="eyebrow-line"></span>Simuladores Estratégicos</div>
@@ -1027,11 +1031,42 @@ function scrollToSection(id){
 
 const params = new URLSearchParams(window.location.search);
 const simParam = params.get("sim");
+const pageParam = params.get("page");
+const scrollParam = params.get("scroll");
+const leadParam = params.get("lead");
+
+if (pageParam === "sim") {
+  setTimeout(() => {
+    showPage('sim');
+  }, 60);
+}
 
 if (simParam) {
   setTimeout(() => {
     goSim(simParam);
   }, 100);
+}
+
+if (scrollParam) {
+  setTimeout(() => {
+    showPage('home');
+    const el = $(scrollParam);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 120);
+}
+
+if (leadParam === "1") {
+  window.addEventListener('load', () => {
+    showPage('home');
+    setTimeout(() => {
+      if (typeof openLead === 'function') {
+        openLead('header');
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.delete('lead');
+      window.history.replaceState({}, '', url.pathname + (url.search ? '?' + url.searchParams.toString() : '') + url.hash);
+    }, 120);
+  });
 }
 
 function goSim(key){ showPage('sim'); switchSim(key); }
