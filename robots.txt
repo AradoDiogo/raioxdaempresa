@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.raioxdaempresa.com.br/sitemap.xml
