@@ -618,7 +618,7 @@
 
     <nav class="nav">
         <button class="nav-link" onclick="showPage('home')">Início</button>
-        <a class="nav-link" href="#simuladores">Simuladores</a>
+        <button class="nav-link active" onclick="showPage('sim')">Simuladores</button>
         <a class="nav-link" href="calculadoras.html">Calculadoras</a>
         <div class="dropdown-wrap">
         <button class="nav-link">
@@ -882,10 +882,10 @@
   </section>
 
   <!-- SIMULATORS PREVIEW -->
-  <section class="section" id="simuladores">
+  <section class="section">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow" style="justify-content:center"><span class="eyebrow-line"></span>Simuladores Estratégicos<span class="eyebrow-line"></span></div>
+        <div id="simuladores" class="eyebrow" style="justify-content:center"><span class="eyebrow-line"></span>Simuladores Estratégicos<span class="eyebrow-line"></span></div>
         <h2>Simule antes de decidir.</h2>
         <p>Veja o impacto real de cada decisão no resultado, no caixa e no capital de giro — com os dados da sua empresa.</p>
       </div>
@@ -1808,5 +1808,31 @@ window.addEventListener('resize',()=>{ if(activeSim) render(); });
 switchSim('locadora');
 showPage('home');
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  if(window.location.hash === "#simuladores"){
+
+      const simuladoresSection = document.getElementById("simuladores");
+
+      if(simuladoresSection){
+          simuladoresSection.scrollIntoView({behavior:"smooth"});
+      }
+
+      const btnLocador =
+        document.querySelector('[data-sim="locadora"]') ||
+        document.querySelector('[onclick*="locadora"]') ||
+        document.querySelector('.sim-locadora');
+
+      if(btnLocador){
+          btnLocador.click();
+      }
+
+  }
+
+});
+</script>
+
 </body>
 </html>
