@@ -162,14 +162,20 @@
     .hero h1 em{font-style:italic;color:var(--accent2)}
     .hero-sub{font-size:17px;color:var(--muted);line-height:1.65;max-width:580px;margin-bottom:32px}
 
-    /* SERVICES ROW — clean badges */
-    .services-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
-    .svc-badge{display:flex;align-items:center;gap:8px;padding:9px 16px;
-      background:rgba(47,183,174,.06);border:1px solid rgba(47,183,174,.2);
-      border-radius:10px;font-size:12px;font-weight:600;color:var(--accent2);
-      letter-spacing:.01em;transition:all .2s}
-    .svc-badge:hover{background:rgba(47,183,174,.12);border-color:rgba(109,224,215,.35)}
-    .svc-badge-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    /* SERVICES ROW — gold badges */
+    .services-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
+    .svc-badge{position:relative;display:flex;align-items:center;gap:10px;padding:11px 18px;
+      background:linear-gradient(180deg,rgba(42,34,5,.92),rgba(26,22,4,.98));
+      border:1px solid rgba(255,215,0,.30);box-shadow:0 10px 28px rgba(255,215,0,.08);
+      border-radius:14px;font-size:12px;font-weight:700;color:#ffe27a;
+      letter-spacing:.01em;transition:all .22s;overflow:hidden}
+    .svc-badge::before{content:'';position:absolute;inset:0;
+      background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.12) 42%,transparent 78%);
+      opacity:.5;pointer-events:none}
+    .svc-badge:hover{transform:translateY(-2px);border-color:rgba(255,215,0,.48);
+      box-shadow:0 16px 34px rgba(255,215,0,.14)}
+    .svc-badge-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+      border-radius:999px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.14)}
     .svc-badge-icon svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
       stroke-linecap:round;stroke-linejoin:round}
 
@@ -284,16 +290,23 @@
       margin-bottom:8px;letter-spacing:-.02em}
     .sim-page-header p{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px}
 
-    .sim-tabs{display:flex;gap:6px;margin-bottom:24px;background:rgba(0,0,0,.25);
-      padding:6px;border-radius:16px;border:1px solid var(--line);width:fit-content}
-    .sim-tab{padding:10px 22px;border-radius:12px;border:0;background:transparent;
-      color:var(--muted);font-size:13px;font-weight:600;font-family:inherit;
-      cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px}
+    .sim-tabs{display:flex;gap:8px;margin-bottom:24px;background:rgba(0,0,0,.25);
+      padding:8px;border-radius:20px;border:1px solid rgba(255,215,0,.16);width:fit-content;
+      box-shadow:0 14px 36px rgba(0,0,0,.18)}
+    .sim-tab{position:relative;padding:12px 24px;border-radius:14px;border:1px solid rgba(255,215,0,.18);
+      background:linear-gradient(180deg,rgba(42,34,5,.78),rgba(26,22,4,.9));
+      color:#e6e0b5;font-size:13px;font-weight:700;font-family:inherit;
+      cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:8px;overflow:hidden}
+    .sim-tab::before{content:'';position:absolute;inset:0;
+      background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.10) 44%,transparent 82%);
+      opacity:.4;pointer-events:none}
     .sim-tab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
-      stroke-linecap:round;stroke-linejoin:round;opacity:.7}
-    .sim-tab.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;font-weight:800}
+      stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+    .sim-tab.active{background:linear-gradient(90deg,#d2a73b,#f4de7a);color:#241b06;font-weight:800;
+      border-color:rgba(255,225,122,.55);box-shadow:0 10px 28px rgba(255,215,0,.18)}
     .sim-tab.active svg{opacity:1}
-    .sim-tab:not(.active):hover{color:var(--text);background:rgba(255,255,255,.05)}
+    .sim-tab:not(.active):hover{transform:translateY(-1px);color:#ffe27a;border-color:rgba(255,215,0,.34);
+      box-shadow:0 10px 24px rgba(255,215,0,.10)}
 
     .sim-layout{display:grid;grid-template-columns:300px 1fr 280px;gap:16px;align-items:start}
 
