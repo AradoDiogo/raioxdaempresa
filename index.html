@@ -3,7 +3,6 @@
 <head>
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-274GF5NGKM"></script>
@@ -118,7 +117,6 @@
       background:rgba(7,20,22,.9);border-bottom:1px solid rgba(47,183,174,.1)}
     .header-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-    .brand-link{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
     .logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));
       border-radius:10px;display:flex;align-items:center;justify-content:center;
       font-weight:900;font-size:14px;color:#041b1d;letter-spacing:-.02em}
@@ -162,22 +160,73 @@
     .hero h1 em{font-style:italic;color:var(--accent2)}
     .hero-sub{font-size:17px;color:var(--muted);line-height:1.65;max-width:580px;margin-bottom:32px}
 
-    /* SERVICES ROW — gold badges */
-    .services-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
-    .svc-badge{position:relative;display:flex;align-items:center;gap:10px;padding:11px 18px;
-      background:linear-gradient(180deg,rgba(42,34,5,.92),rgba(26,22,4,.98));
-      border:1px solid rgba(255,215,0,.30);box-shadow:0 10px 28px rgba(255,215,0,.08);
-      border-radius:14px;font-size:12px;font-weight:700;color:#ffe27a;
-      letter-spacing:.01em;transition:all .22s;overflow:hidden}
-    .svc-badge::before{content:'';position:absolute;inset:0;
-      background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.12) 42%,transparent 78%);
-      opacity:.5;pointer-events:none}
-    .svc-badge:hover{transform:translateY(-2px);border-color:rgba(255,215,0,.48);
-      box-shadow:0 16px 34px rgba(255,215,0,.14)}
-    .svc-badge-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-      border-radius:999px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.14)}
-    .svc-badge-icon svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
+    /* SERVICES / PILARS */
+    .services-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+    .svc-badge{
+      position:relative;display:flex;align-items:center;gap:12px;padding:14px 18px;
+      background:linear-gradient(180deg,#2a2205,#1a1604);
+      border:1px solid rgba(255,215,0,.35);border-radius:18px;font-size:13px;font-weight:700;
+      color:#ffe27a;letter-spacing:-.01em;transition:all .25s;cursor:pointer;overflow:hidden;
+      box-shadow:0 10px 34px rgba(255,215,0,.08)
+    }
+    .svc-badge::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.14) 42%,transparent 82%);
+      opacity:.45;transform:translateX(-35%);transition:transform .45s ease
+    }
+    .svc-badge:hover,.svc-badge.active{
+      transform:translateY(-2px);border-color:rgba(255,215,0,.55);
+      box-shadow:0 16px 42px rgba(255,215,0,.14), inset 0 0 0 1px rgba(255,226,122,.08)
+    }
+    .svc-badge:hover::before,.svc-badge.active::before{transform:translateX(10%)}
+    .svc-badge-icon{
+      width:42px;height:42px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+      border-radius:14px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.18);
+      position:relative;z-index:1
+    }
+    .svc-badge-icon svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.9;
       stroke-linecap:round;stroke-linejoin:round}
+    .svc-badge-label{position:relative;z-index:1}
+    .pillar-panel{
+      position:relative;margin-bottom:34px;padding:22px 24px;border-radius:20px;
+      background:linear-gradient(180deg,rgba(42,34,5,.94),rgba(18,14,4,.96));
+      border:1px solid rgba(255,215,0,.28);box-shadow:0 18px 48px rgba(0,0,0,.35);
+      display:none;overflow:hidden
+    }
+    .pillar-panel.active{display:block;animation:fadeLift .28s ease}
+    .pillar-panel::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,rgba(255,215,0,.25),#ffe27a,rgba(255,215,0,.18))
+    }
+    .pillar-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:14px}
+    .pillar-head h3{font-family:'DM Serif Display',Georgia,serif;font-size:28px;line-height:1.05;color:#fff2b2;letter-spacing:-.02em}
+    .pillar-head p{max-width:720px;color:#e6deb1;font-size:15px;line-height:1.65}
+    .pillar-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+    .pillar-includes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .pillar-item{
+      padding:14px 14px;border-radius:14px;background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,215,0,.12);color:#f6edbf;font-size:13px;line-height:1.45
+    }
+    .pillar-item strong{display:block;color:#ffe27a;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+    .pillar-side{padding:16px 18px;border-radius:16px;background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.14)}
+    .pillar-side-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#d8c56f;font-weight:800;margin-bottom:8px}
+    .pillar-side p{font-size:13px;color:#e6deb1;line-height:1.6;margin-bottom:14px}
+    .pillar-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-gold{
+      display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;
+      font-weight:800;font-size:13px;border:1px solid rgba(255,215,0,.24);
+      background:linear-gradient(180deg,#f0d76a,#d4aa2e);color:#1c1402;transition:all .2s
+    }
+    .btn-gold:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(255,215,0,.18)}
+    .btn-gold-outline{
+      display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;
+      font-weight:700;font-size:13px;border:1px solid rgba(255,215,0,.18);
+      color:#ffe27a;background:rgba(255,255,255,.02);transition:all .2s
+    }
+    .btn-gold-outline:hover{background:rgba(255,215,0,.07);border-color:rgba(255,215,0,.3)}
+    @keyframes fadeLift{
+      from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}
+    }
 
     .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
     .btn-main{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
@@ -290,23 +339,25 @@
       margin-bottom:8px;letter-spacing:-.02em}
     .sim-page-header p{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px}
 
-    .sim-tabs{display:flex;gap:8px;margin-bottom:24px;background:rgba(0,0,0,.25);
-      padding:8px;border-radius:20px;border:1px solid rgba(255,215,0,.16);width:fit-content;
-      box-shadow:0 14px 36px rgba(0,0,0,.18)}
-    .sim-tab{position:relative;padding:12px 24px;border-radius:14px;border:1px solid rgba(255,215,0,.18);
-      background:linear-gradient(180deg,rgba(42,34,5,.78),rgba(26,22,4,.9));
-      color:#e6e0b5;font-size:13px;font-weight:700;font-family:inherit;
-      cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:8px;overflow:hidden}
-    .sim-tab::before{content:'';position:absolute;inset:0;
-      background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.10) 44%,transparent 82%);
-      opacity:.4;pointer-events:none}
-    .sim-tab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
-      stroke-linecap:round;stroke-linejoin:round;opacity:.9}
-    .sim-tab.active{background:linear-gradient(90deg,#d2a73b,#f4de7a);color:#241b06;font-weight:800;
-      border-color:rgba(255,225,122,.55);box-shadow:0 10px 28px rgba(255,215,0,.18)}
-    .sim-tab.active svg{opacity:1}
-    .sim-tab:not(.active):hover{transform:translateY(-1px);color:#ffe27a;border-color:rgba(255,215,0,.34);
-      box-shadow:0 10px 24px rgba(255,215,0,.10)}
+    .sim-tabs{display:flex;gap:8px;margin-bottom:24px;background:transparent;padding:0;border:0;flex-wrap:wrap}
+    .sim-tab{
+      position:relative;padding:14px 22px;border-radius:18px;border:1px solid rgba(255,215,0,.28);
+      background:linear-gradient(180deg,#2a2205,#1a1604);color:#f1d96a;font-size:13px;font-weight:700;font-family:inherit;
+      cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:10px;overflow:hidden;
+      box-shadow:0 10px 34px rgba(255,215,0,.06)
+    }
+    .sim-tab::before{
+      content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.14) 45%,transparent 82%);
+      opacity:.38;transform:translateX(-38%);transition:transform .45s ease
+    }
+    .sim-tab svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;
+      stroke-linecap:round;stroke-linejoin:round;opacity:.9;position:relative;z-index:1}
+    .sim-tab.active,.sim-tab:hover{
+      color:#fff0a3;border-color:rgba(255,215,0,.5);transform:translateY(-1px);
+      box-shadow:0 16px 38px rgba(255,215,0,.12)
+    }
+    .sim-tab.active::before,.sim-tab:hover::before{transform:translateX(10%)}
+    .sim-tab.active{font-weight:800}
 
     .sim-layout{display:grid;grid-template-columns:300px 1fr 280px;gap:16px;align-items:start}
 
@@ -502,6 +553,9 @@
       .services-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none}
       .services-row::-webkit-scrollbar{display:none}
       .svc-badge{white-space:nowrap;flex:0 0 auto}
+      .pillar-grid{grid-template-columns:1fr}
+      .pillar-includes{grid-template-columns:1fr}
+      .pillar-panel{min-width:min(860px,100%)}
     }
     @media(max-width:640px){
       .container{width:calc(100% - 24px)}
@@ -519,7 +573,13 @@
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn-main,.btn-outline,.btn-whatsapp{width:100%;justify-content:center}
       .services-row{gap:8px}
-      .svc-badge{font-size:11px;padding:7px 12px}
+      .svc-badge{font-size:12px;padding:10px 14px}
+      .svc-badge-icon{width:36px;height:36px}
+      .pillar-panel{padding:18px}
+      .pillar-head h3{font-size:24px}
+      .pillar-head p,.pillar-side p,.pillar-item{font-size:13px}
+      .pillar-actions{flex-direction:column}
+      .btn-gold,.btn-gold-outline{width:100%;justify-content:center}
       .sim-page-header h1{font-size:28px}
       .sim-page-header p{font-size:14px}
       .inputs-panel-header,.box-header,.box-body{padding-left:14px;padding-right:14px}
@@ -543,13 +603,11 @@
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
-      <a href="index.html" class="brand-link" aria-label="Ir para a página inicial do Raio-X da Empresa">
-        <div class="logo">RX</div>
-        <div class="brand-text">
-          <strong>Raio-X da Empresa</strong>
-          <span>Simulador Financeiro para PMEs</span>
-        </div>
-      </a>
+      <div class="logo">RX</div>
+      <div class="brand-text">
+        <strong>Raio-X da Empresa</strong>
+        <span>Simulador Financeiro para PMEs</span>
+      </div>
     </div>
 
     <nav class="nav">
@@ -580,7 +638,7 @@
 <!-- ══ HOME PAGE ══ -->
 <div id="homePage" class="page">
 
-  <section class="hero" id="diagnostico">
+  <section class="hero">
     <div class="container">
       <div class="hero-grid">
         <div>
@@ -588,28 +646,145 @@
           <h1>Decisões melhores começam com <em>dados confiáveis</em>.</h1>
           <p class="hero-sub">A maioria das empresas não perde dinheiro por falta de esforço — perde por falta de clareza financeira. Nós estruturamos a gestão, revelamos os números reais e criamos a cultura de decisão que transforma resultado.</p>
 
-          <!-- SERVICES BADGES — clean, sem emoji -->
-          <div class="services-row">
-            <span class="svc-badge">
+          <!-- PILARES DE SOLUÇÃO -->
+          <div class="services-row" id="pilarTabs">
+            <button class="svc-badge active" type="button" data-pillar="diagnostico" onclick="setPillar('diagnostico')">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
-              Diagnóstico Financeiro
-            </span>
-            <span class="svc-badge">
+              <span class="svc-badge-label">Diagnóstico Financeiro</span>
+            </button>
+            <button class="svc-badge" type="button" data-pillar="planejamento" onclick="setPillar('planejamento')">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
-              Planejamento Estratégico
-            </span>
-            <span class="svc-badge">
+              <span class="svc-badge-label">Planejamento Estratégico</span>
+            </button>
+            <button class="svc-badge" type="button" data-pillar="orcamento" onclick="setPillar('orcamento')">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
-              Orçamento e Caixa
-            </span>
-            <span class="svc-badge">
+              <span class="svc-badge-label">Orçamento e Caixa</span>
+            </button>
+            <button class="svc-badge" type="button" data-pillar="performance" onclick="setPillar('performance')">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg></span>
+              <span class="svc-badge-label">Performance do Negócio</span>
+            </button>
+            <button class="svc-badge" type="button" data-pillar="valuation" onclick="setPillar('valuation')">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-              Valuation
-            </span>
-            <span class="svc-badge">
-              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 6.477 16.477 2 22 2"/><path d="M12 12C12 6.477 7.523 2 2 2"/><path d="M2 22c0-5.523 4.477-10 10-10s10 4.477 10 10"/></svg></span>
-              Capital de Giro
-            </span>
+              <span class="svc-badge-label">Valuation</span>
+            </button>
+          </div>
+
+          <div class="pillar-panel active" id="pillar-diagnostico">
+            <div class="pillar-head">
+              <div>
+                <h3>Diagnóstico Financeiro</h3>
+                <p>Primeiro revelamos a realidade do negócio. Organizamos a gestão financeira, estruturamos os demonstrativos e expomos as causas que drenam caixa, margem e crescimento.</p>
+              </div>
+            </div>
+            <div class="pillar-grid">
+              <div class="pillar-includes">
+                <div class="pillar-item"><strong>Organização da gestão financeira</strong>Implantar processos, rituais e demonstrativos que transformam dado solto em informação confiável.</div>
+                <div class="pillar-item"><strong>Análise de performance</strong>Revelar a realidade econômico-financeira, identificar causas, impactos e priorizar um plano de ação.</div>
+              </div>
+              <div class="pillar-side">
+                <div class="pillar-side-label">O que muda na prática</div>
+                <p>Você deixa de decidir no escuro e passa a entender com clareza o que realmente trava resultado, caixa e geração de valor.</p>
+                <div class="pillar-actions">
+                  <a class="btn-gold" href="diagnostico-financeiro.html">Abrir página do pilar →</a>
+                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero aplicar isso</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-panel" id="pillar-planejamento">
+            <div class="pillar-head">
+              <div>
+                <h3>Planejamento Estratégico</h3>
+                <p>Transformamos visão em direção prática. Definimos metas, projetamos o futuro em números e testamos a viabilidade dos movimentos mais importantes do negócio.</p>
+              </div>
+            </div>
+            <div class="pillar-grid">
+              <div class="pillar-includes">
+                <div class="pillar-item"><strong>Planejamento estratégico</strong>Definir direção, metas e prioridades traduzindo a visão dos sócios em objetivos mensuráveis.</div>
+                <div class="pillar-item"><strong>Planejamento orçamentário</strong>Projetar resultado econômico e financeiro para antecipar riscos e oportunidades.</div>
+                <div class="pillar-item"><strong>Viabilidade de investimento</strong>Avaliar retorno, risco e impacto no caixa antes de comprometer capital.</div>
+              </div>
+              <div class="pillar-side">
+                <div class="pillar-side-label">O que muda na prática</div>
+                <p>A empresa passa a crescer com critério, sabendo o que perseguir, o que adiar e qual resultado financeiro precisa gerar.</p>
+                <div class="pillar-actions">
+                  <a class="btn-gold" href="planejamento-estrategico.html">Abrir página do pilar →</a>
+                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero estruturar isso</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-panel" id="pillar-orcamento">
+            <div class="pillar-head">
+              <div>
+                <h3>Orçamento e Caixa</h3>
+                <p>Disciplina de execução financeira. Garantimos acompanhamento contínuo, redução da pressão no capital de giro e uma estrutura de crédito compatível com a geração de caixa.</p>
+              </div>
+            </div>
+            <div class="pillar-grid">
+              <div class="pillar-includes">
+                <div class="pillar-item"><strong>Acompanhamento estratégico e financeiro</strong>Orçado vs. realizado, detecção precoce de desvios e correção com plano de ação.</div>
+                <div class="pillar-item"><strong>Gestão da necessidade de capital de giro</strong>Reduzir ciclo financeiro com otimização de recebimento, estoque e pagamento.</div>
+                <div class="pillar-item"><strong>Estrutura de crédito</strong>Desenhar dívida sustentável em valor, prazo, custo e garantias.</div>
+              </div>
+              <div class="pillar-side">
+                <div class="pillar-side-label">O que muda na prática</div>
+                <p>Você reduz sufoco de caixa, antecipa tensões financeiras e constrói mais previsibilidade para operar e crescer.</p>
+                <div class="pillar-actions">
+                  <a class="btn-gold" href="orcamento-e-caixa.html">Abrir página do pilar →</a>
+                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero cuidar do caixa</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-panel" id="pillar-performance">
+            <div class="pillar-head">
+              <div>
+                <h3>Performance do Negócio</h3>
+                <p>Mexemos nas alavancas que realmente aumentam resultado: preço, eficiência comercial e otimização recorrente de gastos sem amputar capacidade operacional.</p>
+              </div>
+            </div>
+            <div class="pillar-grid">
+              <div class="pillar-includes">
+                <div class="pillar-item"><strong>Precificação financeira</strong>Padronizar modelo de preço e política de descontos para maximizar margem de contribuição.</div>
+                <div class="pillar-item"><strong>Gestão da performance comercial</strong>Metas, plano de ação e alinhamento comercial conectados às metas financeiras.</div>
+                <div class="pillar-item"><strong>Otimização de gastos</strong>Reduzir gastos com recorrência e sustentabilidade, mantendo operação e geração de receita.</div>
+              </div>
+              <div class="pillar-side">
+                <div class="pillar-side-label">O que muda na prática</div>
+                <p>A empresa passa a vender melhor, capturar mais margem e crescer sem destruir resultado no meio do caminho.</p>
+                <div class="pillar-actions">
+                  <a class="btn-gold" href="performance-do-negocio.html">Abrir página do pilar →</a>
+                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero acelerar isso</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pillar-panel" id="pillar-valuation">
+            <div class="pillar-head">
+              <div>
+                <h3>Valuation</h3>
+                <p>Transformamos resultado em valor patrimonial. Estimamos o valor econômico da empresa para apoiar decisões de investimento, captação, M&amp;A e criação de valor no tempo.</p>
+              </div>
+            </div>
+            <div class="pillar-grid">
+              <div class="pillar-includes">
+                <div class="pillar-item"><strong>Valuation</strong>Estimar o valor econômico do negócio e acompanhar a criação de valor ao longo do tempo.</div>
+              </div>
+              <div class="pillar-side">
+                <div class="pillar-side-label">O que muda na prática</div>
+                <p>Você passa a discutir crescimento, captação e decisões societárias com base em valor econômico — não em chute decorado de reunião.</p>
+                <div class="pillar-actions">
+                  <a class="btn-gold" href="valuation-empresarial.html">Abrir página do pilar →</a>
+                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero avaliar meu negócio</button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="hero-actions">
@@ -852,7 +1027,7 @@
 </div><!-- /homePage -->
 
 <!-- ══ SIMULATOR PAGE ══ -->
-<div id="simPage" class="page hidden" data-page="simuladores">
+<div id="simPage" class="page hidden">
   <div class="container sim-page">
     <div class="sim-page-header">
       <div class="eyebrow"><span class="eyebrow-line"></span>Simuladores Estratégicos</div>
@@ -1044,42 +1219,11 @@ function scrollToSection(id){
 
 const params = new URLSearchParams(window.location.search);
 const simParam = params.get("sim");
-const pageParam = params.get("page");
-const scrollParam = params.get("scroll");
-const leadParam = params.get("lead");
-
-if (pageParam === "sim") {
-  setTimeout(() => {
-    showPage('sim');
-  }, 60);
-}
 
 if (simParam) {
   setTimeout(() => {
     goSim(simParam);
   }, 100);
-}
-
-if (scrollParam) {
-  setTimeout(() => {
-    showPage('home');
-    const el = $(scrollParam);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 120);
-}
-
-if (leadParam === "1") {
-  window.addEventListener('load', () => {
-    showPage('home');
-    setTimeout(() => {
-      if (typeof openLead === 'function') {
-        openLead('header');
-      }
-      const url = new URL(window.location.href);
-      url.searchParams.delete('lead');
-      window.history.replaceState({}, '', url.pathname + (url.search ? '?' + url.searchParams.toString() : '') + url.hash);
-    }, 120);
-  });
 }
 
 function goSim(key){ showPage('sim'); switchSim(key); }
@@ -1638,6 +1782,19 @@ function switchSim(key){
   document.querySelectorAll('.sim-tab').forEach(t=>t.classList.toggle('active',t.dataset.sim===key));
   buildInputs(key);
   render();
+}
+
+const PILLARS = {
+  diagnostico:{},
+  planejamento:{},
+  orcamento:{},
+  performance:{},
+  valuation:{}
+};
+
+function setPillar(key){
+  document.querySelectorAll('.svc-badge').forEach(el=>el.classList.toggle('active', el.dataset.pillar===key));
+  document.querySelectorAll('.pillar-panel').forEach(el=>el.classList.toggle('active', el.id===`pillar-${key}`));
 }
 
 window.addEventListener('resize',()=>{ if(activeSim) render(); });
