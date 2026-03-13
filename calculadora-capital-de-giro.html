@@ -1,195 +1,45 @@
-    <!DOCTYPE html>
-    <html lang="pt-BR">
-    <head>
-      <meta charset="UTF-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Calculadora de Capital de Giro | Raio-X da Empresa</title>
-      <meta name="description" content="Calcule o capital de giro da sua empresa em segundos. Entenda se a operação exige caixa, gera pressão financeira ou trabalha com mais folga.">
-      <meta name="robots" content="index, follow">
-      <link rel="canonical" href="https://www.raioxdaempresa.com.br/calculadora-capital-de-giro.html">
-      <meta property="og:type" content="website">
-      <meta property="og:title" content="Calculadora de Capital de Giro | Raio-X da Empresa">
-      <meta property="og:description" content="Calcule o capital de giro da sua empresa em segundos. Entenda se a operação exige caixa, gera pressão financeira ou trabalha com mais folga.">
-      <meta property="og:url" content="https://www.raioxdaempresa.com.br/calculadora-capital-de-giro.html">
-      <meta property="og:site_name" content="Raio-X da Empresa">
-      <meta property="og:locale" content="pt_BR">
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="Calculadora de Capital de Giro | Raio-X da Empresa">
-      <meta name="twitter:description" content="Calcule o capital de giro da sua empresa em segundos. Entenda se a operação exige caixa, gera pressão financeira ou trabalha com mais folga.">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-      <style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Calculadora de Capital de Giro | Raio-X da Empresa</title><meta name="description" content="Calcule a necessidade de capital de giro da sua empresa usando receita, PMR, PME, PMP, custo e caixa disponível."><meta name="keywords" content="calculadora capital de giro, capital de giro empresa, pmr pme pmp"><link rel="canonical" href="https://www.raioxdaempresa.com.br/calculadora-capital-de-giro.html"><style>
 :root{
   --bg:#071416;--panel:#0d2326;--text:#eef8f7;--muted:#7ca8a6;
   --accent:#2fb7ae;--accent2:#6de0d7;--ok:#72e3a1;--warn:#ffd166;--danger:#ff7b7b;
-  --line:#214e54;--shadow:0 24px 60px rgba(0,0,0,.35);--r:18px;--max:1180px;
+  --line:#214e54;--shadow:0 24px 60px rgba(0,0,0,.35);--r:18px;--max:1200px;
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);
- background-image:radial-gradient(ellipse 90% 40% at 50% 0%,rgba(47,183,174,.09) 0%,transparent 55%)}
-a{text-decoration:none;color:inherit} button{font-family:inherit;cursor:pointer}
-.container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
-.site-header{position:sticky;top:0;z-index:20;background:rgba(7,20,22,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(47,183,174,.12)}
-.header-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#052123;font-weight:900}
-.brand strong{display:block;font-size:15px}.brand span{display:block;font-size:11px;color:var(--muted)}
-.nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav a{font-size:13px;color:var(--muted);padding:8px 14px;border-radius:999px;border:1px solid transparent}
-.nav a:hover,.nav a.active{color:var(--text);background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
-.hero{padding:52px 0 24px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:11px;margin-bottom:18px}
-.eyebrow:before{content:"";width:24px;height:2px;background:var(--accent2);border-radius:2px}
-h1{font-family:"DM Serif Display",Georgia,serif;font-size:44px;line-height:1.05;letter-spacing:-.02em;margin:0 0 14px}
-.hero p,.intro p{color:var(--muted);font-size:16px;line-height:1.7;max-width:760px}
-.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.pill{padding:8px 12px;border-radius:999px;background:rgba(47,183,174,.07);border:1px solid rgba(47,183,174,.18);color:var(--accent2);font-size:12px;font-weight:700}
-.calc-layout{display:grid;grid-template-columns:380px 1fr;gap:18px;padding:24px 0 46px}
-.card{background:linear-gradient(180deg,rgba(18,52,58,.95),rgba(10,28,31,.98));border:1px solid rgba(255,255,255,.06);border-radius:var(--r);box-shadow:var(--shadow)}
-.card h2,.card h3{margin:0 0 10px}
-.card-pad{padding:22px}
-.form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
-.form-field label{font-size:12px;color:var(--muted);font-weight:700}
-.form-field input{background:#0b1c1e;border:1px solid var(--line);border-radius:11px;color:var(--text);padding:12px 14px;font-size:14px;outline:none}
-.form-field input:focus{border-color:var(--accent)}
-.btn-main,.btn-outline,.btn-whatsapp{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border-radius:12px;font-weight:800;border:0}
-.btn-main{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#052123;width:100%}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--line);width:100%}
-.btn-whatsapp{background:#25D366;color:#052123}
-.result-kpi{font-family:"DM Serif Display",Georgia,serif;font-size:40px;line-height:1;margin:8px 0 10px}
-.status{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;margin-bottom:12px}
-.status.ok{background:rgba(114,227,161,.1);color:var(--ok);border:1px solid rgba(114,227,161,.25)}
-.status.warn{background:rgba(255,209,102,.1);color:var(--warn);border:1px solid rgba(255,209,102,.25)}
-.status.danger{background:rgba(255,123,123,.1);color:var(--danger);border:1px solid rgba(255,123,123,.25)}
-.leitura{font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 18px}
-.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.cta-row a,.cta-row button{flex:1 1 220px}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
-.info-box{padding:16px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
-.info-box strong{display:block;margin-bottom:8px}
-.info-box p{font-size:13px;color:var(--muted);line-height:1.55;margin:0}
-.list{display:grid;gap:8px;margin:12px 0 0;padding-left:18px;color:var(--muted)}
-.footer{padding:32px 0 40px;color:var(--muted);text-align:center;font-size:12px;border-top:1px solid rgba(255,255,255,.05)}
-.grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 40px}
-.small-card{padding:20px;border-radius:16px;background:linear-gradient(180deg,rgba(18,52,58,.9),rgba(10,28,31,.95));border:1px solid rgba(255,255,255,.06)}
-.small-card h3{margin:0 0 8px;font-size:16px}.small-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-.small-card .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.link-chip{padding:7px 10px;border-radius:999px;background:rgba(47,183,174,.08);border:1px solid rgba(47,183,174,.16);font-size:11px;color:var(--accent2);font-weight:700}
-@media(max-width:980px){.calc-layout,.grid-cards,.info-grid{grid-template-columns:1fr}.header-inner{height:auto;padding:12px 0;align-items:flex-start;flex-direction:column}.nav{width:100%;overflow-x:auto;flex-wrap:nowrap}.nav a{white-space:nowrap}.hero{padding:34px 0 14px}h1{font-size:34px}}
-@media(max-width:640px){.container{width:calc(100% - 24px)}.card-pad,.small-card{padding:18px}.result-kpi{font-size:32px}.cta-row{flex-direction:column}}
-</style>
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebApplication",
-  "name":"Calculadora de Capital de Giro",
-  "url":"https://www.raioxdaempresa.com.br/calculadora-capital-de-giro.html",
-  "description":"Calcule o capital de giro da sua empresa em segundos. Entenda se a operação exige caixa, gera pressão financeira ou trabalha com mais folga.",
-  "applicationCategory":"FinanceApplication",
-  "operatingSystem":"Web",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"}
-}
-</script>
-
-    </head>
-    <body>
-      <header class="site-header">
-        <div class="container header-inner">
-          <a class="brand" href="https://www.raioxdaempresa.com.br/">
-            <div class="logo">RX</div>
-            <div><strong>Raio-X da Empresa</strong><span>Simuladores e calculadoras financeiras</span></div>
-          </a>
-          <nav class="nav">
-            <a href="https://www.raioxdaempresa.com.br/">Início</a>
-            <a href="https://www.raioxdaempresa.com.br/?sim=locadora">Simuladores</a>
-            <a class="active" href="https://www.raioxdaempresa.com.br/calculadoras.html">Calculadoras</a>
-            <a href="https://wa.me/55011975434818?text=Ol%C3%A1%2C%20quero%20entender%20melhor%20o%20resultado%20da%20calculadora%20do%20Raio-X%20da%20Empresa." target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </nav>
-        </div>
-      </header>
-
-<section class="hero">
-  <div class="container">
-    <div class="eyebrow">Calculadoras Financeiras</div>
-    <h1>Calculadora de Capital de Giro</h1>
-    <p>Descubra quanto de capital a sua operação precisa para sustentar o dia a dia sem pressionar demais o caixa.</p>
-    <div class="pill-row">
-      <span class="pill">Cálculo rápido</span><span class="pill">Leitura gerencial</span><span class="pill">SEO por intenção</span>
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);background-image:radial-gradient(ellipse 90% 40% at 50% 0%,rgba(47,183,174,.1) 0%,transparent 55%)}
+a{color:inherit;text-decoration:none}.container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(7,20,22,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05)}
+.header-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px}
+.logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:900;color:#042023}
+.brand strong{display:block;font-size:16px}.brand span{display:block;font-size:12px;color:var(--muted)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.06);color:var(--muted);font-size:13px}.nav a.active,.nav a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.hero{padding:42px 0 26px}.eyebrow{display:inline-flex;gap:8px;align-items:center;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);font-size:11px;font-weight:800}.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent2);border-radius:2px}
+h1{font-size:44px;line-height:1.05;margin:16px 0 12px;font-family:Georgia,serif}.hero p{font-size:17px;color:var(--muted);line-height:1.7;max-width:860px}
+.calc-layout{display:grid;grid-template-columns:430px 1fr;gap:18px;padding:18px 0 46px}.card{background:linear-gradient(180deg,rgba(18,52,58,.94),rgba(10,28,31,.98));border:1px solid rgba(255,255,255,.06);border-radius:var(--r);box-shadow:var(--shadow)}
+.card-pad{padding:22px}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent2);font-weight:800;margin-bottom:12px}
+.form-field{margin-bottom:14px;position:relative}.label-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}.form-field label{font-size:12px;font-weight:700;color:var(--text)}
+.help{width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(47,183,174,.15);border:1px solid rgba(47,183,174,.3);font-size:10px;color:var(--accent2);cursor:help}
+.tooltip{position:absolute;left:0;bottom:calc(100% + 8px);width:min(260px,calc(100vw - 50px));padding:10px 12px;background:rgba(8,28,32,.98);border:1px solid rgba(47,183,174,.25);border-radius:10px;color:var(--muted);font-size:11px;line-height:1.55;opacity:0;pointer-events:none;transform:translateY(4px);transition:all .16s;z-index:10}
+.help:hover + .tooltip,.help:focus + .tooltip{opacity:1;transform:translateY(0)} .form-field input{width:100%;padding:12px 14px;background:#081b1d;border:1px solid var(--line);color:var(--text);border-radius:11px;font-size:14px;outline:none}
+.form-field input:focus{border-color:var(--accent)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;cursor:pointer}
+.btn-main{width:100%;padding:14px 18px;background:linear-gradient(90deg,var(--accent),var(--accent2));font-weight:800;color:#042023}.btn-outline{padding:13px 16px;background:transparent;border:1px solid var(--line);color:var(--text)}.btn-whats{padding:13px 16px;background:#25D366;color:#042023;font-weight:800}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}.kpi{padding:16px;border-radius:15px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.kpi .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}.kpi .val{font-size:28px;font-weight:900;line-height:1;margin-bottom:6px;font-family:Georgia,serif}.kpi .sub{font-size:11px;color:var(--muted);line-height:1.4}
+.result-box{padding:18px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);margin-bottom:12px}.result-box h3{margin:0 0 10px;font-size:16px}.result-box p{margin:0;color:var(--muted);line-height:1.65}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.small{font-size:12px;color:var(--muted);line-height:1.55}.footer{padding:20px 0 36px;text-align:center;color:var(--muted);font-size:12px}
+.grid-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-bottom:46px}
+@media(max-width:980px){.calc-layout,.grid-cards{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.container{width:calc(100% - 22px)}h1{font-size:34px}.hero p{font-size:15px}.cta-row{flex-direction:column}}
+</style></head><body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo">RX</div>
+      <div><strong>Raio-X da Empresa</strong><span>Calculadoras Financeiras</span></div>
     </div>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="index.html?sim=locadora">Simuladores</a>
+      <a class="active" href="calculadoras.html">Calculadoras</a>
+    </nav>
   </div>
-</section>
-<section class="container calc-layout">
-  <div class="card"><div class="card-pad">
-    <h2>Insira os dados</h2>
-    <div class="form-field"><label>Contas a receber (R$)</label><input type="number" id="receber" placeholder="0"></div>
-<div class="form-field"><label>Estoque (R$)</label><input type="number" id="estoque" placeholder="0"></div>
-<div class="form-field"><label>Contas a pagar (R$)</label><input type="number" id="pagar" placeholder="0"></div>
-    <button class="btn-main" onclick="compute()">Calcular</button>
-    <div class="cta-row"><a class="btn-outline" href="https://www.raioxdaempresa.com.br/calculadoras.html">Ver todas as calculadoras</a></div>
-  </div></div>
-  <div style="display:grid;gap:18px">
-    <div class="card"><div class="card-pad">
-      <h2>Resultado</h2>
-      <div id="status" class="status ok">Preencha os campos</div>
-      <div id="result" class="result-kpi">R$ 0</div>
-      <p id="leitura" class="leitura">Preencha os campos para gerar a leitura da calculadora.</p>
-      <p id="aux" class="leitura" style="margin-top:-8px"></p>
-      <div class="cta-row">
-        <a class="btn-main" href="https://www.raioxdaempresa.com.br/?sim=locadora">Ir para os simuladores</a>
-        <a class="btn-whatsapp" href="https://wa.me/55011975434818?text=Ol%C3%A1%2C%20quero%20entender%20melhor%20o%20resultado%20da%20calculadora%20do%20Raio-X%20da%20Empresa." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-      </div>
-    </div></div>
-    <div class="card"><div class="card-pad">
-      <h3>O que fazer depois do cálculo</h3>
-      <ul class="list">
-        <li>Use o resultado como um termômetro, não como verdade absoluta gravada em pedra.</li>
-        <li>Compare com a realidade do caixa, dos prazos e da sua rotina de gestão.</li>
-        <li>Se quiser aprofundar, vá para os simuladores completos por nicho.</li>
-      </ul>
-      <div class="info-grid" style="margin-top:18px">
-        <div class="info-box"><strong>O que esse cálculo mostra</strong><p>O capital de giro mede quanto do seu caixa fica preso para sustentar contas a receber e estoque, descontando contas a pagar.</p></div><div class="info-box"><strong>Para quem é mais útil</strong><p>Especialmente útil para distribuidores, varejistas e negócios com estoque e prazos de recebimento.</p></div>
-      </div>
-    </div></div>
-  </div>
-</section>
-<script>
-function num(id) {
-  return Number(document.getElementById(id).value || 0);
-}
-function brl(v) {
-  return new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0}).format(v || 0);
-}
-function render(value, statusText, level, leitura, isPercent=false, suffix='') {
-  document.getElementById('status').className = 'status ' + level;
-  document.getElementById('status').textContent = statusText;
-  let out = '';
-  if(isPercent) {
-    out = (value || 0).toFixed(1).replace('.',',') + '%' + (suffix || '');
-  } else if(suffix === 'x') {
-    out = (value || 0).toFixed(2).replace('.',',') + 'x';
-  } else if(suffix) {
-    out = (value || 0).toFixed(1).replace('.',',') + suffix;
-  } else {
-    out = brl(value);
-  }
-  document.getElementById('result').textContent = out;
-  document.getElementById('leitura').textContent = leitura;
-}
-
-function compute(){
-  const receber = num('receber'), estoque = num('estoque'), pagar = num('pagar');
-  const resultado = receber + estoque - pagar;
-  let level='ok', status='Folga operacional', leitura='Sua necessidade de capital de giro está baixa ou negativa. A operação parece mais leve, mas ainda vale checar a qualidade dos prazos.';
-  if(resultado>0 && resultado<50000){level='warn';status='Atenção';leitura='Sua operação exige capital de giro, mas ainda em nível relativamente controlado.';}
-  if(resultado>=50000){level='danger';status='Pressão de caixa';leitura='Sua necessidade de capital de giro é relevante. Se o caixa estiver apertado, crescer pode piorar sua liquidez.';}
-  render(resultado,status,level,leitura);
-}
-
-</script>
-
-      <footer class="footer">
-        Ferramenta educacional de simulação e cálculo financeiro. Resultados ilustrativos e dependentes das premissas informadas.
-      </footer>
-    </body>
-    </html>
+</header>
+<section class="hero"><div class="container"><div class="eyebrow">Calculadoras Financeiras</div><h1>Calculadora de Capital de Giro</h1><p>Descubra quanto capital sua operação exige para sustentar o dia a dia sem pressionar o caixa.</p></div></section><section><div class="container calc-layout"><div class="card card-pad"><div class="section-title">Insira os dados</div><div class="form-field"><div class="label-row"><label for="receita">Receita mensal</label><span class="help" tabindex="0">i</span><div class="tooltip">Faturamento médio mensal da empresa. Ajuda a dar contexto sobre o tamanho da operação.</div></div><input type="number" id="receita" placeholder="0" step="0.01"></div><div class="form-field"><div class="label-row"><label for="pmr">PMR (dias)</label><span class="help" tabindex="0">i</span><div class="tooltip">Prazo médio de recebimento: em quantos dias, em média, seus clientes pagam.</div></div><input type="number" id="pmr" placeholder="0" step="0.01"></div><div class="form-field"><div class="label-row"><label for="pme">PME (dias)</label><span class="help" tabindex="0">i</span><div class="tooltip">Prazo médio de estoque: por quantos dias seu dinheiro fica parado em estoque.</div></div><input type="number" id="pme" placeholder="0" step="0.01"></div><div class="form-field"><div class="label-row"><label for="pmp">PMP (dias)</label><span class="help" tabindex="0">i</span><div class="tooltip">Prazo médio de pagamento: em quantos dias, em média, você paga fornecedores.</div></div><input type="number" id="pmp" placeholder="0" step="0.01"></div><div class="form-field"><div class="label-row"><label for="custoPct">Custo sobre receita (%)</label><span class="help" tabindex="0">i</span><div class="tooltip">Percentual de custos diretamente ligados à operação ou mercadoria vendida.</div></div><input type="number" id="custoPct" placeholder="0" step="0.01"></div><div class="form-field"><div class="label-row"><label for="caixa">Caixa atual disponível</label><span class="help" tabindex="0">i</span><div class="tooltip">Valor disponível hoje para sustentar a operação e absorver pressão de giro.</div></div><input type="number" id="caixa" placeholder="0" step="0.01"></div><button class="btn btn-main" onclick="calcular()">Calcular agora</button><p class="small" style="margin-top:12px">Passe o mouse no ícone <strong>i</strong> para entender o significado de cada campo.</p></div><div><div class="kpi-grid"><div class="kpi"><div class="lbl" id="kpi1l">Indicador 1</div><div class="val" id="kpi1v">—</div><div class="sub" id="kpi1s">Preencha os campos.</div></div><div class="kpi"><div class="lbl" id="kpi2l">Indicador 2</div><div class="val" id="kpi2v">—</div><div class="sub" id="kpi2s">Preencha os campos.</div></div><div class="kpi"><div class="lbl" id="kpi3l">Status</div><div class="val" id="kpi3v">—</div><div class="sub" id="kpi3s">Aguardando cálculo.</div></div></div><div class="result-box"><h3>Leitura gerencial</h3><p id="leitura">Preencha os campos e clique em calcular para ver a interpretação do resultado.</p></div><div class="result-box"><h3>Próximo passo</h3><p>Depois do cálculo, aprofunde a análise com os simuladores estratégicos ou fale direto com um especialista.</p><div class="cta-row"><a class="btn btn-outline" href="index.html?sim=locadora">Ver simuladores</a><a class="btn btn-whats" href="https://wa.me/55011975434818?text=Ol%C3%A1%2C%20quero%20entender%20melhor%20o%20resultado%20da%20calculadora%20do%20Raio-X%20da%20Empresa." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></div></div></div></div></section><script>const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v||0)); const pct=v=>`${Number(v||0).toFixed(1).replace('.',',')}%`;function calcular(){const receita=+document.getElementById('receita').value||0;const pmr=+document.getElementById('pmr').value||0;const pme=+document.getElementById('pme').value||0;const pmp=+document.getElementById('pmp').value||0;const custoPct=(+document.getElementById('custoPct').value||0)/100;const caixa=+document.getElementById('caixa').value||0;const contasReceber=receita*(pmr/30);const estoque=(receita*custoPct)*(pme/30);const contasPagar=(receita*custoPct)*(pmp/30);const ncg=contasReceber+estoque-contasPagar;const folga=caixa-ncg;document.getElementById('kpi1l').textContent='NCG estimada';document.getElementById('kpi1v').textContent=brl(ncg);document.getElementById('kpi1s').textContent='Capital de giro exigido pela operação.';document.getElementById('kpi2l').textContent='Folga de caixa';document.getElementById('kpi2v').textContent=brl(folga);document.getElementById('kpi2s').textContent='Caixa atual menos necessidade de giro.';let status='Equilíbrio',hint='Situação intermediária.',leitura='Sua operação parece em faixa intermediária. Vale observar prazos, estoque e caixa disponível com mais disciplina.';if(ncg<=0){status='Folga';hint='Giro leve ou até negativo.';leitura='Sua necessidade de capital de giro está baixa ou negativa. Isso pode ser bom, mas merece atenção à qualidade do recebimento e ao nível de estoque.';}else if(folga<0){status='Pressão';hint='O caixa atual não cobre o giro.';leitura='Sua operação exige mais capital de giro do que o caixa disponível suporta hoje. Se a empresa crescer sem ajustar prazos, estoque ou margem, a pressão financeira tende a aumentar.';}else{status='Atenção';hint='Há giro relevante consumindo caixa.';leitura='Sua empresa precisa de capital de giro relevante, mas o caixa atual ainda sustenta a operação. O próximo passo é revisar PMR, PMP e PME para reduzir imobilização de recursos.';}document.getElementById('kpi3v').textContent=status;document.getElementById('kpi3s').textContent=hint;document.getElementById('leitura').textContent=leitura;}</script><div class="footer container">Ferramenta educacional de apoio à decisão. Resultados dependem das premissas informadas.</div></body></html>
