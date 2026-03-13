@@ -105,7 +105,7 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
       background-image:radial-gradient(ellipse 90% 40% at 50% 0%,rgba(47,183,174,.1) 0%,transparent 55%)}
     a{color:inherit;text-decoration:none}
     button{font-family:inherit;cursor:pointer}
@@ -147,86 +147,29 @@
     .header-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(47,183,174,.35)}
 
     /* ── PAGES ── */
-    .page{min-height:auto}
+    .page{min-height:calc(100vh - 70px)}
 
     /* ══ HOME ══ */
-    .hero{padding:42px 0 28px}
+    .hero{padding:72px 0 56px}
     .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);
       text-transform:uppercase;letter-spacing:.13em;font-weight:800;font-size:11px;margin-bottom:18px}
     .eyebrow-line{width:22px;height:2px;background:var(--accent2);border-radius:2px}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) 392px;gap:24px;align-items:start}
-    .hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:52px;line-height:1.02;
-      letter-spacing:-.025em;margin-bottom:16px}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .hero h1{font-family:'DM Serif Display',Georgia,serif;font-size:54px;line-height:1.05;
+      letter-spacing:-.025em;margin-bottom:22px}
     .hero h1 em{font-style:italic;color:var(--accent2)}
-    .hero-sub{font-size:16px;color:var(--muted);line-height:1.58;max-width:620px;margin-bottom:20px}
+    .hero-sub{font-size:17px;color:var(--muted);line-height:1.65;max-width:580px;margin-bottom:32px}
 
-    /* SERVICES / PILARS */
-    .services-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
-    .svc-badge{
-      position:relative;display:flex;align-items:center;gap:10px;padding:11px 15px;
-      background:linear-gradient(180deg,#2a2205,#1a1604);
-      border:1px solid rgba(255,215,0,.35);border-radius:18px;font-size:13px;font-weight:700;
-      color:#ffe27a;letter-spacing:-.01em;transition:all .25s;cursor:pointer;overflow:hidden;
-      box-shadow:0 10px 34px rgba(255,215,0,.08)
-    }
-    .svc-badge::before{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.14) 42%,transparent 82%);
-      opacity:.45;transform:translateX(-35%);transition:transform .45s ease
-    }
-    .svc-badge:hover,.svc-badge.active{
-      transform:translateY(-2px);border-color:rgba(255,215,0,.55);
-      box-shadow:0 16px 42px rgba(255,215,0,.14), inset 0 0 0 1px rgba(255,226,122,.08)
-    }
-    .svc-badge:hover::before,.svc-badge.active::before{transform:translateX(10%)}
-    .svc-badge-icon{
-      width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-      border-radius:14px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.18);
-      position:relative;z-index:1
-    }
-    .svc-badge-icon svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.9;
+    /* SERVICES ROW — clean badges */
+    .services-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+    .svc-badge{display:flex;align-items:center;gap:8px;padding:9px 16px;
+      background:rgba(47,183,174,.06);border:1px solid rgba(47,183,174,.2);
+      border-radius:10px;font-size:12px;font-weight:600;color:var(--accent2);
+      letter-spacing:.01em;transition:all .2s}
+    .svc-badge:hover{background:rgba(47,183,174,.12);border-color:rgba(109,224,215,.35)}
+    .svc-badge-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .svc-badge-icon svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
       stroke-linecap:round;stroke-linejoin:round}
-    .svc-badge-label{position:relative;z-index:1}
-    .pillar-panel{
-      position:relative;margin-bottom:18px;padding:18px 20px;border-radius:20px;
-      background:linear-gradient(180deg,rgba(42,34,5,.94),rgba(18,14,4,.96));
-      border:1px solid rgba(255,215,0,.28);box-shadow:0 18px 48px rgba(0,0,0,.35);
-      display:none;overflow:hidden
-    }
-    .pillar-panel.active{display:block;animation:fadeLift .28s ease}
-    .pillar-panel::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:2px;
-      background:linear-gradient(90deg,rgba(255,215,0,.25),#ffe27a,rgba(255,215,0,.18))
-    }
-    .pillar-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:10px}
-    .pillar-head h3{font-family:'DM Serif Display',Georgia,serif;font-size:24px;line-height:1.03;color:#fff2b2;letter-spacing:-.02em}
-    .pillar-head p{max-width:720px;color:#e6deb1;font-size:14px;line-height:1.52}
-    .pillar-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:start}
-    .pillar-includes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-    .pillar-item{
-      padding:12px 12px;border-radius:14px;background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,215,0,.12);color:#f6edbf;font-size:13px;line-height:1.45
-    }
-    .pillar-item strong{display:block;color:#ffe27a;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
-    .pillar-side{padding:16px 18px;border-radius:16px;background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.14)}
-    .pillar-side-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#d8c56f;font-weight:800;margin-bottom:8px}
-    .pillar-side p{font-size:12px;color:#e6deb1;line-height:1.5;margin-bottom:12px}
-    .pillar-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn-gold{
-      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;
-      font-weight:800;font-size:13px;border:1px solid rgba(255,215,0,.24);
-      background:linear-gradient(180deg,#f0d76a,#d4aa2e);color:#1c1402;transition:all .2s
-    }
-    .btn-gold:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(255,215,0,.18)}
-    .btn-gold-outline{
-      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;
-      font-weight:700;font-size:13px;border:1px solid rgba(255,215,0,.18);
-      color:#ffe27a;background:rgba(255,255,255,.02);transition:all .2s
-    }
-    .btn-gold-outline:hover{background:rgba(255,215,0,.07);border-color:rgba(255,215,0,.3)}
-    @keyframes fadeLift{
-      from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}
-    }
 
     .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
     .btn-main{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
@@ -243,30 +186,30 @@
 
     /* LEAD CARD */
     .lead-hero-card{background:linear-gradient(170deg,rgba(18,52,58,.97),rgba(10,28,31,.99));
-      border:1px solid rgba(47,183,174,.18);border-radius:22px;padding:22px;
+      border:1px solid rgba(47,183,174,.18);border-radius:22px;padding:28px;
       box-shadow:var(--shadow);position:relative;overflow:hidden}
     .lead-hero-card::before{content:'';position:absolute;top:0;left:0;right:0;
       height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-    .lead-hero-card h2{font-family:'DM Serif Display',Georgia,serif;font-size:18px;
+    .lead-hero-card h2{font-family:'DM Serif Display',Georgia,serif;font-size:20px;
       line-height:1.2;margin-bottom:6px}
-    .lead-hero-card .sub{font-size:12px;color:var(--muted);line-height:1.45;margin-bottom:14px}
-    .form-field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+    .lead-hero-card .sub{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:20px}
+    .form-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
     .form-field label{font-size:11px;font-weight:700;color:var(--muted);
       text-transform:uppercase;letter-spacing:.06em}
     .form-field input,.form-field select{background:rgba(7,20,22,.8);border:1px solid var(--line2);
-      border-radius:10px;color:var(--text);padding:10px 12px;font-size:13px;
+      border-radius:10px;color:var(--text);padding:11px 14px;font-size:13px;
       font-family:inherit;outline:none;width:100%;transition:border-color .2s}
     .form-field input:focus,.form-field select:focus{border-color:var(--accent)}
     .form-field select option{background:#0d2326}
     .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .btn-submit{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;
-      font-weight:800;font-size:14px;padding:12px;border-radius:12px;border:0;
+      font-weight:800;font-size:14px;padding:14px;border-radius:12px;border:0;
       width:100%;transition:all .2s;margin-top:4px;cursor:pointer}
     .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(47,183,174,.35)}
-    .form-privacy{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.4}
+    .form-privacy{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5}
 
     /* SECTION */
-    .section{padding:36px 0}
+    .section{padding:48px 0}
     .section-head{text-align:center;margin-bottom:40px}
     .section-head h2{font-family:'DM Serif Display',Georgia,serif;font-size:38px;
       margin-bottom:10px;letter-spacing:-.02em}
@@ -323,10 +266,10 @@
     .value-card p{font-size:13px;color:var(--muted);line-height:1.55}
 
     /* STATS BAR */
-    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);margin-top:6px;
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);
       background:linear-gradient(90deg,rgba(18,52,58,.9),rgba(10,28,31,.95));
       border:1px solid rgba(47,183,174,.1);border-radius:var(--r);overflow:hidden}
-    .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,.05)}
+    .stat-item{padding:28px 24px;border-right:1px solid rgba(255,255,255,.05)}
     .stat-item:last-child{border-right:0}
     .stat-big{font-family:'DM Serif Display',serif;font-size:40px;color:var(--accent2);
       line-height:1;margin-bottom:6px}
@@ -339,25 +282,16 @@
       margin-bottom:8px;letter-spacing:-.02em}
     .sim-page-header p{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px}
 
-    .sim-tabs{display:flex;gap:8px;margin-bottom:24px;background:transparent;padding:0;border:0;flex-wrap:wrap}
-    .sim-tab{
-      position:relative;padding:14px 22px;border-radius:18px;border:1px solid rgba(255,215,0,.28);
-      background:linear-gradient(180deg,#2a2205,#1a1604);color:#f1d96a;font-size:13px;font-weight:700;font-family:inherit;
-      cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:10px;overflow:hidden;
-      box-shadow:0 10px 34px rgba(255,215,0,.06)
-    }
-    .sim-tab::before{
-      content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.14) 45%,transparent 82%);
-      opacity:.38;transform:translateX(-38%);transition:transform .45s ease
-    }
-    .sim-tab svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;
-      stroke-linecap:round;stroke-linejoin:round;opacity:.9;position:relative;z-index:1}
-    .sim-tab.active,.sim-tab:hover{
-      color:#fff0a3;border-color:rgba(255,215,0,.5);transform:translateY(-1px);
-      box-shadow:0 16px 38px rgba(255,215,0,.12)
-    }
-    .sim-tab.active::before,.sim-tab:hover::before{transform:translateX(10%)}
-    .sim-tab.active{font-weight:800}
+    .sim-tabs{display:flex;gap:6px;margin-bottom:24px;background:rgba(0,0,0,.25);
+      padding:6px;border-radius:16px;border:1px solid var(--line);width:fit-content}
+    .sim-tab{padding:10px 22px;border-radius:12px;border:0;background:transparent;
+      color:var(--muted);font-size:13px;font-weight:600;font-family:inherit;
+      cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px}
+    .sim-tab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;
+      stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+    .sim-tab.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#041b1d;font-weight:800}
+    .sim-tab.active svg{opacity:1}
+    .sim-tab:not(.active):hover{color:var(--text);background:rgba(255,255,255,.05)}
 
     .sim-layout{display:grid;grid-template-columns:300px 1fr 280px;gap:16px;align-items:start}
 
@@ -525,15 +459,9 @@
     .footer strong{color:var(--text)}
 
     /* RESPONSIVE */
-    @media(min-width:1201px){
-      .hero-grid{grid-template-columns:minmax(0,1.08fr) 380px}
-      .services-row{max-width:820px}
-      .pillar-panel{max-width:860px}
-      .lead-hero-card{position:sticky;top:92px}
-    }
     @media(max-width:1200px){
-      .hero-grid{grid-template-columns:1fr;gap:18px}
-      .lead-hero-card{max-width:760px}
+      .hero-grid{grid-template-columns:1fr;gap:24px}
+      .lead-hero-card{max-width:720px}
       .sim-layout{grid-template-columns:280px 1fr}
       .cta-sidebar{display:none}.floating-cta{display:block}
       .kpi-row{grid-template-columns:repeat(2,1fr)}
@@ -553,15 +481,12 @@
       .sim-tabs{flex-wrap:nowrap;width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none}
       .sim-tabs::-webkit-scrollbar{display:none}
       .sim-tab{white-space:nowrap;flex:0 0 auto}
-      .hero h1{font-size:40px}
+      .hero h1{font-size:38px}
       .modal-form-grid{grid-template-columns:1fr}
       .insights-row{grid-template-columns:1fr}
       .services-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none}
       .services-row::-webkit-scrollbar{display:none}
       .svc-badge{white-space:nowrap;flex:0 0 auto}
-      .pillar-grid{grid-template-columns:1fr}
-      .pillar-includes{grid-template-columns:1fr}
-      .pillar-panel{min-width:min(860px,100%)}
     }
     @media(max-width:640px){
       .container{width:calc(100% - 24px)}
@@ -569,8 +494,8 @@
       .brand-text strong{font-size:14px}
       .brand-text span{font-size:10px}
       .header-cta{width:100%;justify-content:center;padding:11px 16px}
-      .hero{padding:28px 0 24px}
-      .hero h1{font-size:30px;line-height:1.06}
+      .hero{padding:38px 0 34px}
+      .hero h1{font-size:30px;line-height:1.08}
       .hero-sub{font-size:15px}
       .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal{padding:20px}
       .kpi-row{grid-template-columns:1fr}
@@ -579,13 +504,7 @@
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn-main,.btn-outline,.btn-whatsapp{width:100%;justify-content:center}
       .services-row{gap:8px}
-      .svc-badge{font-size:12px;padding:10px 14px}
-      .svc-badge-icon{width:36px;height:36px}
-      .pillar-panel{padding:16px}
-      .pillar-head h3{font-size:22px}
-      .pillar-head p,.pillar-side p,.pillar-item{font-size:13px}
-      .pillar-actions{flex-direction:column}
-      .btn-gold,.btn-gold-outline{width:100%;justify-content:center}
+      .svc-badge{font-size:11px;padding:7px 12px}
       .sim-page-header h1{font-size:28px}
       .sim-page-header p{font-size:14px}
       .inputs-panel-header,.box-header,.box-body{padding-left:14px;padding-right:14px}
@@ -652,145 +571,28 @@
           <h1>Decisões melhores começam com <em>dados confiáveis</em>.</h1>
           <p class="hero-sub">A maioria das empresas não perde dinheiro por falta de esforço — perde por falta de clareza financeira. Nós estruturamos a gestão, revelamos os números reais e criamos a cultura de decisão que transforma resultado.</p>
 
-          <!-- PILARES DE SOLUÇÃO -->
-          <div class="services-row" id="pilarTabs">
-            <button class="svc-badge active" type="button" data-pillar="diagnostico" onclick="setPillar('diagnostico')">
+          <!-- SERVICES BADGES — clean, sem emoji -->
+          <div class="services-row">
+            <span class="svc-badge">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
-              <span class="svc-badge-label">Diagnóstico Financeiro</span>
-            </button>
-            <button class="svc-badge" type="button" data-pillar="planejamento" onclick="setPillar('planejamento')">
+              Diagnóstico Financeiro
+            </span>
+            <span class="svc-badge">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
-              <span class="svc-badge-label">Planejamento Estratégico</span>
-            </button>
-            <button class="svc-badge" type="button" data-pillar="orcamento" onclick="setPillar('orcamento')">
+              Planejamento Estratégico
+            </span>
+            <span class="svc-badge">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
-              <span class="svc-badge-label">Orçamento e Caixa</span>
-            </button>
-            <button class="svc-badge" type="button" data-pillar="performance" onclick="setPillar('performance')">
-              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg></span>
-              <span class="svc-badge-label">Performance do Negócio</span>
-            </button>
-            <button class="svc-badge" type="button" data-pillar="valuation" onclick="setPillar('valuation')">
+              Orçamento e Caixa
+            </span>
+            <span class="svc-badge">
               <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-              <span class="svc-badge-label">Valuation</span>
-            </button>
-          </div>
-
-          <div class="pillar-panel active" id="pillar-diagnostico">
-            <div class="pillar-head">
-              <div>
-                <h3>Diagnóstico Financeiro</h3>
-                <p>Primeiro revelamos a realidade do negócio. Organizamos a gestão financeira, estruturamos os demonstrativos e expomos as causas que drenam caixa, margem e crescimento.</p>
-              </div>
-            </div>
-            <div class="pillar-grid">
-              <div class="pillar-includes">
-                <div class="pillar-item"><strong>Organização da gestão financeira</strong>Implantar processos, rituais e demonstrativos que transformam dado solto em informação confiável.</div>
-                <div class="pillar-item"><strong>Análise de performance</strong>Revelar a realidade econômico-financeira, identificar causas, impactos e priorizar um plano de ação.</div>
-              </div>
-              <div class="pillar-side">
-                <div class="pillar-side-label">O que muda na prática</div>
-                <p>Você deixa de decidir no escuro e passa a entender com clareza o que realmente trava resultado, caixa e geração de valor.</p>
-                <div class="pillar-actions">
-                  <a class="btn-gold" href="diagnostico-financeiro.html">Como aplicamos na prática →</a>
-                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero aplicar isso</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pillar-panel" id="pillar-planejamento">
-            <div class="pillar-head">
-              <div>
-                <h3>Planejamento Estratégico</h3>
-                <p>Transformamos visão em direção prática. Definimos metas, projetamos o futuro em números e testamos a viabilidade dos movimentos mais importantes do negócio.</p>
-              </div>
-            </div>
-            <div class="pillar-grid">
-              <div class="pillar-includes">
-                <div class="pillar-item"><strong>Planejamento estratégico</strong>Definir direção, metas e prioridades traduzindo a visão dos sócios em objetivos mensuráveis.</div>
-                <div class="pillar-item"><strong>Planejamento orçamentário</strong>Projetar resultado econômico e financeiro para antecipar riscos e oportunidades.</div>
-                <div class="pillar-item"><strong>Viabilidade de investimento</strong>Avaliar retorno, risco e impacto no caixa antes de comprometer capital.</div>
-              </div>
-              <div class="pillar-side">
-                <div class="pillar-side-label">O que muda na prática</div>
-                <p>A empresa passa a crescer com critério, sabendo o que perseguir, o que adiar e qual resultado financeiro precisa gerar.</p>
-                <div class="pillar-actions">
-                  <a class="btn-gold" href="planejamento-estrategico.html">Como aplicamos na prática →</a>
-                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero estruturar isso</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pillar-panel" id="pillar-orcamento">
-            <div class="pillar-head">
-              <div>
-                <h3>Orçamento e Caixa</h3>
-                <p>Disciplina de execução financeira. Garantimos acompanhamento contínuo, redução da pressão no capital de giro e uma estrutura de crédito compatível com a geração de caixa.</p>
-              </div>
-            </div>
-            <div class="pillar-grid">
-              <div class="pillar-includes">
-                <div class="pillar-item"><strong>Acompanhamento estratégico e financeiro</strong>Orçado vs. realizado, detecção precoce de desvios e correção com plano de ação.</div>
-                <div class="pillar-item"><strong>Gestão da necessidade de capital de giro</strong>Reduzir ciclo financeiro com otimização de recebimento, estoque e pagamento.</div>
-                <div class="pillar-item"><strong>Estrutura de crédito</strong>Desenhar dívida sustentável em valor, prazo, custo e garantias.</div>
-              </div>
-              <div class="pillar-side">
-                <div class="pillar-side-label">O que muda na prática</div>
-                <p>Você reduz sufoco de caixa, antecipa tensões financeiras e constrói mais previsibilidade para operar e crescer.</p>
-                <div class="pillar-actions">
-                  <a class="btn-gold" href="orcamento-e-caixa.html">Como aplicamos na prática →</a>
-                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero cuidar do caixa</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pillar-panel" id="pillar-performance">
-            <div class="pillar-head">
-              <div>
-                <h3>Performance do Negócio</h3>
-                <p>Mexemos nas alavancas que realmente aumentam resultado: preço, eficiência comercial e otimização recorrente de gastos sem amputar capacidade operacional.</p>
-              </div>
-            </div>
-            <div class="pillar-grid">
-              <div class="pillar-includes">
-                <div class="pillar-item"><strong>Precificação financeira</strong>Padronizar modelo de preço e política de descontos para maximizar margem de contribuição.</div>
-                <div class="pillar-item"><strong>Gestão da performance comercial</strong>Metas, plano de ação e alinhamento comercial conectados às metas financeiras.</div>
-                <div class="pillar-item"><strong>Otimização de gastos</strong>Reduzir gastos com recorrência e sustentabilidade, mantendo operação e geração de receita.</div>
-              </div>
-              <div class="pillar-side">
-                <div class="pillar-side-label">O que muda na prática</div>
-                <p>A empresa passa a vender melhor, capturar mais margem e crescer sem destruir resultado no meio do caminho.</p>
-                <div class="pillar-actions">
-                  <a class="btn-gold" href="performance-do-negocio.html">Como aplicamos na prática →</a>
-                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero acelerar isso</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pillar-panel" id="pillar-valuation">
-            <div class="pillar-head">
-              <div>
-                <h3>Valuation</h3>
-                <p>Transformamos resultado em valor patrimonial. Estimamos o valor econômico da empresa para apoiar decisões de investimento, captação, M&amp;A e criação de valor no tempo.</p>
-              </div>
-            </div>
-            <div class="pillar-grid">
-              <div class="pillar-includes">
-                <div class="pillar-item"><strong>Valuation</strong>Estimar o valor econômico do negócio e acompanhar a criação de valor ao longo do tempo.</div>
-              </div>
-              <div class="pillar-side">
-                <div class="pillar-side-label">O que muda na prática</div>
-                <p>Você passa a discutir crescimento, captação e decisões societárias com base em valor econômico — não em chute decorado de reunião.</p>
-                <div class="pillar-actions">
-                  <a class="btn-gold" href="valuation-empresarial.html">Como aplicamos na prática →</a>
-                  <button class="btn-gold-outline" type="button" onclick="openLead('hero')">Quero avaliar meu negócio</button>
-                </div>
-              </div>
-            </div>
+              Valuation
+            </span>
+            <span class="svc-badge">
+              <span class="svc-badge-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 6.477 16.477 2 22 2"/><path d="M12 12C12 6.477 7.523 2 2 2"/><path d="M2 22c0-5.523 4.477-10 10-10s10 4.477 10 10"/></svg></span>
+              Capital de Giro
+            </span>
           </div>
 
           <div class="hero-actions">
@@ -1033,7 +835,7 @@
 </div><!-- /homePage -->
 
 <!-- ══ SIMULATOR PAGE ══ -->
-<div id="simPage" class="page hidden">
+<div id="simPage" class="page hidden" data-anchor="simuladores">
   <div class="container sim-page">
     <div class="sim-page-header">
       <div class="eyebrow"><span class="eyebrow-line"></span>Simuladores Estratégicos</div>
@@ -1215,7 +1017,7 @@ function showPage(p){
 }
 
 function scrollToSection(id){
-  showPage('home');
+  handleDeepLink();
   setTimeout(()=>{
     const el=$(id);
     if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1790,23 +1592,10 @@ function switchSim(key){
   render();
 }
 
-const PILLARS = {
-  diagnostico:{},
-  planejamento:{},
-  orcamento:{},
-  performance:{},
-  valuation:{}
-};
-
-function setPillar(key){
-  document.querySelectorAll('.svc-badge').forEach(el=>el.classList.toggle('active', el.dataset.pillar===key));
-  document.querySelectorAll('.pillar-panel').forEach(el=>el.classList.toggle('active', el.id===`pillar-${key}`));
-}
-
 window.addEventListener('resize',()=>{ if(activeSim) render(); });
 
 switchSim('locadora');
-showPage('home');
+handleDeepLink();
 </script>
 </body>
 </html>
