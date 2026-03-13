@@ -12,9 +12,6 @@
   gtag('config', 'G-274GF5NGKM');
 </script>
 
-
-
-
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Raio-X da Empresa | Simulador Financeiro Gratuito para PMEs</title>
@@ -539,7 +536,7 @@
     <nav class="nav">
         <button class="nav-link" onclick="showPage('home')">Início</button>
         <button class="nav-link active" onclick="showPage('sim')">Simuladores</button>
-        <a class="nav-link" href="calculadoras.html">Calculadoras</a>
+        <button class="nav-link active" onclick="showPage('sim')">Calculadoras</button>
         <div class="dropdown-wrap">
         <button class="nav-link">
           Como Funciona
@@ -1013,7 +1010,7 @@ function showPage(p){
   window.scrollTo({top:0,behavior:'smooth'});
   document.querySelectorAll('.nav-link').forEach(el=>{
     const txt=el.textContent.trim();
-    el.classList.toggle('active',(p==='home'&&txt==='Início')||(p==='sim'&&txt==='Simuladores'));
+    el.classList.toggle('active',(p==='home'&&txt==='Início')||(p==='sim'&&txt==='Simuladores'))||(p==='sim'&&txt==='Calculadoras'));
   });
 }
 
