@@ -1,19 +1,52 @@
-<url>
-<loc>https://www.raioxdaempresa.com.br/</loc>
-</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-<loc>https://www.raioxdaempresa.com.br/simulador-locadora.html</loc>
-</url>
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/</loc>
+  </url>
 
-<url>
-<loc>https://www.raioxdaempresa.com.br/simulador-distribuidor.html</loc>
-</url>
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadoras.html</loc>
+  </url>
 
-<url>
-<loc>https://www.raioxdaempresa.com.br/simulador-varejista.html</loc>
-</url>
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-capital-de-giro.html</loc>
+  </url>
 
-<url>
-<loc>https://www.raioxdaempresa.com.br/simulador-servicos.html</loc>
-</url>
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-ponto-de-equilibrio.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-margem-de-contribuicao.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-markup.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-ebitda.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-necessidade-de-caixa.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-break-even-ocupacao.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-dscr.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-payback.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.raioxdaempresa.com.br/calculadora-meta-de-vendas.html</loc>
+  </url>
+
+</urlset>
