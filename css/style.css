@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root{
+  --rx-bg:#071416;
+  --rx-panel:#0d2326;
+  --rx-panel-soft:rgba(13,35,38,.92);
+  --rx-text:#eef8f7;
+  --rx-muted:#97b8b5;
+  --rx-accent:#2fb7ae;
+  --rx-accent-2:#6de0d7;
+  --rx-gold:#f0d76a;
+  --rx-line:rgba(255,255,255,.08);
+  --rx-shadow:0 20px 50px rgba(0,0,0,.28);
+  --rx-radius:18px;
+  --rx-header-h:78px;
+  --rx-content-w:1200px;
+  --fs-body:16px;
+  --fs-small:0.875rem;
+  --fs-label:0.75rem;
+  --fs-h1:clamp(2.2rem, 4.3vw, 3.4rem);
+  --fs-h2:clamp(1.65rem, 2.6vw, 2.3rem);
+  --fs-h3:clamp(1.15rem, 1.5vw, 1.35rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{margin:0;padding:0;overflow-x:hidden;max-width:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.6;
+  color:var(--rx-text);
+  background:var(--rx-bg);
+  text-rendering:optimizeLegibility;
+}
+img,svg,canvas,video{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+body :where(.container){
+  width:min(var(--rx-content-w), calc(100% - 48px)) !important;
+  max-width:var(--rx-content-w);
+  margin-inline:auto;
+}
+
+body :where(h1,h2,h3,h4,h5,h6){
+  margin:0 0 .75rem;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  overflow-wrap:anywhere;
+}
+body h1{font-family:'DM Serif Display', Georgia, serif !important;font-size:var(--fs-h1) !important}
+body h2{font-size:var(--fs-h2) !important}
+body h3{font-size:var(--fs-h3) !important}
+body :where(p, li){font-size:1rem;overflow-wrap:anywhere}
+body :where(.hero p,.hero-sub,.leitura,.small,.card p,.info-box p,.small-card p,.result-box p,.intro p){font-size:1rem !important;line-height:1.7}
+body :where(.brand-text span,.brand span,.nav-link,.nav a,.header-cta,.btn-gold,.btn-outline,.pill,.tag,.eyebrow,.section-title,.small,.footer,.form-field label,.kpi .lbl,.result-box .sub,.info-box p,.small-card p,.link-chip){font-size:var(--fs-small) !important}
+body :where(.form-field label,.section-title,.kpi .lbl){font-weight:700;letter-spacing:.04em}
+body :where(input, select, textarea){min-height:48px;font-size:16px !important}
+body :where(.btn, .btn-main, .btn-outline, .btn-whatsapp, .header-cta, .btn-gold, button){min-height:48px;border-radius:12px}
+body :where(.pill-row, .cta-row, .actions, .services-row){row-gap:12px}
+body :where(.card,.small-card,.hero-card,.result-box,.info-box){overflow:hidden}
+body :where(table){display:block;max-width:100%;overflow-x:auto}
+
+/* Global header */
+.rx-header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(7,20,22,.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.rx-shell{width:min(var(--rx-content-w), calc(100% - 48px));margin-inline:auto}
+.rx-header__inner{
+  min-height:var(--rx-header-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.rx-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  min-width:0;
+  flex:0 1 auto;
+}
+.rx-brand__logo{
+  width:40px;height:40px;flex:0 0 40px;
+  border-radius:12px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--rx-accent),var(--rx-accent-2));
+  color:#062326;font-weight:900;font-size:.9rem;
+}
+.rx-brand__text{display:flex;flex-direction:column;min-width:0}
+.rx-brand__text strong{font-size:1rem;line-height:1.1;white-space:nowrap}
+.rx-brand__text small{font-size:.74rem;color:var(--rx-muted);white-space:nowrap}
+.rx-nav-wrap{display:flex;align-items:center;gap:14px;min-width:0}
+.rx-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rx-nav__link{
+  text-decoration:none;
+  color:var(--rx-muted);
+  font-weight:600;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid transparent;
+  transition:.2s ease;
+  white-space:nowrap;
+}
+.rx-nav__link:hover,.rx-nav__link.is-active{color:var(--rx-text);background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.rx-header__cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;
+  padding:12px 18px;
+  background:linear-gradient(90deg,var(--rx-accent),var(--rx-accent-2));
+  color:#062326;font-weight:800;
+  border-radius:12px;
+  white-space:nowrap;
+  box-shadow:0 8px 24px rgba(47,183,174,.22);
+}
+.rx-menu-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);padding:0 12px}
+.rx-menu-toggle span{display:block;height:2px;width:100%;background:var(--rx-text);border-radius:99px;transition:.2s ease}
+
+/* Neutralize old headers without layout jumps */
+body .site-header:not(.rx-header){position:static !important}
+
+/* Better page rhythm */
+body :where(.hero){padding-top:40px !important}
+body :where(.hero, .intro){scroll-margin-top:90px}
+body :where(.calc-layout, .grid, .grid-cards, .info-grid, .hero-grid, .hero-card-grid, .cards-grid){min-width:0}
+body :where(.calc-layout > *, .grid > *, .grid-cards > *, .info-grid > *, .hero-grid > *, .hero-card-grid > *){min-width:0}
+
+@media (max-width: 1100px){
+  .rx-shell, body :where(.container){width:min(var(--rx-content-w), calc(100% - 32px)) !important}
+  .rx-header__inner{min-height:72px}
+  .rx-brand__text small{display:none}
+}
+
+@media (max-width: 980px){
+  .rx-header__inner{min-height:72px;padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+  .rx-menu-toggle{display:flex}
+  .rx-nav-wrap{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:16px;
+    right:16px;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(8,24,26,.98);
+    border-radius:18px;
+    box-shadow:var(--rx-shadow);
+  }
+  .rx-header.is-open .rx-nav-wrap{display:flex}
+  .rx-nav{flex-direction:column;align-items:stretch}
+  .rx-nav__link,.rx-header__cta{width:100%;justify-content:center;text-align:center}
+  .rx-brand__text strong,.rx-brand__text small{white-space:normal}
+
+  body :where(.header-inner){height:auto !important;min-height:unset !important;padding:0 !important;display:block !important}
+  body :where(.nav){overflow:visible !important;flex-wrap:wrap !important;width:auto !important}
+}
+
+@media (max-width: 768px){
+  :root{--fs-body:15.5px}
+  body :where(.container){width:calc(100% - 24px) !important}
+  .rx-shell{width:calc(100% - 24px)}
+  body :where(.hero){padding-top:28px !important}
+  body :where(.cta-row,.actions){flex-direction:column}
+  body :where(.cta-row > *, .actions > *, .pill-row > *, .services-row > *){flex:1 1 100% !important;max-width:100%}
+  body :where(.grid, .grid-cards, .info-grid, .hero-card-grid){grid-template-columns:1fr !important}
+  body :where(.hero-grid, .calc-layout){grid-template-columns:1fr !important}
+  body :where(.card-pad, .small-card, .info-box, .result-box){padding:18px !important}
+  body :where(.result-kpi){font-size:clamp(2rem, 8vw, 2.5rem) !important}
+}
+
+@media (max-width: 520px){
+  .rx-header__inner{min-height:68px}
+  .rx-brand__logo{width:36px;height:36px;flex-basis:36px}
+  .rx-brand__text strong{font-size:.95rem}
+  .rx-brand__text small{font-size:.72rem}
+  .rx-nav-wrap{left:12px;right:12px}
+  body :where(.container){width:calc(100% - 20px) !important}
+  body :where(.pill,.tag,.link-chip){font-size:.74rem !important}
+  body :where(.btn, .btn-main, .btn-outline, .btn-whatsapp, .header-cta, .btn-gold, button){width:100%}
+}
