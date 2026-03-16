@@ -339,12 +339,12 @@
       margin-bottom:8px;letter-spacing:-.02em}
     .sim-page-header p{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px}
 
-    .sim-tabs{display:flex;gap:8px;margin-bottom:24px;background:transparent;padding:0;border:0;flex-wrap:wrap}
+    .sim-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:24px;background:transparent;padding:0;border:0}
     .sim-tab{
-      position:relative;padding:14px 22px;border-radius:18px;border:1px solid rgba(255,215,0,.28);
+      position:relative;padding:14px 18px;border-radius:18px;border:1px solid rgba(255,215,0,.28);
       background:linear-gradient(180deg,#2a2205,#1a1604);color:#f1d96a;font-size:13px;font-weight:700;font-family:inherit;
       cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:10px;overflow:hidden;
-      box-shadow:0 10px 34px rgba(255,215,0,.06)
+      box-shadow:0 10px 34px rgba(255,215,0,.06);width:100%;min-width:0;text-align:left;white-space:normal;line-height:1.35
     }
     .sim-tab::before{
       content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,215,0,.14) 45%,transparent 82%);
@@ -550,18 +550,20 @@
       .stats-bar{grid-template-columns:1fr 1fr}
       .stat-item:nth-child(2){border-right:0}
       .sim-layout{grid-template-columns:1fr}
-      .sim-tabs{flex-wrap:nowrap;width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none}
-      .sim-tabs::-webkit-scrollbar{display:none}
-      .sim-tab{white-space:nowrap;flex:0 0 auto}
+      .sim-tabs{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;overflow:visible}
+      .sim-tab{white-space:normal;min-width:0}
       .hero h1{font-size:40px}
       .modal-form-grid{grid-template-columns:1fr}
       .insights-row{grid-template-columns:1fr}
-      .services-row{display:grid;grid-template-columns:1fr 1fr;overflow:visible;gap:12px;padding-bottom:0}
-      .svc-badge{width:100%;min-width:0;white-space:normal;align-items:center}
-      .svc-badge-label{display:block;line-height:1.3}
+      .services-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none}
+      .services-row::-webkit-scrollbar{display:none}
+      .svc-badge{white-space:nowrap;flex:0 0 auto}
       .pillar-grid{grid-template-columns:1fr}
       .pillar-includes{grid-template-columns:1fr}
-      .pillar-panel{min-width:0}
+      .pillar-panel{min-width:min(860px,100%)}
+    }
+    @media(min-width:901px){
+      .sim-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
     }
     @media(max-width:640px){
       .container{width:calc(100% - 24px)}
@@ -588,6 +590,9 @@
       .btn-gold,.btn-gold-outline{width:100%;justify-content:center}
       .sim-page-header h1{font-size:28px}
       .sim-page-header p{font-size:14px}
+      .sim-tabs{grid-template-columns:1fr;gap:10px}
+      .sim-tab{padding:13px 16px;font-size:14px;border-radius:16px}
+      .sim-page{padding-bottom:118px}
       .inputs-panel-header,.box-header,.box-body{padding-left:14px;padding-right:14px}
       .input-group{padding:12px 14px}
       .sim-field{margin-bottom:10px}
@@ -596,7 +601,7 @@
       .tooltip-box{width:min(220px,calc(100vw - 48px));left:0}
       canvas.chart{height:200px}
       .modal{padding:24px 18px;border-radius:18px}
-      .floating-cta{left:12px;right:12px;bottom:12px;border-radius:14px;justify-content:center}
+      .floating-cta{left:12px;right:12px;bottom:12px;border-radius:14px;justify-content:center;padding:14px 18px;font-size:13px}
       .footer{padding-bottom:84px}
     }
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -618,9 +623,8 @@
       .hero-sub{font-size:15px;line-height:1.55;margin-bottom:14px}
       .mobile-hero-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
       .hero-actions{display:none}
-      .services-row{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px;scroll-snap-type:none}
-      .svc-badge{width:100%;min-width:0;scroll-snap-align:none;justify-content:flex-start;align-items:flex-start;padding:12px 14px}
-      .svc-badge-label{white-space:normal;line-height:1.28}
+      .services-row{margin-bottom:10px;scroll-snap-type:x proximity}
+      .svc-badge{scroll-snap-align:start}
       .pillar-panel{margin-bottom:12px;padding:14px 14px 16px}
       .pillar-head{margin-bottom:8px}
       .pillar-head h3{font-size:18px}
@@ -641,82 +645,6 @@
       .section-head h2{font-size:28px;line-height:1.08}
       .section-head p{font-size:14px}
     }
-
-    /* RESPONSIVE PATCH */
-    html,body{max-width:100%}
-    img,svg,iframe{max-width:100%;height:auto}
-    .container,.hero-grid>*,.sim-layout>*,.dre-chart-row>*,.kpi-row>*,.insights-row>*,.steps-grid>*,.sim-cards-grid>*,.value-grid>*,.stats-bar>*{min-width:0}
-    .site-header,.panel-box,.inputs-panel,.lead-hero-card,.cta-box,.modal,.step-card,.sim-card,.value-card,.pillar-panel{max-width:100%}
-    .hero h1,.hero-sub,.section-head h2,.section-head p,.pillar-head h3,.pillar-head p,.pillar-item,.pillar-side p,.sim-card h3,.sim-card p,.value-card p,.step-card p,.kpi-val,.kpi-hint,.insight-box p,.cta-box p,.lead-hero-card h2,.lead-hero-card .sub,.nav-link,.btn-main,.btn-outline,.btn-whatsapp,.btn-gold,.btn-gold-outline,.sim-tab,.field-label-row label,.group-label{overflow-wrap:anywhere;word-break:normal}
-    .box-body{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{table-layout:fixed}
-    td,th{overflow-wrap:anywhere;vertical-align:top}
-    .pillar-panel{width:100%;min-width:0}
-    .pillar-head,.pillar-actions,.hero-actions,.field-label-row{flex-wrap:wrap}
-    .services-row,.sim-tabs,.nav{scroll-padding-left:12px}
-    canvas.chart{max-width:100%!important}
-
-    @media(max-width:1024px){
-      .hero-grid{grid-template-columns:1fr;gap:18px}
-      .lead-hero-card{max-width:none;width:100%}
-      .sim-layout{grid-template-columns:1fr}
-      .cta-sidebar{display:none}
-      .floating-cta{display:flex;align-items:center}
-      .section-head h2{font-size:34px}
-      .sim-page{padding:24px 0 56px}
-    }
-    @media(max-width:900px){
-      .header-inner{align-items:stretch}
-      .brand{width:auto;max-width:100%}
-      .nav{gap:6px}
-      .hero-grid{gap:16px}
-      .lead-hero-card{padding:20px}
-      .form-grid-2{grid-template-columns:1fr}
-      .stats-bar{grid-template-columns:1fr 1fr}
-      .stat-item{min-width:0}
-      .services-row,.sim-tabs{padding-bottom:6px}
-    }
-    @media(max-width:768px){
-      .container{width:calc(100% - 24px)}
-      .hero h1{font-size:34px;line-height:1.08}
-      .section-head h2{font-size:30px;line-height:1.1}
-      .sim-page-header h1{font-size:30px;line-height:1.08}
-      .kpi-row,.dre-chart-row,.insights-row,.steps-grid,.sim-cards-grid,.value-grid{grid-template-columns:1fr}
-      .box-header,.box-body,.inputs-panel-header,.input-group{padding-left:14px;padding-right:14px}
-      .sim-tab{padding:12px 16px}
-      .sim-field input[type="number"]{font-size:16px}
-      .tooltip-box{width:min(240px,calc(100vw - 32px))}
-      .cta-box{padding:18px}
-    }
-
-    @media(max-width:768px){
-      .services-row{grid-template-columns:1fr}
-      .svc-badge{border-radius:16px}
-      .svc-badge-icon{width:40px;height:40px;border-radius:12px;flex-shrink:0}
-      .svc-badge-icon svg{width:18px;height:18px}
-    }
-
-    @media(max-width:640px){
-      body{overflow-x:hidden}
-      .site-header{position:sticky}
-      .header-inner{padding:10px 0 8px}
-      .nav-link,.nav a.nav-link{font-size:12px;padding:8px 10px}
-      .hero{padding:18px 0}
-      .hero h1{font-size:28px}
-      .hero-sub{font-size:14px}
-      .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal,.pillar-panel{padding:16px}
-      .pillar-head h3{font-size:19px}
-      .section{padding:24px 0}
-      .section-head{margin-bottom:22px}
-      .stats-bar{grid-template-columns:1fr}
-      .stat-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.05)}
-      .stat-item:last-child{border-bottom:0}
-      .stat-big{font-size:28px}
-      .floating-cta{left:12px;right:12px;bottom:12px;border-radius:14px;justify-content:center}
-      .footer{padding-bottom:84px}
-      canvas.chart{height:180px}
-    }
-
   </style>
 </head>
 <body>
@@ -1933,12 +1861,7 @@ showPage('home');
 document.addEventListener("DOMContentLoaded", function(){
 
   if(window.location.hash === "#simuladores"){
-
-      const simuladoresSection = document.getElementById("simuladores");
-
-      if(simuladoresSection){
-          simuladoresSection.scrollIntoView({behavior:"smooth"});
-      }
+      showPage('sim');
 
       const btnLocador =
         document.querySelector('[data-sim="locadora"]') ||
@@ -1947,8 +1870,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
       if(btnLocador){
           btnLocador.click();
+      } else {
+          switchSim('locadora');
       }
 
+      requestAnimationFrame(() => {
+        const simPage = document.getElementById('simPage');
+        if(simPage){
+          simPage.scrollIntoView({behavior:'auto', block:'start'});
+        }
+      });
   }
 
 });
