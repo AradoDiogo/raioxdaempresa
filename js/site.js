@@ -68,3 +68,22 @@
   navWrap.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   window.addEventListener('resize', function(){ if (window.innerWidth > 980) closeMenu(); });
 })();
+
+
+(function removeLegacyCalculatorPills(){
+  const cleanup = () => {
+    document.querySelectorAll('.hero .pill-row, .hero .tag-row, .hero .chip-row, .hero [data-decorative-pills]').forEach(el => el.remove());
+    const legacyTexts = ['Cálculo rápido', 'Leitura gerencial', 'SEO por intenção'];
+    document.querySelectorAll('.hero .pill, .hero .tag, .hero .chip, .hero span, .hero a, .hero div').forEach(el => {
+      const txt = (el.textContent || '').trim();
+      if (legacyTexts.includes(txt)) {
+        el.remove();
+      }
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cleanup);
+  } else {
+    cleanup();
+  }
+})();

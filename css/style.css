@@ -188,3 +188,25 @@ body :where(.calc-layout > *, .grid > *, .grid-cards > *, .info-grid > *, .hero-
   body :where(.pill,.tag,.link-chip){font-size:.74rem !important}
   body :where(.btn, .btn-main, .btn-outline, .btn-whatsapp, .header-cta, .btn-gold, button){width:100%}
 }
+
+
+/* Remove pills decorativas das calculadoras para reduzir ruído visual */
+.pill-row{display:none !important;}
+
+
+/* Defensive cleanup: remove legacy decorative pills from calculator hero sections */
+.hero .pill-row,
+.hero .pill,
+.hero [data-decorative-pills],
+.hero .tag-row,
+.hero .tag,
+.hero .chip-row,
+.hero .chip{
+  display:none !important;
+  visibility:hidden !important;
+  max-height:0 !important;
+  overflow:hidden !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+}
