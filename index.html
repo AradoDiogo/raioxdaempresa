@@ -601,6 +601,45 @@
     }
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     .fade-in{animation:fadeUp .45s ease forwards}
+
+    /* MOBILE V2 */
+    .mobile-hero-actions{display:none}
+    @media(max-width:640px){
+      .brand-text span{display:none}
+      .header-cta{display:none}
+      .header-inner{min-height:auto;padding:10px 0 8px}
+      .brand{align-items:center}
+      .logo{width:34px;height:34px}
+      .nav{order:2;width:100%;gap:6px;padding-bottom:0}
+      .nav-link,.nav a.nav-link{font-size:12px;padding:8px 12px}
+      .hero{padding:18px 0 18px}
+      .eyebrow{margin-bottom:12px;font-size:10px}
+      .hero h1{font-size:26px;line-height:1.04;margin-bottom:12px}
+      .hero-sub{font-size:15px;line-height:1.55;margin-bottom:14px}
+      .mobile-hero-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+      .hero-actions{display:none}
+      .services-row{margin-bottom:10px;scroll-snap-type:x proximity}
+      .svc-badge{scroll-snap-align:start}
+      .pillar-panel{margin-bottom:12px;padding:14px 14px 16px}
+      .pillar-head{margin-bottom:8px}
+      .pillar-head h3{font-size:18px}
+      .pillar-head p{font-size:13px;line-height:1.45}
+      .pillar-item{padding:10px 10px;font-size:12px}
+      .pillar-item strong{font-size:11px}
+      .pillar-side{padding:14px 14px}
+      .pillar-side p{font-size:12px}
+      .lead-hero-card{padding:18px}
+      .lead-hero-card h2{font-size:20px;line-height:1.2}
+      .lead-hero-card .sub{font-size:12px;margin-bottom:12px}
+      .form-grid-2{grid-template-columns:1fr}
+      .stats-bar{grid-template-columns:1fr 1fr}
+      .stat-item{padding:16px 14px}
+      .stat-big{font-size:30px}
+      .section{padding:26px 0}
+      .section-head{margin-bottom:24px}
+      .section-head h2{font-size:28px;line-height:1.08}
+      .section-head p{font-size:14px}
+    }
   </style>
 </head>
 <body>
@@ -651,6 +690,10 @@
           <div class="eyebrow"><span class="eyebrow-line"></span>Raio-X da Empresa · Simulador Financeiro</div>
           <h1>Decisões melhores começam com <em>dados confiáveis</em>.</h1>
           <p class="hero-sub">A maioria das empresas não perde dinheiro por falta de esforço — perde por falta de clareza financeira. Nós estruturamos a gestão, revelamos os números reais e criamos a cultura de decisão que transforma resultado.</p>
+          <div class="mobile-hero-actions">
+            <button class="btn-main" onclick="showPage('sim')">Simular minha empresa →</button>
+            <button class="btn-outline" onclick="openLead('hero')">Receber diagnóstico</button>
+          </div>
 
           <!-- PILARES DE SOLUÇÃO -->
           <div class="services-row" id="pilarTabs">
