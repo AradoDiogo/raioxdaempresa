@@ -232,3 +232,48 @@ body :where(.calc-layout > *, .grid > *, .grid-cards > *, .info-grid > *, .hero-
   .seo-grid{grid-template-columns:1fr}
   .seo-card{padding:20px}
 }
+
+
+/* Home CTA simplification and modal bottom sheet */
+body.modal-open{overflow:hidden}
+body .header-cta, .rx-header__cta, body .floating-cta{font-weight:800}
+body .btn-whatsapp, body .btn-whats{background:linear-gradient(90deg,#4ee56d,#6ff0a1) !important;color:#052316 !important;border:0 !important;font-weight:800}
+body .btn-outline{border-color:rgba(47,183,174,.28) !important}
+body .pillar-actions .btn-gold-outline{min-width:0}
+
+/* Better lead modal / bottom sheet */
+body .overlay{align-items:center}
+body .modal{max-height:min(88vh,820px);overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+body .modal-form-grid--lean{grid-template-columns:1fr 1fr}
+body .modal .btn-submit, body .modal .btn-whatsapp{width:100%}
+body .modal-close{z-index:3}
+body .modal h3{max-width:18ch}
+body .modal-sub{max-width:48ch}
+@media (max-width: 768px){
+  body .overlay{align-items:flex-end !important;padding:0 !important;background:rgba(4,14,16,.72) !important;backdrop-filter:blur(8px)}
+  body .modal{width:100% !important;max-width:none !important;max-height:88dvh !important;border-radius:24px 24px 0 0 !important;padding:20px 16px calc(22px + env(safe-area-inset-bottom)) !important;transform:translateY(100%) !important;box-shadow:0 -18px 60px rgba(0,0,0,.5) !important;border-bottom:0 !important}
+  body .overlay.open .modal{transform:translateY(0) !important}
+  body .modal::after{content:'';display:block;width:54px;height:5px;border-radius:999px;background:rgba(255,255,255,.18);position:sticky;top:0;margin:0 auto 12px}
+  body .modal-close{position:sticky !important;top:0 !important;float:right;background:rgba(255,255,255,.08) !important}
+  body .modal-form-grid, body .modal-form-grid--lean{grid-template-columns:1fr !important;gap:10px !important}
+  body .modal h3{font-size:clamp(1.9rem,8vw,2.35rem) !important;max-width:none}
+  body .modal .modal-sub{font-size:15px !important}
+}
+
+/* Status farol for calculators */
+body .kpi.is-status{transition:border-color .25s ease, box-shadow .25s ease, background .25s ease}
+body .kpi.is-status .val{display:flex;align-items:center;gap:10px}
+body .kpi.is-status .val::before{content:'';width:12px;height:12px;border-radius:50%;display:inline-block;box-shadow:0 0 0 4px rgba(255,255,255,.04)}
+body .kpi.is-status.status-green, body .status-card.status-green{border-color:rgba(114,227,161,.38) !important;box-shadow:0 0 0 1px rgba(114,227,161,.18),0 12px 30px rgba(114,227,161,.10) !important}
+body .kpi.is-status.status-green .val, body .status-card.status-green .status{color:#72e3a1 !important}
+body .kpi.is-status.status-green .val::before{background:#72e3a1;box-shadow:0 0 0 4px rgba(114,227,161,.12),0 0 14px rgba(114,227,161,.45)}
+body .kpi.is-status.status-yellow, body .status-card.status-yellow{border-color:rgba(255,209,102,.38) !important;box-shadow:0 0 0 1px rgba(255,209,102,.18),0 12px 30px rgba(255,209,102,.10) !important}
+body .kpi.is-status.status-yellow .val, body .status-card.status-yellow .status{color:#ffd166 !important}
+body .kpi.is-status.status-yellow .val::before{background:#ffd166;box-shadow:0 0 0 4px rgba(255,209,102,.12),0 0 14px rgba(255,209,102,.45)}
+body .kpi.is-status.status-red, body .status-card.status-red{border-color:rgba(255,123,123,.42) !important;box-shadow:0 0 0 1px rgba(255,123,123,.20),0 12px 30px rgba(255,123,123,.12) !important}
+body .kpi.is-status.status-red .val, body .status-card.status-red .status{color:#ff7b7b !important}
+body .kpi.is-status.status-red .val::before{background:#ff7b7b;box-shadow:0 0 0 4px rgba(255,123,123,.12),0 0 14px rgba(255,123,123,.45)}
+body .status{transition:all .25s ease}
+body .status.ok{background:rgba(114,227,161,.14) !important;color:#72e3a1 !important;border-color:rgba(114,227,161,.28) !important}
+body .status.warn{background:rgba(255,209,102,.14) !important;color:#ffd166 !important;border-color:rgba(255,209,102,.28) !important}
+body .status.danger{background:rgba(255,123,123,.14) !important;color:#ff7b7b !important;border-color:rgba(255,123,123,.28) !important}

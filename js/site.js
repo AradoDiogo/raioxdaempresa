@@ -32,7 +32,7 @@
           <a class="rx-nav__link ${activeKey === 'calculadoras' ? 'is-active' : ''}" href="${root}calculadoras/index.html">Calculadoras</a>
           <a class="rx-nav__link ${activeKey === 'valuation' ? 'is-active' : ''}" href="${root}entregaveis/valuation-empresarial.html">Valuation</a>
         </nav>
-        <a class="rx-header__cta" href="https://wa.me/55011975434818?text=Ol%C3%A1%2C%20quero%20entender%20melhor%20como%20o%20Raio-X%20da%20Empresa%20pode%20ajudar%20na%20gest%C3%A3o%20financeira." target="_blank" rel="noopener noreferrer">Falar com especialista</a>
+        <a class="rx-header__cta" href="https://wa.me/55011975434818?text=Ol%C3%A1%2C%20quero%20entender%20melhor%20como%20o%20Raio-X%20da%20Empresa%20pode%20ajudar%20na%20gest%C3%A3o%20financeira." target="_blank" rel="noopener noreferrer">Quero um diagnóstico</a>
       </div>
     </div>
   </header>`;
@@ -86,4 +86,62 @@
   } else {
     cleanup();
   }
+})();
+
+
+(function improveLeadExperienceAndStatus(){
+  const updateHomeCtas = () => {
+    document.querySelectorAll('button, a').forEach(el => {
+      const txt = (el.textContent || '').trim();
+      if (!txt) return;
+      if (/Falar com especialista|Receber diagnóstico financeiro|Receber diagnóstico|Quero aplicar isso|Quero estruturar isso|Quero cuidar do caixa|Quero acelerar isso|Quero avaliar meu negócio|Quero um diagnóstico gratuito|Quero que entrem em contato|Receber contato por e-mail|Solicitar contato por e-mail/i.test(txt)) {
+        el.textContent = 'Quero um diagnóstico do meu negócio';
+      }
+    });
+  };
+
+  const statusToColor = (text='') => {
+    const t = text.toLowerCase();
+    if (/(saudável|saudavel|ok|seguro|interessante|controlado|confortável|confortavel)/.test(t)) return 'green';
+    if (/(atenção|atencao|moderado|curta|alongado|alerta|ajuste)/.test(t)) return 'yellow';
+    if (/(risco|estresse|crítico|critico|perigo|demorado|elevado|destrói|destroi)/.test(t)) return 'red';
+    return '';
+  };
+
+  const paintKpiStatus = () => {
+    document.querySelectorAll('.kpi').forEach(card => {
+      const lbl = card.querySelector('.lbl')?.textContent?.trim().toLowerCase() || '';
+      if (!lbl.includes('status')) return;
+      const valNode = card.querySelector('.val');
+      const color = statusToColor(valNode?.textContent || '');
+      card.classList.add('is-status');
+      card.classList.remove('status-green','status-yellow','status-red');
+      if (color) card.classList.add(`status-${color}`);
+    });
+    document.querySelectorAll('.status').forEach(el => {
+      const color = statusToColor(el.textContent || '');
+      const wrap = el.closest('.card, .result-box, .status-card');
+      if (wrap) {
+        wrap.classList.remove('status-green','status-yellow','status-red');
+        if (color) wrap.classList.add(`status-${color}`);
+      }
+      el.classList.remove('ok','warn','danger');
+      if (color === 'green') el.classList.add('ok');
+      if (color === 'yellow') el.classList.add('warn');
+      if (color === 'red') el.classList.add('danger');
+    });
+  };
+
+  const observe = () => {
+    updateHomeCtas();
+    paintKpiStatus();
+    const obs = new MutationObserver(() => {
+      updateHomeCtas();
+      paintKpiStatus();
+    });
+    obs.observe(document.body, {subtree:true, childList:true, characterData:true});
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observe);
+  else observe();
 })();
