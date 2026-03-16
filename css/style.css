@@ -276,3 +276,32 @@ body .status{transition:all .25s ease}
 body .status.ok{background:rgba(114,227,161,.14) !important;color:#72e3a1 !important;border-color:rgba(114,227,161,.28) !important}
 body .status.warn{background:rgba(255,209,102,.14) !important;color:#ffd166 !important;border-color:rgba(255,209,102,.28) !important}
 body .status.danger{background:rgba(255,123,123,.14) !important;color:#ff7b7b !important;border-color:rgba(255,123,123,.28) !important}
+
+
+/* Performance tuning */
+:root{
+  --rx-font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --rx-font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+html{font-synthesis-weight:none;-webkit-text-size-adjust:100%}
+body{font-family:var(--rx-font-sans) !important;text-rendering:optimizeLegibility}
+h1,h2,h3,.hero h1,.modal h3,.pillar-head h3,.section-head h2,.stat-big,.sim-page-header h1,.cta-box h3,.result-kpi,.kpi .val, .lead-hero-card h2{
+  font-family:var(--rx-font-serif) !important;
+}
+@media (max-width: 768px){
+  .rx-header,.site-header,.overlay,.dropdown,.hero-card,.lead-hero-card,.sim-tabs,.cta-float,.modal{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+  body{background-image:none !important}
+  .hero-card,.lead-hero-card,.pill,.sim-tab,.btn,.card,.result-box,.kpi,.seo-card,.status-card,.modal{
+    box-shadow:none !important;
+  }
+}
+section, .seo-block, .footer, .rx-footer, .calc-layout, .rx-section, .lead-card, .lead-hero-card, .section-card{
+  content-visibility:auto;
+  contain-intrinsic-size: 1px 900px;
+}
+.hero, .rx-header, .site-header, .site-hero, .sim-page-header, #homePage, .page:first-of-type, .page.active{
+  content-visibility:visible;
+}
