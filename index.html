@@ -640,6 +640,74 @@
       .section-head h2{font-size:28px;line-height:1.08}
       .section-head p{font-size:14px}
     }
+
+    /* RESPONSIVE PATCH */
+    html,body{max-width:100%}
+    img,svg,iframe{max-width:100%;height:auto}
+    .container,.hero-grid>*,.sim-layout>*,.dre-chart-row>*,.kpi-row>*,.insights-row>*,.steps-grid>*,.sim-cards-grid>*,.value-grid>*,.stats-bar>*{min-width:0}
+    .site-header,.panel-box,.inputs-panel,.lead-hero-card,.cta-box,.modal,.step-card,.sim-card,.value-card,.pillar-panel{max-width:100%}
+    .hero h1,.hero-sub,.section-head h2,.section-head p,.pillar-head h3,.pillar-head p,.pillar-item,.pillar-side p,.sim-card h3,.sim-card p,.value-card p,.step-card p,.kpi-val,.kpi-hint,.insight-box p,.cta-box p,.lead-hero-card h2,.lead-hero-card .sub,.nav-link,.btn-main,.btn-outline,.btn-whatsapp,.btn-gold,.btn-gold-outline,.sim-tab,.field-label-row label,.group-label{overflow-wrap:anywhere;word-break:normal}
+    .box-body{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table{table-layout:fixed}
+    td,th{overflow-wrap:anywhere;vertical-align:top}
+    .pillar-panel{width:100%;min-width:0}
+    .pillar-head,.pillar-actions,.hero-actions,.field-label-row{flex-wrap:wrap}
+    .services-row,.sim-tabs,.nav{scroll-padding-left:12px}
+    canvas.chart{max-width:100%!important}
+
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr;gap:18px}
+      .lead-hero-card{max-width:none;width:100%}
+      .sim-layout{grid-template-columns:1fr}
+      .cta-sidebar{display:none}
+      .floating-cta{display:flex;align-items:center}
+      .section-head h2{font-size:34px}
+      .sim-page{padding:24px 0 56px}
+    }
+    @media(max-width:900px){
+      .header-inner{align-items:stretch}
+      .brand{width:auto;max-width:100%}
+      .nav{gap:6px}
+      .hero-grid{gap:16px}
+      .lead-hero-card{padding:20px}
+      .form-grid-2{grid-template-columns:1fr}
+      .stats-bar{grid-template-columns:1fr 1fr}
+      .stat-item{min-width:0}
+      .services-row,.sim-tabs{padding-bottom:6px}
+    }
+    @media(max-width:768px){
+      .container{width:calc(100% - 24px)}
+      .hero h1{font-size:34px;line-height:1.08}
+      .section-head h2{font-size:30px;line-height:1.1}
+      .sim-page-header h1{font-size:30px;line-height:1.08}
+      .kpi-row,.dre-chart-row,.insights-row,.steps-grid,.sim-cards-grid,.value-grid{grid-template-columns:1fr}
+      .box-header,.box-body,.inputs-panel-header,.input-group{padding-left:14px;padding-right:14px}
+      .sim-tab{padding:12px 16px}
+      .sim-field input[type="number"]{font-size:16px}
+      .tooltip-box{width:min(240px,calc(100vw - 32px))}
+      .cta-box{padding:18px}
+    }
+    @media(max-width:640px){
+      body{overflow-x:auto}
+      .site-header{position:sticky}
+      .header-inner{padding:10px 0 8px}
+      .nav-link,.nav a.nav-link{font-size:12px;padding:8px 10px}
+      .hero{padding:18px 0}
+      .hero h1{font-size:28px}
+      .hero-sub{font-size:14px}
+      .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal,.pillar-panel{padding:16px}
+      .pillar-head h3{font-size:19px}
+      .section{padding:24px 0}
+      .section-head{margin-bottom:22px}
+      .stats-bar{grid-template-columns:1fr}
+      .stat-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.05)}
+      .stat-item:last-child{border-bottom:0}
+      .stat-big{font-size:28px}
+      .floating-cta{left:12px;right:12px;bottom:12px;border-radius:14px;justify-content:center}
+      .footer{padding-bottom:84px}
+      canvas.chart{height:180px}
+    }
+
   </style>
 </head>
 <body>
