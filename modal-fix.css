@@ -1,0 +1,29 @@
+
+/* Modal header readability fix for desktop */
+.modal-header{
+  max-width:520px;
+  margin:0 auto 24px auto;
+  text-align:center;
+}
+
+.modal-header .badge{
+  display:inline-block;
+  margin-bottom:12px;
+}
+
+.modal-header h2{
+  margin-bottom:12px;
+}
+
+.modal-header p{
+  opacity:0.85;
+  line-height:1.6;
+}
+
+/* keep mobile behavior */
+@media (max-width:768px){
+  .modal-header{
+    max-width:100%;
+    text-align:left;
+  }
+}
