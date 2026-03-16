@@ -243,21 +243,20 @@ body .pillar-actions .btn-gold-outline{min-width:0}
 
 /* Better lead modal / bottom sheet */
 body .overlay{align-items:center}
-body .modal{max-height:min(88vh,820px);overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-body .modal-form-grid--lean{grid-template-columns:1fr 1fr}
-body .modal .btn-submit, body .modal .btn-whatsapp{width:100%}
-body .modal-close{z-index:3}
-body .modal h3{max-width:18ch}
-body .modal-sub{max-width:48ch}
+body #leadOverlay .modal{max-height:min(88vh,820px);overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+body #leadOverlay .modal-form-grid--lean{grid-template-columns:1fr 1fr}
+body #leadOverlay .modal .btn-submit{width:100%}
+body #leadOverlay .modal h3{max-width:12ch}
+body #leadOverlay .modal-sub{max-width:48ch}
 @media (max-width: 768px){
-  body .overlay{align-items:flex-end !important;padding:0 !important;background:rgba(4,14,16,.72) !important;backdrop-filter:blur(8px)}
-  body .modal{width:100% !important;max-width:none !important;max-height:88dvh !important;border-radius:24px 24px 0 0 !important;padding:20px 16px calc(22px + env(safe-area-inset-bottom)) !important;transform:translateY(100%) !important;box-shadow:0 -18px 60px rgba(0,0,0,.5) !important;border-bottom:0 !important}
-  body .overlay.open .modal{transform:translateY(0) !important}
-  body .modal::after{content:'';display:block;width:54px;height:5px;border-radius:999px;background:rgba(255,255,255,.18);position:sticky;top:0;margin:0 auto 12px}
-  body .modal-close{position:sticky !important;top:0 !important;float:right;background:rgba(255,255,255,.08) !important}
-  body .modal-form-grid, body .modal-form-grid--lean{grid-template-columns:1fr !important;gap:10px !important}
-  body .modal h3{font-size:clamp(1.9rem,8vw,2.35rem) !important;max-width:none}
-  body .modal .modal-sub{font-size:15px !important}
+  body #leadOverlay.overlay{align-items:flex-end !important;padding:0 !important;background:rgba(4,14,16,.56) !important;backdrop-filter:blur(8px)}
+  body #leadOverlay .modal{width:100% !important;max-width:none !important;max-height:88dvh !important;border-radius:24px 24px 0 0 !important;padding:18px 16px calc(20px + env(safe-area-inset-bottom)) !important;transform:translateY(100%) !important;box-shadow:0 -18px 60px rgba(0,0,0,.42) !important;border-bottom:0 !important}
+  body #leadOverlay.overlay.open .modal{transform:translateY(0) !important}
+  body #leadOverlay .modal::after{content:'';display:block;width:54px;height:5px;border-radius:999px;background:rgba(255,255,255,.18);margin:0 auto 14px;position:sticky;top:0}
+  body #leadOverlay .modal-close{position:absolute !important;top:12px !important;right:12px !important;float:none !important;background:rgba(255,255,255,.08) !important}
+  body #leadOverlay .modal-form-grid, body #leadOverlay .modal-form-grid--lean{grid-template-columns:1fr !important;gap:10px !important}
+  body #leadOverlay .modal h3{font-size:clamp(1.95rem,8.5vw,2.5rem) !important;max-width:none}
+  body #leadOverlay .modal .modal-sub{font-size:15px !important}
 }
 
 /* Status farol for calculators */
