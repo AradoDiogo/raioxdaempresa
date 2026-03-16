@@ -210,3 +210,25 @@ body :where(.calc-layout > *, .grid > *, .grid-cards > *, .info-grid > *, .hero-
   padding:0 !important;
   border:0 !important;
 }
+
+
+/* SEO content blocks */
+.seo-block{padding:8px 0 48px}
+.seo-card{background:linear-gradient(180deg,rgba(13,35,38,.94),rgba(8,24,26,.98));border:1px solid rgba(255,255,255,.07);border-radius:20px;box-shadow:var(--rx-shadow);padding:28px}
+.seo-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}
+.seo-card h2,.seo-card h3{margin-bottom:12px}
+.seo-card p{color:var(--rx-muted);margin:0 0 14px;line-height:1.75}
+.seo-card ul{margin:0;padding-left:18px;color:var(--rx-muted);display:grid;gap:8px}
+.seo-faq{display:grid;gap:12px}
+.seo-faq details{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.02)}
+.seo-faq summary{cursor:pointer;font-weight:700;color:var(--rx-text)}
+.seo-faq details p{margin:10px 0 0}
+.lead-hero-card--compact .compact-list{display:grid;gap:10px;margin:14px 0 18px;padding-left:18px;color:var(--muted)}
+.lead-hero-card--compact .compact-list li{line-height:1.6}
+.lead-hero-card--compact .hero-actions{margin-top:14px}
+.floating-cta{opacity:0;pointer-events:none;transform:translateY(16px);transition:opacity .25s ease, transform .25s ease}
+.floating-cta.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+@media (max-width: 900px){
+  .seo-grid{grid-template-columns:1fr}
+  .seo-card{padding:20px}
+}

@@ -1025,70 +1025,20 @@
         </div>
 
         <!-- LEAD FORM -->
-        <div class="lead-hero-card">
-          <div class="eyebrow" style="margin-bottom:12px"><span class="eyebrow-line"></span>Fale com um especialista</div>
-          <h2>Vamos conversar sobre o seu negócio.</h2>
-          <p class="sub">Preencha abaixo e entraremos em contato para agendar uma conversa sem compromisso.</p>
-          <form id="homeLeadForm" onsubmit="submitLead(event,'home')">
-            <input type="hidden" name="access_key" value="209b2a1b-6050-417a-9a88-8cd5fc26f068">
-            <input type="hidden" name="subject" value="Novo lead - Raio-X da Empresa">
-            <input type="hidden" name="from_name" value="Raio-X da Empresa">
-            <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-            <div class="form-grid-2">
-              <div class="form-field">
-                <label>Nome completo</label>
-                <input type="text" name="name" placeholder="Seu nome" required>
-              </div>
-              <div class="form-field">
-                <label>Empresa</label>
-                <input type="text" name="company" placeholder="Nome da empresa" required>
-              </div>
-            </div>
-            <div class="form-grid-2">
-              <div class="form-field">
-                <label>E-mail</label>
-                <input type="email" name="email" placeholder="voce@empresa.com" required>
-              </div>
-              <div class="form-field">
-                <label>WhatsApp</label>
-                <input type="text" name="phone" placeholder="(00) 00000-0000" required>
-              </div>
-            </div>
-            <div class="form-grid-2">
-              <div class="form-field">
-                <label>Cargo / Função</label>
-                <input type="text" name="role" placeholder="Ex: CEO, CFO, Sócio">
-              </div>
-              <div class="form-field">
-                <label>Segmento</label>
-                <select name="segment">
-                  <option value="">Selecione</option>
-                  <option>Locadora de Equipamentos</option>
-                  <option>Distribuidora</option>
-                  <option>Varejo / Comércio</option>
-                  <option>Serviços</option>
-                  <option>Indústria</option>
-                  <option>Outro</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-field">
-              <label>Faturamento mensal aproximado</label>
-              <select name="revenue">
-                <option value="">Selecione</option>
-                <option>Até R$ 100 mil</option>
-                <option>R$ 100 mil a R$ 500 mil</option>
-                <option>R$ 500 mil a R$ 2 milhões</option>
-                <option>R$ 2 milhões a R$ 10 milhões</option>
-                <option>Acima de R$ 10 milhões</option>
-              </select>
-            </div>
-            <button type="submit" class="btn-submit">Solicitar contato por e-mail →</button>
-            <div class="hero-actions" style="margin-top:10px">
-              <a class="btn-whatsapp" href="https://wa.me/55011975434818?text=Olá%2C%20acabei%20de%20usar%20o%20simulador%20do%20Raio-X%20da%20Empresa%20e%20quero%20entender%20melhor%20a%20gestão%20financeira%20do%20meu%20negócio." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-            </div>
-            <p class="form-privacy">🔒 Seus dados são protegidos. Você pode escolher enviar seus dados por e-mail ou falar direto no WhatsApp.</p>
-          </form>
+        <div class="lead-hero-card lead-hero-card--compact">
+          <div class="eyebrow" style="margin-bottom:12px"><span class="eyebrow-line"></span>Diagnóstico sob demanda</div>
+          <h2>Receba uma leitura do seu caso no momento certo.</h2>
+          <p class="sub">Em vez de despejar um formulário gigante logo no topo, deixamos a navegação mais leve. Explore as ferramentas e abra o contato somente quando fizer sentido.</p>
+          <ul class="compact-list">
+            <li>Use os simuladores e calculadoras para identificar onde caixa, margem ou capital de giro estão apertando.</li>
+            <li>Quando quiser aprofundar, o formulário abre em modal com um clique, sem travar a experiência mobile.</li>
+            <li>Também dá para falar direto no WhatsApp, sem maratona burocrática de lead.</li>
+          </ul>
+          <div class="hero-actions" style="margin-top:10px">
+            <button type="button" class="btn-main" onclick="openLead('hero')">Quero que entrem em contato</button>
+            <a class="btn-whatsapp" href="https://wa.me/55011975434818?text=Olá%2C%20quero%20entender%20melhor%20como%20o%20Raio-X%20da%20Empresa%20pode%20me%20ajudar." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+          </div>
+          <p class="form-privacy">🔒 O formulário abre só quando você clicar. Menos peso visual, mais foco no diagnóstico.</p>
         </div>
       </div>
     </div>
@@ -1331,7 +1281,7 @@
             <div class="cta-feature"><div class="cta-dot"></div><span>Estruturação da gestão financeira do início ao fim</span></div>
           </div>
           <div style="display:grid;gap:10px">
-            <button class="btn-lead" onclick="openLead('sim')">Receber contato por e-mail</button>
+            <button class="btn-lead" onclick="openLead('sim')">Quero que entrem em contato</button>
             <a class="btn-whatsapp" href="https://wa.me/55011975434818?text=Olá%2C%20acabei%20de%20usar%20o%20simulador%20do%20Raio-X%20da%20Empresa%20e%20quero%20entender%20melhor%20a%20gestão%20financeira%20do%20meu%20negócio." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
           </div>
           <p class="cta-note">Sem compromisso · Resposta em até 24h</p>
@@ -1467,6 +1417,17 @@ $('leadOverlay').addEventListener('click', e => {
     closeLead();
   }
 });
+
+const floatingCta = document.querySelector('.floating-cta');
+function syncFloatingCta(){
+  if(!floatingCta) return;
+  const shouldShow = window.innerWidth <= 980 && window.scrollY > 720;
+  floatingCta.classList.toggle('is-visible', shouldShow);
+}
+window.addEventListener('scroll', syncFloatingCta, {passive:true});
+window.addEventListener('resize', syncFloatingCta);
+document.addEventListener('DOMContentLoaded', syncFloatingCta);
+
 
 async function submitLead(event, source) {
   event.preventDefault();
