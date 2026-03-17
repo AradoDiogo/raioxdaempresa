@@ -274,6 +274,26 @@
       width:100%;transition:all .2s;margin-top:4px;cursor:pointer}
     .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(47,183,174,.35)}
     .form-privacy{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.4}
+    .micro-proof-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px}
+    .micro-proof-pill{display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;border:1px solid rgba(47,183,174,.18);background:rgba(47,183,174,.08);font-size:11px;font-weight:700;color:var(--text)}
+    .section-trust{padding-bottom:10px}
+    .trust-strip{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto;gap:18px;align-items:center;padding:22px 24px;border-radius:22px;background:linear-gradient(180deg,rgba(18,52,58,.82),rgba(10,28,31,.88));border:1px solid rgba(47,183,174,.16);box-shadow:0 12px 32px rgba(0,0,0,.18)}
+    .trust-copy h3{font-family:Georgia,serif;font-size:28px;line-height:1.05;margin:0 0 10px}
+    .trust-copy p{color:var(--muted);font-size:14px;line-height:1.65;margin:0}
+    .trust-points{display:grid;gap:10px}
+    .trust-point{padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .trust-point strong{display:block;font-size:13px;margin-bottom:4px}
+    .trust-point span{display:block;font-size:12px;line-height:1.5;color:var(--muted)}
+    .trust-actions{display:grid;gap:10px;min-width:240px}
+    .trust-actions .btn-main,.trust-actions .btn-whatsapp{justify-content:center;min-height:50px}
+    .reveal{opacity:0;transform:translate3d(0,26px,0);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
+    .reveal-left{transform:translate3d(-48px,0,0)}
+    .reveal-right{transform:translate3d(48px,0,0)}
+    .reveal-up{transform:translate3d(0,26px,0)}
+    .reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
+    @media (prefers-reduced-motion: reduce){
+      .reveal,.reveal-left,.reveal-right,.reveal-up{opacity:1 !important;transform:none !important;transition:none !important}
+    }
 
     /* SECTION */
     .section{padding:36px 0}
@@ -588,7 +608,9 @@
       .hero{padding:28px 0 24px}
       .hero h1{font-size:30px;line-height:1.06}
       .hero-sub{font-size:15px}
-      .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal{padding:20px}
+      .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal,.trust-strip,.trust-point{padding:20px}
+      .trust-strip{grid-template-columns:1fr;gap:14px}
+      .trust-actions{min-width:0;grid-template-columns:1fr 1fr}
       .kpi-row{grid-template-columns:1fr}
       .kpi-card{padding:14px}
       .kpi-val{font-size:20px}
@@ -720,7 +742,10 @@
       .hero{padding:18px 0}
       .hero h1{font-size:28px}
       .hero-sub{font-size:14px}
-      .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal,.pillar-panel{padding:16px}
+      .lead-hero-card,.step-card,.sim-card,.value-card,.cta-box,.modal,.pillar-panel,.trust-strip,.trust-point{padding:16px}
+      .trust-strip{grid-template-columns:1fr;gap:14px}
+      .trust-actions{min-width:0;grid-template-columns:1fr}
+      .trust-copy h3{font-size:24px}
       .pillar-head h3{font-size:19px}
       .section{padding:24px 0}
       .section-head{margin-bottom:22px}
@@ -892,7 +917,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
-        <div>
+        <div class="hero-copy reveal reveal-left">
           <div class="eyebrow"><span class="eyebrow-line"></span>Raio-X da Empresa · Simulador Financeiro</div>
           <h1>Decisões melhores começam com <em>dados confiáveis</em>.</h1>
           <p class="hero-sub">A maioria das empresas não perde dinheiro por falta de esforço — perde por falta de clareza financeira. Nós estruturamos a gestão, revelamos os números reais e criamos a cultura de decisão que transforma resultado.</p>
@@ -1044,20 +1069,25 @@
         </div>
 
         <!-- LEAD FORM -->
-        <div class="lead-hero-card lead-hero-card--compact">
+        <div class="lead-hero-card lead-hero-card--compact reveal reveal-right">
           <div class="eyebrow" style="margin-bottom:12px"><span class="eyebrow-line"></span>Diagnóstico financeiro</div>
           <h2>Descubra a saúde financeira da sua empresa.</h2>
-          <p class="sub">Use nossas ferramentas para identificar problemas de caixa, margem ou capital de giro e ter uma visão mais clara dos números do seu negócio.</p>
+          <p class="sub">Use nossas ferramentas para identificar problemas de caixa, margem ou capital de giro. Em poucos minutos você terá uma visão mais clara dos números do seu negócio.</p>
           <ul class="compact-list">
-            <li>Entenda rapidamente onde estão os principais gargalos financeiros da empresa.</li>
-            <li>Use os simuladores e calculadoras para testar cenários e apoiar decisões com mais clareza.</li>
-            <li>Quando quiser aprofundar, nossa equipe pode analisar seu caso e sugerir a melhor abordagem.</li>
+            <li>Simule cenários antes de tomar decisões que afetam resultado, caixa e crescimento.</li>
+            <li>Entenda rapidamente onde estão os gargalos financeiros que mais pressionam a operação.</li>
+            <li>Se quiser aprofundar, nossa equipe pode analisar o seu caso e sugerir os próximos passos.</li>
           </ul>
+          <div class="micro-proof-row" aria-label="Benefícios do diagnóstico">
+            <span class="micro-proof-pill">Leva menos de 1 minuto</span>
+            <span class="micro-proof-pill">Sem compromisso</span>
+            <span class="micro-proof-pill">Pensado para PME</span>
+          </div>
           <div class="hero-actions" style="margin-top:10px">
             <button type="button" class="btn-main" onclick="openLead('hero')">Quero um diagnóstico do meu negócio</button>
             <a class="btn-whatsapp" href="https://wa.me/55011975434818?text=Olá%2C%20quero%20entender%20melhor%20como%20o%20Raio-X%20da%20Empresa%20pode%20me%20ajudar." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
           </div>
-          <p class="form-privacy">Leva menos de 1 minuto.</p>
+          <p class="form-privacy">🔒 Você só abre o formulário quando quiser. Primeiro clareza, depois conversa.</p>
         </div>
       </div>
     </div>
@@ -1071,6 +1101,28 @@
         <div class="stat-item"><div class="stat-big">12+</div><p>soluções de gestão financeira e estratégia</p></div>
         <div class="stat-item"><div class="stat-big">3%</div><p>de ajuste no preço pode dobrar o EBITDA do seu negócio</p></div>
         <div class="stat-item"><div class="stat-big">0</div><p>planilhas complexas para começar a enxergar o negócio com clareza</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST / CONVERSION STRIP -->
+  <section class="section section-trust" style="padding-top:0">
+    <div class="container">
+      <div class="trust-strip reveal reveal-up">
+        <div class="trust-copy">
+          <div class="eyebrow" style="margin-bottom:10px"><span class="eyebrow-line"></span>Comece sem compromisso</div>
+          <h3>Use primeiro. Fale com a equipe depois.</h3>
+          <p>Essa estrutura costuma converter melhor porque reduz fricção: o empresário entende o cenário dele antes de pedir ajuda. Menos conversa genérica, mais contexto real do negócio.</p>
+        </div>
+        <div class="trust-points">
+          <div class="trust-point reveal reveal-left"><strong>Sem cadastro para simular</strong><span>Veja os números antes de decidir falar com alguém.</span></div>
+          <div class="trust-point reveal reveal-up"><strong>Diagnóstico em menos de 1 minuto</strong><span>Quando fizer sentido, abra o contato e aprofunde o caso.</span></div>
+          <div class="trust-point reveal reveal-right"><strong>WhatsApp direto</strong><span>Para quem prefere resolver rápido, sem fricção burocrática.</span></div>
+        </div>
+        <div class="trust-actions">
+          <button class="btn-main" onclick="openLead('trust')">Quero um diagnóstico do meu negócio</button>
+          <a class="btn-whatsapp" href="https://wa.me/55011975434818?text=Olá%2C%20quero%20entender%20melhor%20como%20o%20Raio-X%20da%20Empresa%20pode%20me%20ajudar." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1338,7 +1390,7 @@
       <div class="modal-copy">
         <div class="modal-badge">Diagnóstico gratuito</div>
         <h3 id="leadModalTitle">Receba um diagnóstico financeiro do seu negócio.</h3>
-        <p class="modal-sub">Leva menos de 1 minuto. Preencha os campos principais e nossa equipe entra em contato para entender seu momento e sugerir a melhor abordagem.</p>
+        <p class="modal-sub">Leva menos de 1 minuto. Preencha os campos principais para receber um diagnóstico inicial e entender quais alavancas financeiras merecem prioridade no seu negócio.</p>
       </div>
       <button class="modal-close" type="button" aria-label="Fechar formulário" onclick="closeLead()">×</button>
     </div>
@@ -2002,6 +2054,36 @@ showPage('home');
 <script>
 document.addEventListener("DOMContentLoaded", function(){
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  const revealSelectors = ['.hero-copy','.lead-hero-card','.stat-item','.section-head','.sim-card','.step-card','.value-card','.trust-strip','.trust-point'];
+  const revealNodes = [];
+  revealSelectors.forEach(function(selector){
+    document.querySelectorAll(selector).forEach(function(node, index){
+      if (!node.classList.contains('reveal')) {
+        node.classList.add('reveal');
+        if (node.matches('.sim-card, .value-card, .trust-point')) {
+          node.classList.add(index % 2 === 0 ? 'reveal-left' : 'reveal-right');
+        } else if (node.matches('.stat-item, .step-card, .section-head')) {
+          node.classList.add('reveal-up');
+        }
+      }
+      revealNodes.push(node);
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.16, rootMargin: '0px 0px -8% 0px'});
+    revealNodes.forEach(function(node){ revealObserver.observe(node); });
+  } else {
+    revealNodes.forEach(function(node){ node.classList.add('is-visible'); });
+  }
 
   if (isTouch) {
     document.querySelectorAll('.tooltip-trigger').forEach(function(trigger){
