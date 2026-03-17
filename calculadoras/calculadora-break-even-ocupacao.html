@@ -141,9 +141,44 @@ h1{font-size:44px;line-height:1.05;margin:16px 0 12px;font-family:Georgia,serif}
   function classePorTexto(txt){
     const t = norm(txt);
     if(!t) return null;
-    if (t.includes("RISCO") || t.includes("CRITIC") || t.includes("PREJUIZO") || t.includes("NEGATIV")) return "farol-vermelho";
-    if (t.includes("ATENCAO") || t.includes("ALERTA") || t.includes("MODERAD") || t.includes("CUIDADO")) return "farol-amarelo";
-    if (t.includes("SAUDAVEL") || t.includes("ADEQUAD") || t.includes("CONFORTAVEL") || t.includes("POSITIV") || t.includes("OK")) return "farol-verde";
+
+    // Vermelho: situação ruim / pressão / risco
+    if (
+      t.includes("RISCO") ||
+      t.includes("CRITIC") ||
+      t.includes("PREJUIZO") ||
+      t.includes("NEGATIV") ||
+      t.includes("PRESSAO") ||
+      t.includes("FRAGIL") ||
+      t.includes("COMPRIMID") ||
+      t.includes("ALAVANCAGEM ALTA")
+    ) return "farol-vermelho";
+
+    // Amarelo: intermediário / aceitável / atenção
+    if (
+      t.includes("ATENCAO") ||
+      t.includes("ALERTA") ||
+      t.includes("MODERAD") ||
+      t.includes("CUIDADO") ||
+      t.includes("ACEITAVEL") ||
+      t.includes("INTERMEDIAR") ||
+      t.includes("FUNCIONAL")
+    ) return "farol-amarelo";
+
+    // Verde: saudável / forte / folga / útil
+    if (
+      t.includes("SAUDAVEL") ||
+      t.includes("ADEQUAD") ||
+      t.includes("CONFORTAVEL") ||
+      t.includes("POSITIV") ||
+      t.includes("OK") ||
+      t.includes("FORTE") ||
+      t.includes("FOLGA") ||
+      t.includes("UTIL") ||
+      t.includes("BOM RETORNO") ||
+      t.includes("ADMINISTRAVEL")
+    ) return "farol-verde";
+
     return null;
   }
 
