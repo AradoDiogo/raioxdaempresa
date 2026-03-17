@@ -187,3 +187,87 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
   else setup();
 })();
+
+
+
+/* ===== Tracking GA4: navegação, scroll, tempo, CTA e WhatsApp ===== */
+(function(){
+  const GA_ID = 'G-274GF5NGKM';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+
+  if (!window.__rx_ga_booted__) {
+    window.__rx_ga_booted__ = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+
+  function rxTrack(name, params){
+    try { gtag('event', name, params || {}); } catch(e) {}
+  }
+  window.rxTrack = rxTrack;
+
+  // tempo na página
+  setTimeout(() => rxTrack('tempo_30s', {page_path: location.pathname}), 30000);
+  setTimeout(() => rxTrack('tempo_60s', {page_path: location.pathname}), 60000);
+
+  // scroll
+  const marks = {25:false,50:false,75:false};
+  window.addEventListener('scroll', function() {
+    const altura = document.documentElement.scrollHeight - window.innerHeight;
+    if (altura <= 0) return;
+    const pct = (window.scrollY / altura) * 100;
+    [25,50,75].forEach(v => {
+      if (pct >= v && !marks[v]) {
+        marks[v] = true;
+        rxTrack('scroll_' + v, {page_path: location.pathname});
+      }
+    });
+  }, {passive:true});
+
+  // clique em links e botões
+  document.addEventListener('click', function(e){
+    const el = e.target.closest('a,button');
+    if(!el) return;
+    const txt = ((el.innerText || el.textContent || '').trim()).slice(0,120);
+    const href = (el.getAttribute('href') || '').trim();
+
+    if (href.includes('wa.me') || href.includes('whatsapp')) {
+      rxTrack('click_whatsapp', {page_path: location.pathname, label: txt || href});
+      return;
+    }
+
+    if (txt.match(/diagn[oó]stico/i)) {
+      rxTrack('click_diagnostico', {page_path: location.pathname, label: txt});
+    }
+
+    if (txt.match(/simulador|simuladores/i)) {
+      rxTrack('click_simulador_cta', {page_path: location.pathname, label: txt});
+    }
+
+    if (href && href.includes('calculadora-')) {
+      rxTrack('click_calculadora', {page_path: location.pathname, href: href, label: txt});
+      return;
+    }
+
+    if (href && href.includes('calculadoras/')) {
+      rxTrack('click_calculadora', {page_path: location.pathname, href: href, label: txt});
+      return;
+    }
+  }, true);
+
+  // mudanças nos selects do diagnóstico guiado
+  document.addEventListener('change', function(e){
+    const el = e.target;
+    if (el && ['tipoEmpresa','desafio','faturamentoDiag'].includes(el.id)) {
+      window.__rx_diag_started__ = true;
+      rxTrack('inicio_diagnostico', {page_path: location.pathname, field: el.id, value: el.value || ''});
+    }
+  }, true);
+})();
+
