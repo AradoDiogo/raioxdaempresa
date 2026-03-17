@@ -51,6 +51,101 @@ color:#C6A35A !important;
 color:#E0C27A !important;
 }
 </style>
+<style>
+
+/* ===== SIMULADORES ESTRATÉGICOS: títulos dourados + glass/gold glow ===== */
+.cards-simuladores .card h3,
+.cards-simuladores .card .card-title,
+.simuladores .card h3,
+.simuladores .card .card-title,
+.simuladores-estrategicos .card h3,
+.simuladores-estrategicos .card .card-title,
+section[id*="simul"] .card h3,
+section[class*="simul"] .card h3,
+section[id*="simul"] .card .card-title,
+section[class*="simul"] .card .card-title{
+  color:#C6A35A !important;
+  transition: color .35s ease;
+}
+
+.cards-simuladores .card,
+.simuladores .card,
+.simuladores-estrategicos .card,
+section[id*="simul"] .card,
+section[class*="simul"] .card{
+  background: linear-gradient(180deg, rgba(18,55,60,.78), rgba(7,35,38,.88)) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border:1px solid rgba(103, 180, 180, 0.18) !important;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
+}
+
+.cards-simuladores .card:hover,
+.simuladores .card:hover,
+.simuladores-estrategicos .card:hover,
+section[id*="simul"] .card:hover,
+section[class*="simul"] .card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(198,163,90,.55) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35), 0 0 18px rgba(198,163,90,.25) !important;
+}
+
+.cards-simuladores .card:hover h3,
+.cards-simuladores .card:hover .card-title,
+.simuladores .card:hover h3,
+.simuladores .card:hover .card-title,
+.simuladores-estrategicos .card:hover h3,
+.simuladores-estrategicos .card:hover .card-title,
+section[id*="simul"] .card:hover h3,
+section[class*="simul"] .card:hover h3,
+section[id*="simul"] .card:hover .card-title,
+section[class*="simul"] .card:hover .card-title{
+  color:#E0C27A !important;
+}
+
+.cards-simuladores .card .chip,
+.cards-simuladores .card .tag,
+.simuladores .card .chip,
+.simuladores .card .tag,
+.simuladores-estrategicos .card .chip,
+.simuladores-estrategicos .card .tag,
+section[id*="simul"] .card .chip,
+section[class*="simul"] .card .chip,
+section[id*="simul"] .card .tag,
+section[class*="simul"] .card .tag{
+  transition: all .25s ease;
+}
+
+.cards-simuladores .card:hover .chip,
+.cards-simuladores .card:hover .tag,
+.simuladores .card:hover .chip,
+.simuladores .card:hover .tag,
+.simuladores-estrategicos .card:hover .chip,
+.simuladores-estrategicos .card:hover .tag,
+section[id*="simul"] .card:hover .chip,
+section[class*="simul"] .card:hover .chip,
+section[id*="simul"] .card:hover .tag,
+section[class*="simul"] .card:hover .tag{
+  border-color: rgba(198,163,90,.45) !important;
+}
+
+/* fallback: atinge a grade específica da home mesmo sem classes previsíveis */
+section h2 + p + .grid .card h3,
+section h2 + .grid .card h3{
+  color:#C6A35A;
+}
+section h2 + p + .grid .card:hover h3,
+section h2 + .grid .card:hover h3{
+  color:#E0C27A;
+}
+section h2 + p + .grid .card:hover,
+section h2 + .grid .card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(198,163,90,.55) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35), 0 0 18px rgba(198,163,90,.25) !important;
+}
+
+</style>
 </head><body><script>window.location.replace("calculadoras/calculadora-prazo-medio-recebimento.html");</script>
 <script>
 (function(){
