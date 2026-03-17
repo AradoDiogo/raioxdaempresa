@@ -58,10 +58,38 @@ ul.clean{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size
   <noscript><link rel="stylesheet" href="../css/style.css"></noscript></noscript>
 <meta content="index, follow, max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="Calculadora do Simples Nacional | Raio-X da Empresa" property="og:title"/><meta content="Estime a alíquota efetiva e o DAS do Simples Nacional com base no faturamento dos últimos 12 meses e do mês atual." property="og:description"/><meta content="https://www.raioxdaempresa.com.br/calculadoras/calculadora-simples-nacional.html" property="og:url"/><meta content="Raio-X da Empresa" property="og:site_name"/><meta content="pt_BR" property="og:locale"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Calculadora do Simples Nacional | Raio-X da Empresa" name="twitter:title"/><meta content="Estime a alíquota efetiva e o DAS do Simples Nacional com base no faturamento dos últimos 12 meses e do mês atual." name="twitter:description"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" name="twitter:image"/><script id="breadcrumb-schema" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.raioxdaempresa.com.br/"},{"@type":"ListItem","position":2,"name":"Calculadoras","item":"https://www.raioxdaempresa.com.br/calculadoras/"},{"@type":"ListItem","position":3,"name":"Calculadora do Simples Nacional","item":"https://www.raioxdaempresa.com.br/calculadoras/calculadora-simples-nacional.html"}]}</script><script id="faq-schema" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Essa calculadora substitui análise tributária?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela ajuda a orientar a conversa, mas enquadramento tributário precisa considerar CNAE, anexos, folha e peculiaridades do caso."}},{"@type":"Question","name":"Quando o Simples deixa de ser simples?","acceptedAnswer":{"@type":"Answer","text":"Quando a empresa cresce, mistura atividades ou passa a tomar decisão tributária sem simulação financeira e fiscal."}},{"@type":"Question","name":"Como usar o resultado?","acceptedAnswer":{"@type":"Answer","text":"Como referência inicial para comparar cenários e preparar uma análise mais profunda com contabilidade e gestão financeira."}}]}</script>
 <style>
-.status-farol{padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;margin-top:12px;transition:all .3s ease}
-.status-verde{background:#e6f7ec;color:#0f7b3f;border:2px solid #0f7b3f}
-.status-amarelo{background:#fff6e0;color:#b57a00;border:2px solid #f5b400}
-.status-vermelho{background:#fdeaea;color:#b00020;border:2px solid #e03131}
+/* Farol global para calculadoras */
+.kpi.farol-verde{
+  background:#e6f7ec !important;
+  border:2px solid #0f7b3f !important;
+  box-shadow:0 0 0 1px rgba(15,123,63,.05) inset;
+}
+.kpi.farol-amarelo{
+  background:#fff6e0 !important;
+  border:2px solid #f5b400 !important;
+  box-shadow:0 0 0 1px rgba(245,180,0,.05) inset;
+}
+.kpi.farol-vermelho{
+  background:#fdeaea !important;
+  border:2px solid #e03131 !important;
+  box-shadow:0 0 0 1px rgba(224,49,49,.05) inset;
+}
+.kpi.farol-verde .lbl,.kpi.farol-verde .sub,.kpi.farol-verde .val{color:#0f7b3f !important;}
+.kpi.farol-amarelo .lbl,.kpi.farol-amarelo .sub,.kpi.farol-amarelo .val{color:#9a6a00 !important;}
+.kpi.farol-vermelho .lbl,.kpi.farol-vermelho .sub,.kpi.farol-vermelho .val{color:#b00020 !important;}
+
+#status.farol-verde, .status.farol-verde{
+  background:#e6f7ec !important; color:#0f7b3f !important; border:2px solid #0f7b3f !important;
+}
+#status.farol-amarelo, .status.farol-amarelo{
+  background:#fff6e0 !important; color:#9a6a00 !important; border:2px solid #f5b400 !important;
+}
+#status.farol-vermelho, .status.farol-vermelho{
+  background:#fdeaea !important; color:#b00020 !important; border:2px solid #e03131 !important;
+}
+#status, .status{
+  border-radius:10px;
+}
 </style>
 
 </head><body>
@@ -143,22 +171,58 @@ function calcularSimples(){
 <section class="seo-block"><div class="container"><div class="seo-card seo-grid"><div><h2>Como interpretar a calculadora do simples nacional</h2><p>A calculadora do Simples Nacional ajuda a orientar a leitura inicial da carga tributária da empresa, mas a palavra simples às vezes é puro marketing cósmico. Dependendo da atividade e do enquadramento, a decisão pode impactar bastante a margem líquida.</p><p>Use o resultado como uma bússola inicial para comparar cenários e preparar discussões mais sérias com contabilidade e gestão financeira. Tributo tratado sem simulação costuma cobrar juros de ignorância.</p><h3>O que fazer depois do cálculo</h3><ul><li>Compare o resultado com o seu histórico real de caixa, margem e estrutura.</li><li>Use a conta como ponto de partida para simular cenários, não como um oráculo místico de planilha.</li><li>Se o indicador acender alerta, aprofunde com os simuladores e com uma leitura gerencial do negócio.</li></ul></div><div class="seo-faq"><h3>Perguntas frequentes</h3><details><summary>Essa calculadora substitui análise tributária?</summary><p>Não. Ela ajuda a orientar a conversa, mas enquadramento tributário precisa considerar CNAE, anexos, folha e peculiaridades do caso.</p></details><details><summary>Quando o Simples deixa de ser simples?</summary><p>Quando a empresa cresce, mistura atividades ou passa a tomar decisão tributária sem simulação financeira e fiscal.</p></details><details><summary>Como usar o resultado?</summary><p>Como referência inicial para comparar cenários e preparar uma análise mais profunda com contabilidade e gestão financeira.</p></details></div></div></div></section><div class="footer container">Ferramenta educacional de apoio à decisão. Resultados dependem das premissas informadas e da legislação aplicável no seu caso.</div> <script defer="" src="../js/site.js"></script>
 
 <script>
-function aplicarFarol(){
-  const els=document.querySelectorAll('#status, .status');
-  els.forEach(el=>{
-    const t=el.innerText.toUpperCase();
-    el.classList.add('status-farol');
-    el.classList.remove('status-verde','status-amarelo','status-vermelho');
-    if(t.includes('RISCO')){
-      el.classList.add('status-vermelho');
-    }else if(t.includes('ATEN')){
-      el.classList.add('status-amarelo');
-    }else{
-      el.classList.add('status-verde');
-    }
+(function(){
+  function norm(v){
+    return (v || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g,"")
+      .toUpperCase()
+      .trim();
+  }
+
+  function classePorTexto(txt){
+    const t = norm(txt);
+    if(!t) return null;
+    if (t.includes("RISCO") || t.includes("CRITIC") || t.includes("PREJUIZO") || t.includes("NEGATIV")) return "farol-vermelho";
+    if (t.includes("ATENCAO") || t.includes("ALERTA") || t.includes("MODERAD") || t.includes("CUIDADO")) return "farol-amarelo";
+    if (t.includes("SAUDAVEL") || t.includes("ADEQUAD") || t.includes("CONFORTAVEL") || t.includes("POSITIV") || t.includes("OK")) return "farol-verde";
+    return null;
+  }
+
+  function limpar(el){
+    el.classList.remove("farol-verde","farol-amarelo","farol-vermelho");
+  }
+
+  function aplicarFarol(){
+    document.querySelectorAll(".kpi").forEach(function(kpi){
+      const lbl = kpi.querySelector(".lbl");
+      if(!lbl) return;
+      const lblTxt = norm(lbl.textContent);
+      if(!lblTxt.includes("STATUS")) return;
+      const val = kpi.querySelector(".val");
+      const sub = kpi.querySelector(".sub");
+      const classe = classePorTexto((val ? val.textContent : "") + " " + (sub ? sub.textContent : ""));
+      limpar(kpi);
+      if(classe) kpi.classList.add(classe);
+    });
+
+    document.querySelectorAll("#status, .status").forEach(function(el){
+      const classe = classePorTexto(el.textContent);
+      limpar(el);
+      if(classe) el.classList.add(classe);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    aplicarFarol();
+    const obs = new MutationObserver(function(){
+      aplicarFarol();
+    });
+    obs.observe(document.body, {subtree:true, childList:true, characterData:true});
+    window.aplicarFarolStatus = aplicarFarol;
   });
-}
-document.addEventListener("DOMContentLoaded",aplicarFarol);
+})();
 </script>
 
 </body></html>

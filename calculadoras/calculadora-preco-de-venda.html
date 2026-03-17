@@ -51,10 +51,38 @@ h1{font-size:44px;line-height:1.05;margin:16px 0 12px;font-family:Georgia,serif}
   <noscript><link rel="stylesheet" href="../css/style.css"></noscript>
 <meta content="index, follow, max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="Calculadora de Preço de Venda | Raio-X da Empresa" property="og:title"/><meta content="Calcule o preço de venda ideal considerando custo, impostos, comissões e margem alvo." property="og:description"/><meta content="https://www.raioxdaempresa.com.br/calculadoras/calculadora-preco-de-venda.html" property="og:url"/><meta content="Raio-X da Empresa" property="og:site_name"/><meta content="pt_BR" property="og:locale"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Calculadora de Preço de Venda | Raio-X da Empresa" name="twitter:title"/><meta content="Calcule o preço de venda ideal considerando custo, impostos, comissões e margem alvo." name="twitter:description"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" name="twitter:image"/><script id="breadcrumb-schema" type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.raioxdaempresa.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Calculadoras", "item": "https://www.raioxdaempresa.com.br/calculadoras/"}, {"@type": "ListItem", "position": 3, "name": "Calculadora de Preço de Venda", "item": "https://www.raioxdaempresa.com.br/calculadoras/calculadora-preco-de-venda.html"}]}</script><script id="faq-schema" type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Preço de venda é o mesmo que markup?", "acceptedAnswer": {"@type": "Answer", "text": "Não exatamente. Markup é o multiplicador; preço de venda é o valor final encontrado a partir dos percentuais embutidos."}}, {"@type": "Question", "name": "Posso usar só markup para precificar?", "acceptedAnswer": {"@type": "Answer", "text": "Pode, mas corre o risco de ignorar impostos, despesas e margem desejada de forma mais estruturada."}}, {"@type": "Question", "name": "O preço sugerido é definitivo?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Ele é a base econômica. Depois disso, entram estratégia, concorrência e percepção de valor."}}]}</script>
 <style>
-.status-farol{padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;margin-top:12px;transition:all .3s ease}
-.status-verde{background:#e6f7ec;color:#0f7b3f;border:2px solid #0f7b3f}
-.status-amarelo{background:#fff6e0;color:#b57a00;border:2px solid #f5b400}
-.status-vermelho{background:#fdeaea;color:#b00020;border:2px solid #e03131}
+/* Farol global para calculadoras */
+.kpi.farol-verde{
+  background:#e6f7ec !important;
+  border:2px solid #0f7b3f !important;
+  box-shadow:0 0 0 1px rgba(15,123,63,.05) inset;
+}
+.kpi.farol-amarelo{
+  background:#fff6e0 !important;
+  border:2px solid #f5b400 !important;
+  box-shadow:0 0 0 1px rgba(245,180,0,.05) inset;
+}
+.kpi.farol-vermelho{
+  background:#fdeaea !important;
+  border:2px solid #e03131 !important;
+  box-shadow:0 0 0 1px rgba(224,49,49,.05) inset;
+}
+.kpi.farol-verde .lbl,.kpi.farol-verde .sub,.kpi.farol-verde .val{color:#0f7b3f !important;}
+.kpi.farol-amarelo .lbl,.kpi.farol-amarelo .sub,.kpi.farol-amarelo .val{color:#9a6a00 !important;}
+.kpi.farol-vermelho .lbl,.kpi.farol-vermelho .sub,.kpi.farol-vermelho .val{color:#b00020 !important;}
+
+#status.farol-verde, .status.farol-verde{
+  background:#e6f7ec !important; color:#0f7b3f !important; border:2px solid #0f7b3f !important;
+}
+#status.farol-amarelo, .status.farol-amarelo{
+  background:#fff6e0 !important; color:#9a6a00 !important; border:2px solid #f5b400 !important;
+}
+#status.farol-vermelho, .status.farol-vermelho{
+  background:#fdeaea !important; color:#b00020 !important; border:2px solid #e03131 !important;
+}
+#status, .status{
+  border-radius:10px;
+}
 </style>
 
 </head><body>
@@ -74,22 +102,58 @@ h1{font-size:44px;line-height:1.05;margin:16px 0 12px;font-family:Georgia,serif}
 <section><div class="container calc-layout"><div class="card card-pad"><div class="section-title">Insira os dados</div><div class="form-field"><div class="label-row"><label for="custo">Custo direto por unidade</label><span class="help" tabindex="0">i</span><div class="tooltip">Custo do produto, serviço ou entrega unitária.</div></div><input id="custo" placeholder="0" step="0.01" type="number"/></div><div class="form-field"><div class="label-row"><label for="despVar">Despesas variáveis (%)</label><span class="help" tabindex="0">i</span><div class="tooltip">Comissão, frete, meios de pagamento e outras despesas variáveis sobre a venda.</div></div><input id="despVar" placeholder="0" step="0.01" type="number"/></div><div class="form-field"><div class="label-row"><label for="impostos">Impostos sobre a venda (%)</label><span class="help" tabindex="0">i</span><div class="tooltip">Tributos incidentes sobre a receita.</div></div><input id="impostos" placeholder="0" step="0.01" type="number"/></div><div class="form-field"><div class="label-row"><label for="margem">Margem desejada (%)</label><span class="help" tabindex="0">i</span><div class="tooltip">Margem alvo que você quer preservar no preço final.</div></div><input id="margem" placeholder="0" step="0.01" type="number"/></div><button class="btn btn-main" onclick="calcular()">Calcular agora</button><p class="small" style="margin-top:12px">Passe o mouse no ícone <strong>i</strong> para entender o significado de cada campo.</p></div><div><div class="kpi-grid"><div class="kpi"><div class="lbl" id="kpi1l">Indicador 1</div><div class="val" id="kpi1v">—</div><div class="sub" id="kpi1s">Preencha os campos.</div></div><div class="kpi"><div class="lbl" id="kpi2l">Indicador 2</div><div class="val" id="kpi2v">—</div><div class="sub" id="kpi2s">Preencha os campos.</div></div><div class="kpi"><div class="lbl" id="kpi3l">Status</div><div class="val" id="kpi3v">—</div><div class="sub" id="kpi3s">Aguardando cálculo.</div></div></div><div class="result-box"><h3>Leitura gerencial</h3><p id="leitura">Preencha os campos e clique em calcular para ver a interpretação do resultado.</p></div><div class="result-box"><h3>Próximo passo</h3><p>Depois do cálculo, compare o preço sugerido com sua margem real e com o nível de desconto que o time comercial pratica.</p><div class="cta-row"><a class="btn btn-outline" href="calculadora-margem-de-lucro.html">Ver margem de lucro</a><a class="btn btn-whats" href="https://wa.me/55011975434818?text=Olá%2C%20quero%20entender%20melhor%20o%20resultado%20da%20calculadora%20do%20Raio-X%20da%20Empresa." rel="noopener noreferrer" target="_blank">Falar no WhatsApp</a></div></div></div></div></section><script>const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v||0)); const pct=(v,d=1)=>`${Number(v||0).toFixed(d).replace('.',',')}%`; const num=(v,d=2)=>Number(v||0).toFixed(d).replace('.',','); function calcular(){ const custo=+document.getElementById('custo').value||0; const despVar=(+document.getElementById('despVar').value||0)/100; const impostos=(+document.getElementById('impostos').value||0)/100; const margem=(+document.getElementById('margem').value||0)/100; const divisor=1-despVar-impostos-margem; const preco=divisor>0?custo/divisor:0; const markup=preco>0?preco/custo:0; document.getElementById('kpi1l').textContent='Preço sugerido'; document.getElementById('kpi1v').textContent=brl(preco); document.getElementById('kpi1s').textContent='Preço mínimo para preservar a margem alvo.'; document.getElementById('kpi2l').textContent='Markup implícito'; document.getElementById('kpi2v').textContent=num(markup,2)+'x'; document.getElementById('kpi2s').textContent='Multiplicador entre custo e preço.'; let status='Atenção',hint='Valide com mercado.',leitura='O preço encontrado é um guia econômico. Agora compare com percepção de valor, concorrência e mix para decidir a aplicação comercial.'; if(divisor<=0){status='Risco';hint='Percentuais inviáveis.';leitura='A soma de despesas, impostos e margem desejada deixou o preço matematicamente inviável. É sinal de que a estrutura está pesada demais para o custo atual.';} else if(markup>=2){status='Saudável';hint='Formação robusta.';leitura='A formação indica boa folga entre custo e preço. O passo seguinte é validar elasticidade e posicionamento comercial.';} document.getElementById('kpi3v').textContent=status; document.getElementById('kpi3s').textContent=hint; document.getElementById('leitura').textContent=leitura;}</script><section class="seo-block"><div class="container"><div class="seo-card seo-grid"><div><h2>Preço de venda sem chute nem folclore comercial</h2><p>Preço mal construído é uma das formas mais elegantes de destruir resultado sem perceber. Vende-se bastante, trabalha-se muito e sobra pouco.</p><p>Esta calculadora parte do custo e incorpora despesas variáveis, impostos e margem alvo para revelar um preço economicamente coerente.</p><h3>O que fazer depois do cálculo</h3><ul><li>Use o cálculo como base técnica da política comercial.</li><li>Valide o preço com mercado e posicionamento.</li><li>Monitore o desconto médio para não destruir a margem planejada.</li></ul></div><div class="seo-faq"><h3>Perguntas frequentes</h3><details><summary>Preço de venda é o mesmo que markup?</summary><p>Não exatamente. Markup é o multiplicador; preço de venda é o valor final encontrado a partir dos percentuais embutidos.</p></details><details><summary>Posso usar só markup para precificar?</summary><p>Pode, mas corre o risco de ignorar impostos, despesas e margem desejada de forma mais estruturada.</p></details><details><summary>O preço sugerido é definitivo?</summary><p>Não. Ele é a base econômica. Depois disso, entram estratégia, concorrência e percepção de valor.</p></details></div></div></div></section><div class="footer container">Ferramenta educacional de apoio à decisão. Resultados dependem das premissas informadas.</div> <script defer="" src="../js/site.js"></script>
 
 <script>
-function aplicarFarol(){
-  const els=document.querySelectorAll('#status, .status');
-  els.forEach(el=>{
-    const t=el.innerText.toUpperCase();
-    el.classList.add('status-farol');
-    el.classList.remove('status-verde','status-amarelo','status-vermelho');
-    if(t.includes('RISCO')){
-      el.classList.add('status-vermelho');
-    }else if(t.includes('ATEN')){
-      el.classList.add('status-amarelo');
-    }else{
-      el.classList.add('status-verde');
-    }
+(function(){
+  function norm(v){
+    return (v || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g,"")
+      .toUpperCase()
+      .trim();
+  }
+
+  function classePorTexto(txt){
+    const t = norm(txt);
+    if(!t) return null;
+    if (t.includes("RISCO") || t.includes("CRITIC") || t.includes("PREJUIZO") || t.includes("NEGATIV")) return "farol-vermelho";
+    if (t.includes("ATENCAO") || t.includes("ALERTA") || t.includes("MODERAD") || t.includes("CUIDADO")) return "farol-amarelo";
+    if (t.includes("SAUDAVEL") || t.includes("ADEQUAD") || t.includes("CONFORTAVEL") || t.includes("POSITIV") || t.includes("OK")) return "farol-verde";
+    return null;
+  }
+
+  function limpar(el){
+    el.classList.remove("farol-verde","farol-amarelo","farol-vermelho");
+  }
+
+  function aplicarFarol(){
+    document.querySelectorAll(".kpi").forEach(function(kpi){
+      const lbl = kpi.querySelector(".lbl");
+      if(!lbl) return;
+      const lblTxt = norm(lbl.textContent);
+      if(!lblTxt.includes("STATUS")) return;
+      const val = kpi.querySelector(".val");
+      const sub = kpi.querySelector(".sub");
+      const classe = classePorTexto((val ? val.textContent : "") + " " + (sub ? sub.textContent : ""));
+      limpar(kpi);
+      if(classe) kpi.classList.add(classe);
+    });
+
+    document.querySelectorAll("#status, .status").forEach(function(el){
+      const classe = classePorTexto(el.textContent);
+      limpar(el);
+      if(classe) el.classList.add(classe);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    aplicarFarol();
+    const obs = new MutationObserver(function(){
+      aplicarFarol();
+    });
+    obs.observe(document.body, {subtree:true, childList:true, characterData:true});
+    window.aplicarFarolStatus = aplicarFarol;
   });
-}
-document.addEventListener("DOMContentLoaded",aplicarFarol);
+})();
 </script>
 
 </body></html>

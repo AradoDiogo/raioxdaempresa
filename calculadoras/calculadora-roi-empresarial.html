@@ -51,10 +51,38 @@ h1{font-size:44px;line-height:1.05;margin:16px 0 12px;font-family:Georgia,serif}
   <noscript><link rel="stylesheet" href="../css/style.css"></noscript>
 <meta content="index, follow, max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="Calculadora de ROI Empresarial | Raio-X da Empresa" property="og:title"/><meta content="Calcule o ROI de projetos, campanhas ou investimentos empresariais." property="og:description"/><meta content="https://www.raioxdaempresa.com.br/calculadoras/calculadora-roi-empresarial.html" property="og:url"/><meta content="Raio-X da Empresa" property="og:site_name"/><meta content="pt_BR" property="og:locale"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Calculadora de ROI Empresarial | Raio-X da Empresa" name="twitter:title"/><meta content="Calcule o ROI de projetos, campanhas ou investimentos empresariais." name="twitter:description"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" name="twitter:image"/><script id="breadcrumb-schema" type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.raioxdaempresa.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Calculadoras", "item": "https://www.raioxdaempresa.com.br/calculadoras/"}, {"@type": "ListItem", "position": 3, "name": "Calculadora de ROI Empresarial", "item": "https://www.raioxdaempresa.com.br/calculadoras/calculadora-roi-empresarial.html"}]}</script><script id="faq-schema" type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é ROI?", "acceptedAnswer": {"@type": "Answer", "text": "É o retorno sobre o investimento, calculado pela relação entre ganho líquido e custo aplicado."}}, {"@type": "Question", "name": "ROI alto garante boa decisão?", "acceptedAnswer": {"@type": "Answer", "text": "Não sozinho. É preciso olhar prazo, risco, impacto no caixa e execução."}}, {"@type": "Question", "name": "ROI pode ser usado para marketing?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, desde que você estime ganho incremental com algum nível de disciplina."}}]}</script>
 <style>
-.status-farol{padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;margin-top:12px;transition:all .3s ease}
-.status-verde{background:#e6f7ec;color:#0f7b3f;border:2px solid #0f7b3f}
-.status-amarelo{background:#fff6e0;color:#b57a00;border:2px solid #f5b400}
-.status-vermelho{background:#fdeaea;color:#b00020;border:2px solid #e03131}
+/* Farol global para calculadoras */
+.kpi.farol-verde{
+  background:#e6f7ec !important;
+  border:2px solid #0f7b3f !important;
+  box-shadow:0 0 0 1px rgba(15,123,63,.05) inset;
+}
+.kpi.farol-amarelo{
+  background:#fff6e0 !important;
+  border:2px solid #f5b400 !important;
+  box-shadow:0 0 0 1px rgba(245,180,0,.05) inset;
+}
+.kpi.farol-vermelho{
+  background:#fdeaea !important;
+  border:2px solid #e03131 !important;
+  box-shadow:0 0 0 1px rgba(224,49,49,.05) inset;
+}
+.kpi.farol-verde .lbl,.kpi.farol-verde .sub,.kpi.farol-verde .val{color:#0f7b3f !important;}
+.kpi.farol-amarelo .lbl,.kpi.farol-amarelo .sub,.kpi.farol-amarelo .val{color:#9a6a00 !important;}
+.kpi.farol-vermelho .lbl,.kpi.farol-vermelho .sub,.kpi.farol-vermelho .val{color:#b00020 !important;}
+
+#status.farol-verde, .status.farol-verde{
+  background:#e6f7ec !important; color:#0f7b3f !important; border:2px solid #0f7b3f !important;
+}
+#status.farol-amarelo, .status.farol-amarelo{
+  background:#fff6e0 !important; color:#9a6a00 !important; border:2px solid #f5b400 !important;
+}
+#status.farol-vermelho, .status.farol-vermelho{
+  background:#fdeaea !important; color:#b00020 !important; border:2px solid #e03131 !important;
+}
+#status, .status{
+  border-radius:10px;
+}
 </style>
 
 </head><body>
@@ -74,22 +102,58 @@ h1{font-size:44px;line-height:1.05;margin:16px 0 12px;font-family:Georgia,serif}
 <section><div class="container calc-layout"><div class="card card-pad"><div class="section-title">Insira os dados</div><div class="form-field"><div class="label-row"><label for="ganho">Ganho bruto estimado</label><span class="help" tabindex="0">i</span><div class="tooltip">Receita incremental ou economia gerada pelo projeto.</div></div><input id="ganho" placeholder="0" step="0.01" type="number"/></div><div class="form-field"><div class="label-row"><label for="custo">Custo total do investimento</label><span class="help" tabindex="0">i</span><div class="tooltip">Tudo que precisa ser investido para executar a iniciativa.</div></div><input id="custo" placeholder="0" step="0.01" type="number"/></div><div class="form-field"><div class="label-row"><label for="prazo">Prazo do projeto (meses)</label><span class="help" tabindex="0">i</span><div class="tooltip">Horizonte usado para interpretar o retorno no tempo.</div></div><input id="prazo" placeholder="0" step="1" type="number"/></div><button class="btn btn-main" onclick="calcular()">Calcular agora</button><p class="small" style="margin-top:12px">Passe o mouse no ícone <strong>i</strong> para entender o significado de cada campo.</p></div><div><div class="kpi-grid"><div class="kpi"><div class="lbl" id="kpi1l">Indicador 1</div><div class="val" id="kpi1v">—</div><div class="sub" id="kpi1s">Preencha os campos.</div></div><div class="kpi"><div class="lbl" id="kpi2l">Indicador 2</div><div class="val" id="kpi2v">—</div><div class="sub" id="kpi2s">Preencha os campos.</div></div><div class="kpi"><div class="lbl" id="kpi3l">Status</div><div class="val" id="kpi3v">—</div><div class="sub" id="kpi3s">Aguardando cálculo.</div></div></div><div class="result-box"><h3>Leitura gerencial</h3><p id="leitura">Preencha os campos e clique em calcular para ver a interpretação do resultado.</p></div><div class="result-box"><h3>Próximo passo</h3><p>Use o resultado para aprofundar o diagnóstico financeiro da empresa com mais contexto.</p><div class="cta-row"><a class="btn btn-outline" href="../index.html?page=sim">Ver simuladores</a><a class="btn btn-whats" href="https://wa.me/55011975434818?text=Olá%2C%20quero%20entender%20melhor%20o%20resultado%20da%20calculadora%20do%20Raio-X%20da%20Empresa." rel="noopener noreferrer" target="_blank">Falar no WhatsApp</a></div></div></div></div></section><script>const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v||0)); const pct=(v,d=1)=>`${Number(v||0).toFixed(d).replace('.',',')}%`; const num=(v,d=2)=>Number(v||0).toFixed(d).replace('.',','); function calcular(){ const ganho=+document.getElementById('ganho').value||0; const custo=+document.getElementById('custo').value||0; const prazo=+document.getElementById('prazo').value||0; const roi=custo?((ganho-custo)/custo)*100:0; const retornoMensal=prazo?(ganho-custo)/prazo:0; document.getElementById('kpi1l').textContent='ROI'; document.getElementById('kpi1v').textContent=pct(roi,1); document.getElementById('kpi1s').textContent='Retorno sobre o investimento.'; document.getElementById('kpi2l').textContent='Retorno médio mensal'; document.getElementById('kpi2v').textContent=brl(retornoMensal); document.getElementById('kpi2s').textContent='Ganho líquido dividido pelo prazo.'; let status='Atenção',hint='Retorno moderado.',leitura='O projeto parece gerar retorno, mas a qualidade dessa estimativa depende da premissa de ganho. Vale testar cenários mais conservadores.'; if(roi>=30){status='Saudável';hint='Retorno atrativo.';leitura='O investimento mostra boa relação entre ganho e custo. O próximo passo é verificar risco, prazo de execução e impacto no caixa.';} else if(roi<0){status='Risco';hint='Destrói valor.';leitura='Pelas premissas atuais, o investimento destrói valor. Reavalie escopo, custo ou o ganho incremental esperado antes de seguir.';} document.getElementById('kpi3v').textContent=status; document.getElementById('kpi3s').textContent=hint; document.getElementById('leitura').textContent=leitura;}</script><section class="seo-block"><div class="container"><div class="seo-card seo-grid"><div><h2>Calculadora de ROI Empresarial</h2><p>Calcule o ROI de projetos, campanhas ou investimentos empresariais.</p><p>Esta ferramenta ajuda a transformar um conceito financeiro em leitura prática e acionável para o negócio.</p><h3>O que fazer depois do cálculo</h3><ul><li>Compare ROI com payback e risco da iniciativa.</li><li>Rode cenários conservador, base e otimista.</li><li>Cheque se o caixa suporta o investimento antes do retorno aparecer.</li></ul></div><div class="seo-faq"><h3>Perguntas frequentes</h3><details><summary>O que é ROI?</summary><p>É o retorno sobre o investimento, calculado pela relação entre ganho líquido e custo aplicado.</p></details><details><summary>ROI alto garante boa decisão?</summary><p>Não sozinho. É preciso olhar prazo, risco, impacto no caixa e execução.</p></details><details><summary>ROI pode ser usado para marketing?</summary><p>Sim, desde que você estime ganho incremental com algum nível de disciplina.</p></details></div></div></div></section><div class="footer container">Ferramenta educacional de apoio à decisão. Resultados dependem das premissas informadas.</div> <script defer="" src="../js/site.js"></script>
 
 <script>
-function aplicarFarol(){
-  const els=document.querySelectorAll('#status, .status');
-  els.forEach(el=>{
-    const t=el.innerText.toUpperCase();
-    el.classList.add('status-farol');
-    el.classList.remove('status-verde','status-amarelo','status-vermelho');
-    if(t.includes('RISCO')){
-      el.classList.add('status-vermelho');
-    }else if(t.includes('ATEN')){
-      el.classList.add('status-amarelo');
-    }else{
-      el.classList.add('status-verde');
-    }
+(function(){
+  function norm(v){
+    return (v || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g,"")
+      .toUpperCase()
+      .trim();
+  }
+
+  function classePorTexto(txt){
+    const t = norm(txt);
+    if(!t) return null;
+    if (t.includes("RISCO") || t.includes("CRITIC") || t.includes("PREJUIZO") || t.includes("NEGATIV")) return "farol-vermelho";
+    if (t.includes("ATENCAO") || t.includes("ALERTA") || t.includes("MODERAD") || t.includes("CUIDADO")) return "farol-amarelo";
+    if (t.includes("SAUDAVEL") || t.includes("ADEQUAD") || t.includes("CONFORTAVEL") || t.includes("POSITIV") || t.includes("OK")) return "farol-verde";
+    return null;
+  }
+
+  function limpar(el){
+    el.classList.remove("farol-verde","farol-amarelo","farol-vermelho");
+  }
+
+  function aplicarFarol(){
+    document.querySelectorAll(".kpi").forEach(function(kpi){
+      const lbl = kpi.querySelector(".lbl");
+      if(!lbl) return;
+      const lblTxt = norm(lbl.textContent);
+      if(!lblTxt.includes("STATUS")) return;
+      const val = kpi.querySelector(".val");
+      const sub = kpi.querySelector(".sub");
+      const classe = classePorTexto((val ? val.textContent : "") + " " + (sub ? sub.textContent : ""));
+      limpar(kpi);
+      if(classe) kpi.classList.add(classe);
+    });
+
+    document.querySelectorAll("#status, .status").forEach(function(el){
+      const classe = classePorTexto(el.textContent);
+      limpar(el);
+      if(classe) el.classList.add(classe);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    aplicarFarol();
+    const obs = new MutationObserver(function(){
+      aplicarFarol();
+    });
+    obs.observe(document.body, {subtree:true, childList:true, characterData:true});
+    window.aplicarFarolStatus = aplicarFarol;
   });
-}
-document.addEventListener("DOMContentLoaded",aplicarFarol);
+})();
 </script>
 
 </body></html>
