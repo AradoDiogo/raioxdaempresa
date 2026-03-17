@@ -56,7 +56,7 @@
     "@type": "WebApplication",
     "name": "Raio-X da Empresa",
     "url": "https://www.raioxdaempresa.com.br",
-    "description": "Simuladores financeiros gratuitos para PMEs brasileiras: locadoras de equipamentos, distribuidoras, varejistas e empresas de serviços. Diagnóstico de EBITDA, capital de giro, ciclo financeiro e caixa em tempo real.",
+    "description": "Simuladores financeiros gratuitos para PMEs brasileiras: locadoras de equipamentos, distribuidoras, indústrias, varejistas e empresas de serviços. Diagnóstico de EBITDA, capital de giro, ciclo financeiro e caixa em tempo real.",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "offers": {
@@ -89,7 +89,7 @@
         "name": "Para quais tipos de empresa o simulador funciona?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Temos simuladores específicos para locadoras de equipamentos, distribuidoras, varejistas e empresas de serviços com faturamento acima de R$ 300 mil por mês."
+          "text": "Temos simuladores específicos para locadoras de equipamentos, distribuidoras, indústrias, varejistas e empresas de serviços com faturamento acima de R$ 300 mil por mês."
         }
       },
       {
@@ -1097,7 +1097,7 @@
   <section class="section" style="padding-top:0">
     <div class="container">
       <div class="stats-bar">
-        <div class="stat-item"><div class="stat-big">4</div><p>simuladores estratégicos por modelo de negócio</p></div>
+        <div class="stat-item"><div class="stat-big">5</div><p>simuladores estratégicos por modelo de negócio</p></div>
         <div class="stat-item"><div class="stat-big">12+</div><p>soluções de gestão financeira e estratégia</p></div>
         <div class="stat-item"><div class="stat-big">3%</div><p>de ajuste no preço pode dobrar o EBITDA do seu negócio</p></div>
         <div class="stat-item"><div class="stat-big">0</div><p>planilhas complexas para começar a enxergar o negócio com clareza</p></div>
@@ -1153,6 +1153,16 @@
           <h3>Distribuidor</h3>
           <p>Simule margem, giro de estoque, ciclo financeiro e como o crescimento pode pressionar o caixa.</p>
           <div class="sim-card-tags"><span class="tag">Margem</span><span class="tag">PMR/PMP</span><span class="tag">NCG</span><span class="tag">Giro</span></div>
+        </div>
+
+        <div class="sim-card" onclick="goSim('industria')">
+          <div class="sim-card-arrow">→</div>
+          <div class="sim-card-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5v18"/><path d="M12 13h7v8"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M9 17h.01"/><path d="M16 17h.01"/></svg>
+          </div>
+          <h3>Indústria</h3>
+          <p>Simule produção, margem, refugo, capacidade, estoque e dívida para enxergar o impacto no caixa industrial.</p>
+          <div class="sim-card-tags"><span class="tag">Produção</span><span class="tag">Refugo</span><span class="tag">Capacidade</span><span class="tag">NCG</span></div>
         </div>
         <div class="sim-card" onclick="goSim('varejista')">
           <div class="sim-card-arrow">→</div>
@@ -1295,6 +1305,11 @@
       <button class="sim-tab" data-sim="distribuidor" onclick="switchSim('distribuidor')">
         <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         Distribuidor
+      </button>
+
+      <button class="sim-tab" data-sim="industria" onclick="switchSim('industria')">
+        <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5v18"/><path d="M12 13h7v8"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M9 17h.01"/><path d="M16 17h.01"/></svg>
+        Indústria
       </button>
       <button class="sim-tab" data-sim="varejista" onclick="switchSim('varejista')">
         <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1730,6 +1745,71 @@ const sims={
   },
 
   /* ── VAREJISTA: R$300k → markup 30%, descontos altos, EBITDA negativo = ESTRESSE ── */
+
+  industria:{
+    title:'Indústria',
+    dreTitle:'DRE Gerencial — Indústria',indTitle:'Eficiência & Caixa',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M3 21h18"/><path d="M5 21V8l7-5v18"/><path d="M12 13h7v8"/></svg>',
+    groups:[
+      {label:'Produção & Receita',fields:[
+        {id:'revenue',label:'Receita mensal',val:300000,unit:'R$',step:10000,prefix:true,tip:'Faturamento mensal esperado com a produção vendida.'},
+        {id:'gross',label:'Margem bruta (%)',val:28,unit:'%',step:0.5,tip:'Percentual que sobra após matéria-prima e custos produtivos diretos.'},
+        {id:'capacity',label:'Utilização da capacidade (%)',val:70,unit:'%',step:1,tip:'Quanto da capacidade produtiva instalada está sendo usada.'},
+        {id:'scrap',label:'Refugo / perdas (%)',val:4,unit:'%',step:0.1,tip:'Percentual da produção perdido por refugo, retrabalho ou quebra.'},
+        {id:'ticket',label:'Ticket médio por pedido',val:18000,unit:'R$',step:1000,prefix:true,tip:'Valor médio por pedido industrial vendido.'}
+      ]},
+      {label:'Estrutura & Caixa',fields:[
+        {id:'fixed',label:'Despesas fixas mensais',val:90000,unit:'R$',step:1000,prefix:true,tip:'Folha, fábrica, administrativo, energia fixa e estrutura.'},
+        {id:'pme',label:'PME — estoque (dias)',val:40,unit:'d',step:1,tip:'Dias médios em estoque de matéria-prima e produto acabado.'},
+        {id:'pmr',label:'PMR — recebimento (dias)',val:45,unit:'d',step:1,tip:'Prazo médio que clientes levam para pagar.'},
+        {id:'pmp',label:'PMP — pagamento (dias)',val:28,unit:'d',step:1,tip:'Prazo médio para pagar fornecedores.'},
+        {id:'debt',label:'Serviço da dívida mensal',val:18000,unit:'R$',step:1000,prefix:true,tip:'Parcelas de financiamentos e empréstimos ligados à operação.'}
+      ]},
+    ],
+    compute(v){
+      const revenue=v.revenue*(v.capacity/100);
+      const grossProfit=revenue*(v.gross/100);
+      const losses=revenue*(v.scrap/100);
+      const ebitda=grossProfit-losses-v.fixed;
+      const cogs=revenue-grossProfit;
+      const recv=revenue*(v.pmr/30);
+      const stock=cogs*(v.pme/30);
+      const pay=cogs*(v.pmp/30);
+      const ncg=recv+stock-pay;
+      const dscr=v.debt?Math.max(0,ebitda/v.debt):99;
+      const breakEven = (v.gross/100)>0 ? (v.fixed+v.debt)/(v.gross/100) : 0;
+      const status=dscr>=1.3 && v.capacity>=75 && v.scrap<=3 ? 'Saudável' : dscr>=1 && v.capacity>=60 ? 'Atenção' : 'Estresse';
+      const caixa=ebitda-v.debt-(ncg*0.03);
+      return {
+        kpis:[
+          {l:'Receita ajustada',v:fmt(revenue),h:'Receita considerando uso da capacidade',c:'accent'},
+          {l:'EBITDA mensal',v:fmt(ebitda),h:'Margem bruta menos perdas e estrutura',c:ebitda>=0?'ok':'danger'},
+          {l:'NCG estimada',v:fmt(ncg),h:'Capital de giro da operação industrial',c:ncg>0?'warn':'ok'},
+          {l:'Status estrutural',v:status,h:`Break-even de receita: ${fmt(breakEven)}`,c:status==='Saudável'?'ok':status==='Atenção'?'warn':'danger'}
+        ],
+        dre:[
+          ['Receita líquida estimada',fmt(revenue),false],
+          ['(-) Custo industrial',fmt(-(revenue-grossProfit)),false],
+          ['(-) Refugo / perdas',fmt(-losses),false],
+          ['= EBITDA industrial',fmt(ebitda),true],
+          ['(-) Serviço da dívida',fmt(-v.debt),false],
+          ['= Caixa após dívida',fmt(caixa),true],
+        ],
+        ind:[
+          ['Capacidade utilizada',pct(v.capacity,0)],['Refugo',pct(v.scrap,1)],
+          ['DSCR',num(dscr,2)+'x'],['NCG estimada',fmt(ncg)],
+          ['PMR + PME - PMP',num(v.pmr+v.pme-v.pmp,0)+' dias'],['Ticket médio',fmt(v.ticket)]
+        ],
+        chart:{mode:'bridge',items:[['Receita',revenue,'#6de0d7'],['Custos industriais',-(revenue-grossProfit),'#ff7b7b'],['Refugo',-losses,'#ff9b7b'],['Estrutura',-v.fixed,'#ffd166'],['Dívida',-v.debt,'#c9a3ff'],['Caixa',caixa,caixa>=0?'#72e3a1':'#ff7b7b']],title:'Waterfall do caixa industrial'},
+        insights:[
+          v.capacity<70?`A utilização de capacidade está em ${pct(v.capacity,0)}. A fábrica pode estar carregando estrutura demais para o volume atual.`:`A utilização de capacidade está em ${pct(v.capacity,0)}. Agora o foco é preservar margem e eficiência sem criar gargalo operacional.`,
+          v.scrap>3?`Refugo em ${pct(v.scrap,1)}. Em indústria, desperdício pequeno no papel vira erosão grande de margem no caixa real.`:`Refugo em patamar mais controlado. Continue monitorando perdas para proteger margem e previsibilidade.`,
+          `Indústria saudável equilibra capacidade, perdas, prazo e estrutura financeira. Crescer sem esse encaixe costuma gerar faturamento bonito e caixa sofrido.`
+        ]
+      };
+    },
+  },
+
   varejista:{
     title:'Varejista',
     dreTitle:'DRE de Varejo',indTitle:'Margem, Giro & Break-even',

@@ -145,3 +145,45 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observe);
   else observe();
 })();
+
+
+(function initScrollReveal(){
+  const setup = () => {
+    const groups = [
+      {selector: '.hero .container, .hero-copy, .lead-hero-card, .trust-strip, .trust-point, .section-head, .sim-card, .step-card, .value-card, .stat-item', mode: 'alternate'},
+      {selector: '.grid-cards .card', mode: 'alternate'},
+      {selector: '.calculator-grid .card, .cards-grid .card, .results-grid .card', mode: 'alternate'},
+      {selector: '.hero-card, .hero-panel, .hero-content', mode: 'up'}
+    ];
+    const nodes = [];
+    groups.forEach(group => {
+      document.querySelectorAll(group.selector).forEach((node, index) => {
+        if (!node.classList.contains('reveal')) {
+          node.classList.add('reveal');
+          if (group.mode === 'alternate') {
+            node.classList.add(index % 2 === 0 ? 'reveal-left' : 'reveal-right');
+          } else {
+            node.classList.add('reveal-up');
+          }
+        }
+        nodes.push(node);
+      });
+    });
+    const uniq = Array.from(new Set(nodes));
+    if (!('IntersectionObserver' in window)) {
+      uniq.forEach(node => node.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
+    uniq.forEach(node => io.observe(node));
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+})();
