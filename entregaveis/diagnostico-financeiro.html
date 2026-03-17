@@ -58,7 +58,15 @@
 <link rel="preload" href="../css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="preload" href="../css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="../css/style.css"></noscript></noscript>
-<meta content="website" property="og:type"/><meta content="Diagnóstico Financeiro para Empresas | Raio-X da Empresa" property="og:title"/><meta content="Organização da gestão financeira e análise de performance econômico-financeira para gerar clareza de caixa, resultado e plano de ação." property="og:description"/><meta content="https://www.raioxdaempresa.com.br/entregaveis/diagnostico-financeiro.html" property="og:url"/><meta content="Raio-X da Empresa" property="og:site_name"/><meta content="pt_BR" property="og:locale"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Diagnóstico Financeiro para Empresas | Raio-X da Empresa" name="twitter:title"/><meta content="Organização da gestão financeira e análise de performance econômico-financeira para gerar clareza de caixa, resultado e plano de ação." name="twitter:description"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" name="twitter:image"/><script id="breadcrumb-schema" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.raioxdaempresa.com.br/"},{"@type":"ListItem","position":2,"name":"Entregáveis","item":"https://www.raioxdaempresa.com.br/entregaveis/diagnostico-financeiro.html"},{"@type":"ListItem","position":3,"name":"Antes de crescer, é preciso enxergar a realidade do negócio.","item":"https://www.raioxdaempresa.com.br/entregaveis/diagnostico-financeiro.html"}]}</script></head>
+<meta content="website" property="og:type"/><meta content="Diagnóstico Financeiro para Empresas | Raio-X da Empresa" property="og:title"/><meta content="Organização da gestão financeira e análise de performance econômico-financeira para gerar clareza de caixa, resultado e plano de ação." property="og:description"/><meta content="https://www.raioxdaempresa.com.br/entregaveis/diagnostico-financeiro.html" property="og:url"/><meta content="Raio-X da Empresa" property="og:site_name"/><meta content="pt_BR" property="og:locale"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Diagnóstico Financeiro para Empresas | Raio-X da Empresa" name="twitter:title"/><meta content="Organização da gestão financeira e análise de performance econômico-financeira para gerar clareza de caixa, resultado e plano de ação." name="twitter:description"/><meta content="https://www.raioxdaempresa.com.br/assets/img/favicon.png" name="twitter:image"/><script id="breadcrumb-schema" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.raioxdaempresa.com.br/"},{"@type":"ListItem","position":2,"name":"Entregáveis","item":"https://www.raioxdaempresa.com.br/entregaveis/diagnostico-financeiro.html"},{"@type":"ListItem","position":3,"name":"Antes de crescer, é preciso enxergar a realidade do negócio.","item":"https://www.raioxdaempresa.com.br/entregaveis/diagnostico-financeiro.html"}]}</script>
+<style>
+.status-farol{padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;margin-top:12px;transition:all .3s ease}
+.status-verde{background:#e6f7ec;color:#0f7b3f;border:2px solid #0f7b3f}
+.status-amarelo{background:#fff6e0;color:#b57a00;border:2px solid #f5b400}
+.status-vermelho{background:#fdeaea;color:#b00020;border:2px solid #e03131}
+</style>
+
+</head>
 <body>
 <header class="site-header">
 <div class="container header-inner">
@@ -118,5 +126,25 @@
 </main>
 <footer class="footer">Raio-X da Empresa • Gestão financeira, estratégia e criação de valor</footer>
 <script defer="" src="../js/site.js"></script>
+
+<script>
+function aplicarFarol(){
+  const els=document.querySelectorAll('#status, .status');
+  els.forEach(el=>{
+    const t=el.innerText.toUpperCase();
+    el.classList.add('status-farol');
+    el.classList.remove('status-verde','status-amarelo','status-vermelho');
+    if(t.includes('RISCO')){
+      el.classList.add('status-vermelho');
+    }else if(t.includes('ATEN')){
+      el.classList.add('status-amarelo');
+    }else{
+      el.classList.add('status-verde');
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded",aplicarFarol);
+</script>
+
 </body>
 </html>

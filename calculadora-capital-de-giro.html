@@ -13,8 +13,36 @@
 <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="css/style.css"></noscript></noscript>
-<meta content="noindex, follow" name="robots"/><link href="https://www.raioxdaempresa.com.br/calculadoras/calculadora-capital-de-giro.html" rel="canonical"/></head>
+<meta content="noindex, follow" name="robots"/><link href="https://www.raioxdaempresa.com.br/calculadoras/calculadora-capital-de-giro.html" rel="canonical"/>
+<style>
+.status-farol{padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;margin-top:12px;transition:all .3s ease}
+.status-verde{background:#e6f7ec;color:#0f7b3f;border:2px solid #0f7b3f}
+.status-amarelo{background:#fff6e0;color:#b57a00;border:2px solid #f5b400}
+.status-vermelho{background:#fdeaea;color:#b00020;border:2px solid #e03131}
+</style>
+
+</head>
 <body data-no-global-header="true" style="padding:24px; font-family: Inter, system-ui, sans-serif; background:#071416; color:#eef8f7;">
 <p>Redirecionando… Caso a página não abra automaticamente, <a href="calculadoras/calculadora-capital-de-giro.html">clique aqui</a>.</p>
+
+<script>
+function aplicarFarol(){
+  const els=document.querySelectorAll('#status, .status');
+  els.forEach(el=>{
+    const t=el.innerText.toUpperCase();
+    el.classList.add('status-farol');
+    el.classList.remove('status-verde','status-amarelo','status-vermelho');
+    if(t.includes('RISCO')){
+      el.classList.add('status-vermelho');
+    }else if(t.includes('ATEN')){
+      el.classList.add('status-amarelo');
+    }else{
+      el.classList.add('status-verde');
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded",aplicarFarol);
+</script>
+
 </body>
 </html>
