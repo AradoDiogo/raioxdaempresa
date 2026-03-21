@@ -2629,6 +2629,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 <script id="diagnostico-inteligente-script">
+
 function gerarDiagnostico(){
   const tipo = document.getElementById('tipoEmpresa').value;
   const desafio = document.getElementById('desafio').value;
@@ -2645,7 +2646,7 @@ function gerarDiagnostico(){
     return;
   }
 
-  const links = {
+  const linksPorDesafio = {
     caixa: '/calculadoras/calculadora-ciclo-financeiro.html',
     margem: '/calculadoras/calculadora-margem-de-contribuicao.html',
     crescimento: '/calculadoras/calculadora-crescimento-sustentavel.html',
@@ -2680,21 +2681,71 @@ function gerarDiagnostico(){
     divida: 'O foco inicial deve ser medir a pressão do endividamento sobre a operação e a capacidade de reação.'
   };
 
+  // O botão final abre o simulador do tipo de empresa selecionado.
+  const simuladorPorTipo = {
+    locacao: 'locadora',
+    distribuicao: 'distribuidor',
+    industria: 'industria',
+    varejo: 'varejista',
+    servicos: 'servicos'
+  };
+
   const sim = titulos[desafio];
-  const link = links[desafio];
+  const linkCalculadora = linksPorDesafio[desafio];
+  const destinoTipo = simuladorPorTipo[tipo] || 'locadora';
 
   resultado.classList.add('active');
-  if (window.rxTrack) { window.rxTrack('diagnostico_gerado', {page_path: location.pathname, tipo_empresa: tipo, desafio: desafio, faturamento: faturamento, simulador_recomendado: sim}); }
   resultado.innerHTML = `
     <div class="resultado-kicker">Diagnóstico inicial</div>
     <h3>Seu melhor ponto de partida agora</h3>
     <p>${leituras[tipo]} ${foco[desafio]} ${complemento[faturamento]}</p>
     <div class="sim-title">${sim}</div>
-    <a class="btn-diagnostico" href="${link}">Abrir simulador recomendado →</a>
+    <a class="btn-diagnostico" href="#simuladores-estrategicos" onclick="return abrirSimuladorDoDiagnostico('${destinoTipo}','${linkCalculadora}')">Abrir simulador recomendado →</a>
   `;
 
-  if (window.aplicarFarolStatus) { window.aplicarFarolStatus(); }
+  const sec = document.getElementById('simuladores-estrategicos') || document.querySelector('[data-sim-section]');
+  if (sec) {
+    setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  }
 }
+
+function abrirSimuladorDoDiagnostico(tipo, fallbackLink){
+  const mapa = {
+    locadora: ['locador de equipamentos','locadora','equipamentos'],
+    distribuidor: ['distribuidor','atacado'],
+    industria: ['indústria','industria'],
+    varejista: ['varejista','varejo'],
+    servicos: ['serviços','servicos']
+  };
+
+  if (typeof showPage === 'function') {
+    showPage('sim');
+  }
+
+  const termos = mapa[tipo] || [];
+  const candidatos = Array.from(document.querySelectorAll('.sim-tab, .svc-badge, .sim-card, button, a'));
+  const alvo = candidatos.find(el => {
+    const texto = (el.innerText || el.textContent || '').toLowerCase();
+    return termos.some(t => texto.includes(t));
+  });
+
+  if (alvo) {
+    setTimeout(() => {
+      try { alvo.click(); } catch(e) {}
+      const sec = document.getElementById('simuladores-estrategicos') || document.querySelector('[data-sim-section]');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 140);
+    return false;
+  }
+
+  if (fallbackLink) {
+    window.location.href = fallbackLink;
+    return false;
+  }
+
+  return false;
+}
+
 </script>
 
 </body>
